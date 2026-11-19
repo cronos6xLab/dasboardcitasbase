@@ -1527,7 +1527,7 @@ html[data-mode="dark"] .sync-pill {
         <strong id="dashTopTitle" style="font-size:15.5px;font-family:var(--font-display);font-weight:800;letter-spacing:-0.025em;">Citas</strong>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-        <button type="button" class="sync-pill loading" id="syncStatusBadge" title="Toca para volver a sincronizar con Google Sheets">● Sincronizando…</button>
+        <button type="button" class="sync-pill loading" id="syncStatusBadge" title="Toca para volver a sincronizar">● Sincronizando…</button>
       </div>
     </header>
 
@@ -1579,7 +1579,7 @@ html[data-mode="dark"] .sync-pill {
 
           <div class="d-table-wrap">
             <table class="d-table" id="adminBookingsTable">
-              <tbody><tr><td style="color:var(--slate);padding:20px;">Cargando citas desde Google Sheets…</td></tr></tbody>
+              <tbody><tr><td style="color:var(--slate);padding:20px;">Cargando citas…</td></tr></tbody>
             </table>
           </div>
         </div>
@@ -1615,7 +1615,7 @@ html[data-mode="dark"] .sync-pill {
         <div class="page-hero-head">
           <div>
             <h1 class="page-hero-title">Tablero de Control</h1>
-            <p class="page-hero-sub">Indicadores clave de reservas, cobertura de horarios, equipo y catálogo sincronizados con Google Sheets</p>
+            <p class="page-hero-sub">Indicadores clave de reservas, cobertura de horarios, equipo y catálogo sincronizados</p>
           </div>
           <div class="page-hero-actions">
             <button type="button" class="d-btn d-btn-outline" data-goto-panel="horarios">🕒 Ir a Horarios</button>
@@ -1823,7 +1823,7 @@ html[data-mode="dark"] .sync-pill {
             <h1 class="page-hero-title">Negocio, Redes Sociales y Ubicación</h1>
             <p class="page-hero-sub">Configura la identidad de tu negocio, enlaces de contacto, redes sociales y mapa interactivo</p>
           </div>
-          <button type="button" class="d-btn d-btn-primary" id="btnSaveBusinessConfigTop">✓ Guardar Todo en Sheets</button>
+          <button type="button" class="d-btn d-btn-primary" id="btnSaveBusinessConfigTop">✓ Guardar Todo </button>
         </div>
 
         <div class="d-card">
@@ -1879,17 +1879,17 @@ html[data-mode="dark"] .sync-pill {
         <div class="page-hero-head">
           <div>
             <h1 class="page-hero-title">Ajustes y Configuración del Sistema</h1>
-            <p class="page-hero-sub">Sincronización con Google Sheets, modo oscuro, tema visual, plantillas de WhatsApp y consola de diagnóstico</p>
+            <p class="page-hero-sub">Sincronización, modo oscuro, tema visual, plantillas de WhatsApp y consola de diagnóstico</p>
           </div>
         </div>
 
         <div class="d-card">
           <div class="d-card-head">
             <div>
-              <h3 class="d-card-title">☁️ Sincronización con Google Sheets</h3>
+              <h3 class="d-card-title">☁️ Sincronización </h3>
               <p style="font-size:13.5px;color:var(--slate);margin-top:4px;">Actualiza manualmente las hojas de Reservas, Historial, Especialistas, Servicios y Config.</p>
             </div>
-            <button type="button" class="d-btn d-btn-primary" id="btnSyncCloud">↻ Sincronizar con Google Sheets ahora</button>
+            <button type="button" class="d-btn d-btn-primary" id="btnSyncCloud">↻ Sincronizar ahora</button>
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding-top:12px;border-top:1px solid var(--border);font-family:var(--font-mono);font-size:11.5px;color:var(--ash);">
             <span>ESTADO: <strong id="settingsSyncText" style="color:var(--ink);">Conectando…</strong></span>
@@ -2018,7 +2018,7 @@ html[data-mode="dark"] .sync-pill {
     </label>
     <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:20px;">
       <button type="button" class="d-btn d-btn-outline" id="btnCloseAdminModal">Cancelar</button>
-      <button type="button" class="d-btn d-btn-primary" id="btnSaveAdminModal">Guardar en Sheets</button>
+      <button type="button" class="d-btn d-btn-primary" id="btnSaveAdminModal">Guardar</button>
     </div>
   </div>
 </div>
@@ -2563,7 +2563,7 @@ html[data-mode="dark"] .sync-pill {
     }
     isSyncingNow = true;
     setSyncBadge('loading', '● Sincronizando…');
-    logDebug('ok', 'Iniciando sincronización con Google Sheets…');
+    logDebug('ok', 'Iniciando sincronización…');
 
     try {
       const [config, services, specialists, bookings, history] = await Promise.all([
@@ -2637,7 +2637,7 @@ html[data-mode="dark"] .sync-pill {
       if ($('#lastSyncTimeLabel')) {
         $('#lastSyncTimeLabel').textContent = new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
       }
-      if (!silent) showToast('Datos sincronizados con Google Sheets ✓');
+      if (!silent) showToast('Datos sincronizados ✓');
       logDebug('ok', `Sincronizado: Servicios=${store.services.length}, Especialistas=${store.specialists.length}, Activas=${store.bookings.length}, Historial=${store.history.length}`);
 
       // Revisar automáticamente citas pasadas por 6 horas
@@ -2745,11 +2745,11 @@ html[data-mode="dark"] .sync-pill {
       </div>
       <div class="kpi-card">
         <div class="kpi-icon purple"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-        <div><p class="kpi-title">Especialistas en Sheets</p><p class="kpi-value">${store.specialists.length}</p><p class="kpi-sub teal">Equipo activo</p></div>
+        <div><p class="kpi-title">Especialistas</p><p class="kpi-value">${store.specialists.length}</p><p class="kpi-sub teal">Equipo activo</p></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-icon orange"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-        <div><p class="kpi-title">Servicios en Sheets</p><p class="kpi-value">${store.services.length}</p><p class="kpi-sub orange">Catálogo (${esc(store.config.currency || 'MXN')})</p></div>
+        <div><p class="kpi-title">Servicios</p><p class="kpi-value">${store.services.length}</p><p class="kpi-sub orange">Catálogo (${esc(store.config.currency || 'MXN')})</p></div>
       </div>
     `;
 
@@ -3211,7 +3211,7 @@ html[data-mode="dark"] .sync-pill {
           <small style="font-family:var(--font-mono);color:var(--ash);">ID: ${esc(sp.id || 'Nuevo (pendiente de guardar)')}</small>
           <div style="display:flex;gap:8px;">
             <button type="button" class="d-btn d-btn-danger d-btn-sm" data-sp-delete="${i}">Eliminar</button>
-            <button type="button" class="d-btn d-btn-primary d-btn-sm" data-sp-save="${i}">Guardar en Sheets</button>
+            <button type="button" class="d-btn d-btn-primary d-btn-sm" data-sp-save="${i}">Guardar</button>
           </div>
         </div>
       </div>`;
@@ -3256,7 +3256,7 @@ html[data-mode="dark"] .sync-pill {
           <small style="font-family:var(--font-mono);color:var(--ash);">ID: ${esc(s.id || 'Nuevo')}</small>
           <div style="display:flex;gap:8px;">
             <button type="button" class="d-btn d-btn-danger d-btn-sm" data-srv-delete="${i}">Eliminar</button>
-            <button type="button" class="d-btn d-btn-primary d-btn-sm" data-srv-save="${i}">Guardar en Sheets</button>
+            <button type="button" class="d-btn d-btn-primary d-btn-sm" data-srv-save="${i}">Guardar</button>
           </div>
         </div>
       </div>
@@ -3277,7 +3277,7 @@ html[data-mode="dark"] .sync-pill {
   async function saveBusinessAndSocialConfig(btn) {
     const origText = btn.textContent;
     btn.disabled = true;
-    btn.textContent = 'Guardando en Sheets…';
+    btn.textContent = 'Guardando…';
 
     const payload = {
       businessName: $('#cfgBusinessName').value.trim(),
@@ -3302,7 +3302,7 @@ html[data-mode="dark"] .sync-pill {
       await gasPost('updateConfig', { config: payload });
       Object.assign(store.config, payload);
       renderAllPanels();
-      showToast('Negocio, redes sociales y mapa guardados en Sheets ✓');
+      showToast('Negocio, redes sociales y mapa guardados ✓');
     } catch (err) {
       showToast('Error al guardar: ' + err.message);
     } finally {
@@ -3473,7 +3473,7 @@ html[data-mode="dark"] .sync-pill {
           newTime: timeVal,
           specialistId: specId
         });
-        showToast('Cita reagendada en Google Sheets ✓');
+        showToast('Cita reagendada ✓');
       } else {
         const booking = {
           name: $('#modalClientName').value.trim(),
@@ -3485,7 +3485,7 @@ html[data-mode="dark"] .sync-pill {
           specialistId: specId
         };
         await gasPost('createBooking', Object.assign({ booking }, booking));
-        showToast('Nueva cita registrada en Google Sheets ✓');
+        showToast('Nueva cita registrada ✓');
       }
       $('#adminBookingModal').classList.remove('open');
       await syncFromGoogleSheets(true);
@@ -3670,7 +3670,7 @@ html[data-mode="dark"] .sync-pill {
   $('#btnResetScheduleChanges').addEventListener('click', async () => {
     const ok = await openConfirmModal({
       title: '¿Restablecer horarios?',
-      message: 'Se descartarán los cambios sin guardar y se recargarán los horarios desde Google Sheets.',
+      message: 'Se descartarán los cambios sin guardar y se recargarán los horarios.',
       confirmText: 'Sí, restablecer'
     });
     if (!ok) return;
@@ -3698,7 +3698,7 @@ html[data-mode="dark"] .sync-pill {
       }
       await gasPost('updateConfig', { config: configPayload });
       renderScheduleModule();
-      showToast('Horario general guardado en Sheets ✓');
+      showToast('Horario general guardado ✓');
     } catch (err) {
       showToast('Error al guardar: ' + err.message);
     } finally {
@@ -3710,7 +3710,7 @@ html[data-mode="dark"] .sync-pill {
   $('#btnNewSchedulePreset').addEventListener('click', () => {
     store.shiftsMap.all = JSON.parse(JSON.stringify(defaultShiftsByDay));
     renderScheduleModule();
-    showToast('Plantilla aplicada. Pulsa "Guardar Horario General" para subir a Sheets.');
+    showToast('Plantilla aplicada. Pulsa "Guardar Horario General" para subir.');
   });
 
   $('#btnImportExportSchedule').addEventListener('click', () => {
@@ -3740,7 +3740,7 @@ html[data-mode="dark"] .sync-pill {
     renderSchedulePreviewOnly();
     try {
       await gasPost('updateConfig', { config: { exceptions_json: JSON.stringify(store.exceptions) } });
-      showToast('Excepción agregada en Sheets ✓');
+      showToast('Excepción agregada ✓');
     } catch (err) {
       showToast('Error: ' + err.message);
     }
@@ -3958,7 +3958,7 @@ html[data-mode="dark"] .sync-pill {
       [1,2,3,4,5].forEach(wd => { sched[wd] = JSON.parse(JSON.stringify(source)); });
       syncSpecialistDaysFromCustomSchedule(sp, spKey);
       renderSpecialistsAdmin();
-      showToast(`Horario de ${DAY_NAMES_FULL[d]} copiado a Lun–Vie. Pulsa "Guardar en Sheets".`);
+      showToast(`Horario de ${DAY_NAMES_FULL[d]} copiado a Lun–Vie. Pulsa "Guardar".`);
       return;
     }
 
@@ -4019,13 +4019,13 @@ html[data-mode="dark"] .sync-pill {
         if (newId) sp.id = newId;
 
         await gasPost('updateConfig', { config: { shifts_json: JSON.stringify(store.shiftsMap) } });
-        showToast('Especialista y horario guardados en Sheets ✓');
+        showToast('Especialista y horario guardados ✓');
         await syncFromGoogleSheets(true);
       } catch (err) {
         showToast('Error: ' + err.message);
       } finally {
         saveBtn.disabled = false;
-        saveBtn.textContent = 'Guardar en Sheets';
+        saveBtn.textContent = 'Guardar';
       }
     }
   });
@@ -4115,7 +4115,7 @@ html[data-mode="dark"] .sync-pill {
         showToast('Error: ' + err.message);
       } finally {
         saveBtn.disabled = false;
-        saveBtn.textContent = 'Guardar en Sheets';
+        saveBtn.textContent = 'Guardar';
       }
     }
   });
@@ -4166,7 +4166,7 @@ html[data-mode="dark"] .sync-pill {
   logDebug('ok', 'Dashboard inicializado correctamente.');
 
   syncFromGoogleSheets(true).catch(err => {
-    showToast('No se pudo conectar con Google Sheets');
+    showToast('No se pudo conectar ');
     logDebug('err', 'Error fatal en init: ' + (err.stack || err.message));
   });
 
