@@ -2633,5 +2633,2564 @@
       syncWithSheets(true);
     })();
   </script>
+</body><!DOCTYPE html>
+<html lang="es" data-theme="teal" data-mode="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f9f90">
+<title>Panel de Administración · Vagabundo Barbería</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --teal-deep: #133b43;
+  --primary: #0f9f90;
+  --primary-hover: #0c8578;
+  --primary-soft: #ccfbf1;
+  --primary-ghost: rgba(15, 159, 144, 0.08);
+  --mint-pulse: #2ecea0;
+  --soft-teal: #6dddbd;
+
+  --kpi-teal-bg: #e0f7f5;
+  --kpi-teal-fg: #0f9f90;
+  --kpi-purple-bg: #ede9fe;
+  --kpi-purple-fg: #7c3aed;
+  --kpi-orange-bg: #ffedd5;
+  --kpi-orange-fg: #ea580c;
+  --kpi-blue-bg: #e0f2fe;
+  --kpi-blue-fg: #0284c7;
+
+  --bg-app: #eef2f6;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f8fafc;
+  --bg-muted: #f1f5f9;
+  --ink: #0f172a;
+  --ink-secondary: #334155;
+  --slate: #64748b;
+  --fog: #94a3b8;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  --danger: #e11d48;
+  --danger-bg: #ffe4e6;
+  --warning: #d97706;
+  --warning-bg: #fef3c7;
+  --success: #059669;
+  --success-bg: #d1fae5;
+
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 18px;
+  --r-2xl: 24px;
+  --r-pill: 9999px;
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 12px 32px -4px rgba(15, 23, 42, 0.14);
+
+  --font-display: 'Inter Tight', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Temas de Color Personalizables */
+html[data-theme="indigo"], body[data-theme="indigo"] {
+  --teal-deep: #1e1b4b;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-soft: #e0e7ff;
+  --primary-ghost: rgba(79, 70, 229, 0.08);
+  --mint-pulse: #818cf8;
+  --soft-teal: #a5b4fc;
+}
+html[data-theme="rose"], body[data-theme="rose"] {
+  --teal-deep: #4c0519;
+  --primary: #e11d48;
+  --primary-hover: #be123c;
+  --primary-soft: #ffe4e6;
+  --primary-ghost: rgba(225, 29, 72, 0.08);
+  --mint-pulse: #fb7185;
+  --soft-teal: #fda4af;
+}
+html[data-theme="amber"], body[data-theme="amber"] {
+  --teal-deep: #451a03;
+  --primary: #d97706;
+  --primary-hover: #b45309;
+  --primary-soft: #fef3c7;
+  --primary-ghost: rgba(217, 119, 6, 0.08);
+  --mint-pulse: #fbbf24;
+  --soft-teal: #fcd34d;
+}
+html[data-theme="slate"], body[data-theme="slate"] {
+  --teal-deep: #0f172a;
+  --primary: #334155;
+  --primary-hover: #1e293b;
+  --primary-soft: #e2e8f0;
+  --primary-ghost: rgba(51, 65, 85, 0.08);
+  --mint-pulse: #64748b;
+  --soft-teal: #94a3b8;
+}
+
+/* Modo Oscuro */
+html[data-mode="dark"], body[data-mode="dark"] {
+  --bg-app: #0b1120;
+  --bg-surface: #111827;
+  --bg-subtle: #1e293b;
+  --bg-muted: #1f2937;
+  --ink: #f8fafc;
+  --ink-secondary: #cbd5e1;
+  --slate: #94a3b8;
+  --fog: #64748b;
+  --border: #1f2937;
+  --border-strong: #374151;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px -4px rgba(0, 0, 0, 0.6);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body {
+  margin: 0; padding: 0; min-height: 100%;
+  background: var(--bg-app); color: var(--ink);
+  font-family: var(--font-sans); font-size: 14.5px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+h1, h2, h3, h4, p { margin: 0; }
+button, input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
+button { cursor: pointer; touch-action: manipulation; }
+.hidden { display: none !important; }
+
+/* Layout Shell */
+.admin-shell {
+  display: grid;
+  grid-template-columns: 262px 1fr;
+  min-height: 100vh;
+}
+.admin-sidebar {
+  background: var(--teal-deep);
+  color: #fff;
+  padding: 22px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 90;
+  transition: background 0.25s ease;
+}
+.admin-brand {
+  display: flex; align-items: center; gap: 12px;
+  padding: 4px 10px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 10px;
+}
+.admin-brand-logo {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--mint-pulse));
+  color: #fff; display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 18px;
+  flex-shrink: 0; overflow: hidden;
+}
+.admin-brand-logo img { width: 100%; height: 100%; object-fit: cover; }
+.admin-brand strong { display: block; font-family: var(--font-display); font-size: 15.5px; }
+.admin-brand span { font-size: 11px; color: var(--soft-teal); text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; }
+
+.nav-group-label {
+  font-size: 10.5px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.09em; color: rgba(255,255,255,0.45);
+  padding: 12px 12px 4px;
+}
+.admin-nav-btn {
+  display: flex; align-items: center; gap: 11px; width: 100%;
+  padding: 10px 12px; border: 0; border-radius: 11px;
+  background: transparent; color: rgba(255,255,255,0.78);
+  font-size: 13.8px; font-weight: 500; text-align: left; transition: 0.15s;
+}
+.admin-nav-btn:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.admin-nav-btn.active {
+  background: var(--primary); color: #fff; font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+.admin-nav-badge {
+  margin-left: auto; background: rgba(255,255,255,0.18); color: #fff;
+  font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: var(--r-pill);
+}
+
+.admin-main { display: flex; flex-direction: column; min-width: 0; }
+.admin-topbar {
+  background: var(--bg-surface); border-bottom: 1px solid var(--border);
+  height: 64px; padding: 0 28px; display: flex; align-items: center;
+  justify-content: space-between; gap: 12px; position: sticky; top: 0; z-index: 50;
+}
+.admin-menu-btn {
+  display: none; width: 38px; height: 38px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--bg-surface); place-items: center;
+}
+.admin-content { padding: 28px; max-width: 1200px; width: 100%; margin: 0 auto; }
+.admin-panel { display: none; }
+.admin-panel.active { display: block; animation: fadeSlide 0.2s ease; }
+@keyframes fadeSlide { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Cabecera y Botones */
+.page-hero-head {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 20px; margin-bottom: 24px; flex-wrap: wrap;
+}
+.page-hero-title {
+  font-family: var(--font-display); font-size: clamp(23px, 3vw, 30px);
+  font-weight: 700; color: var(--ink); letter-spacing: -0.025em;
+}
+.page-hero-sub { color: var(--slate); font-size: 14.5px; margin-top: 4px; }
+.page-hero-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.d-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 40px; padding: 9px 18px; border-radius: var(--r-md);
+  font-weight: 600; font-size: 13.5px; border: 1px solid transparent; transition: 0.15s;
+  text-decoration: none;
+}
+.d-btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); box-shadow: 0 2px 8px rgba(15,159,144,0.22); }
+.d-btn-primary:hover { background: var(--primary-hover); }
+.d-btn-outline { background: var(--bg-surface); color: var(--ink-secondary); border-color: var(--border-strong); }
+.d-btn-outline:hover { background: var(--bg-subtle); }
+.d-btn-danger { background: var(--bg-surface); color: var(--danger); border-color: #fecdd3; }
+.d-btn-danger:hover { background: var(--danger); color: #fff; border-color: var(--danger); }
+.d-btn-whatsapp { background: #16a34a; color: #fff; border-color: #16a34a; }
+.d-btn-whatsapp:hover { background: #15803d; }
+.d-btn-sm { min-height: 33px; padding: 5px 11px; font-size: 12.2px; border-radius: 8px; }
+.icon-trash-btn {
+  width: 34px; height: 34px; border-radius: 8px; border: 0;
+  background: transparent; color: var(--slate); display: grid; place-items: center;
+}
+.icon-trash-btn:hover { background: var(--danger-bg); color: var(--danger); }
+
+/* Tarjetas KPI (Tablero) */
+.kpi-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 24px; }
+.kpi-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.kpi-card {
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--r-xl); padding: 20px 22px;
+  display: flex; align-items: flex-start; gap: 16px; box-shadow: var(--shadow-md);
+}
+.kpi-icon { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; }
+.kpi-icon svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; }
+.kpi-icon.teal { background: var(--kpi-teal-bg); color: var(--kpi-teal-fg); }
+.kpi-icon.purple { background: var(--kpi-purple-bg); color: var(--kpi-purple-fg); }
+.kpi-icon.orange { background: var(--kpi-orange-bg); color: var(--kpi-orange-fg); }
+.kpi-icon.blue { background: var(--kpi-blue-bg); color: var(--kpi-blue-fg); }
+.kpi-title { font-size: 13.5px; font-weight: 600; color: var(--ink-secondary); }
+.kpi-value { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--ink); line-height: 1.15; margin-top: 2px; }
+.kpi-sub { font-size: 12.5px; font-weight: 500; margin-top: 4px; }
+.kpi-sub.teal { color: var(--primary); }
+.kpi-sub.green { color: var(--success); }
+.kpi-sub.orange { color: var(--kpi-orange-fg); }
+
+/* Horario Semanal */
+.schedule-master-card {
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--r-2xl); padding: 26px; box-shadow: var(--shadow-md);
+  margin-bottom: 24px;
+}
+.schedule-top-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; margin-bottom: 20px;
+}
+.schedule-top-bar h3 { font-family: var(--font-display); font-size: 22px; font-weight: 700; }
+.schedule-controls-right { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.team-selector-wrap { display: flex; align-items: center; gap: 10px; font-weight: 500; color: var(--ink-secondary); }
+.team-select {
+  padding: 8px 32px 8px 14px; border: 1px solid var(--border-strong);
+  border-radius: var(--r-md); font-weight: 600; color: var(--ink); background: var(--bg-surface);
+}
+.switch-label { display: inline-flex; align-items: center; gap: 10px; font-weight: 500; cursor: pointer; }
+.toggle-switch {
+  position: relative; width: 46px; height: 26px; background: #cbd5e1;
+  border-radius: var(--r-pill); transition: 0.2s;
+}
+.toggle-switch::after {
+  content: ''; position: absolute; top: 3px; left: 3px;
+  width: 20px; height: 20px; background: #fff; border-radius: 50%; transition: 0.2s;
+}
+input:checked + .toggle-switch { background: var(--primary); }
+input:checked + .toggle-switch::after { transform: translateX(20px); }
+
+.day-tabs-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-bottom: 22px; }
+.day-tab-btn {
+  padding: 11px 10px; border-radius: var(--r-md); border: 0;
+  background: var(--bg-muted); color: var(--ink-secondary);
+  font-family: var(--font-display); font-size: 15px; font-weight: 600; transition: 0.16s;
+}
+.day-tab-btn.active { background: var(--primary); color: #fff; box-shadow: 0 4px 12px rgba(15,159,144,0.3); }
+.day-tab-btn.is-off-day:not(.active) { opacity: 0.55; }
+
+.schedule-workspace { display: grid; grid-template-columns: 1.08fr 1fr; gap: 22px; align-items: start; }
+.schedule-subcard { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 22px; }
+.day-editor-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.day-editor-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; }
+.day-editor-sub { font-size: 13px; color: var(--slate); margin-top: 2px; }
+
+.shifts-container { display: flex; flex-direction: column; gap: 14px; }
+.shift-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.shift-label-input { font-weight: 600; font-size: 13.5px; color: var(--ink); border: 1px solid transparent; background: transparent; padding: 4px 6px; border-radius: 6px; width: 115px; }
+.shift-times-group { display: flex; align-items: center; gap: 8px; flex: 1; justify-content: flex-end; }
+.time-pill-box {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px;
+  border: 1px solid var(--border-strong); border-radius: 8px; background: var(--bg-surface);
+}
+.time-pill-box input[type="time"] { border: 0; background: transparent; font-weight: 600; font-size: 13px; outline: none; }
+
+.break-card {
+  background: var(--bg-muted); border-radius: var(--r-md); padding: 12px 16px;
+  border: 1px solid var(--border);
+}
+.break-main-line { display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.break-sub-line { font-size: 12px; color: var(--slate); margin-top: 2px; }
+
+.btn-add-shift-dashed {
+  width: 100%; margin-top: 16px; padding: 11px 16px;
+  border: 1.5px dashed var(--fog); border-radius: var(--r-md);
+  background: var(--bg-subtle); color: var(--ink-secondary); font-weight: 600;
+}
+.btn-add-shift-dashed:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-ghost); }
+
+.apply-all-row {
+  display: flex; align-items: center; gap: 10px; margin-top: 18px;
+  padding-top: 14px; border-top: 1px solid var(--border); font-size: 13.5px; font-weight: 500; cursor: pointer;
+}
+.apply-all-row input { width: 18px; height: 18px; accent-color: var(--primary); }
+
+.preview-week-days { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 12.5px; font-weight: 700; color: var(--ink-secondary); margin-bottom: 8px; }
+.timeline-bars-wrap { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.timeline-bar-track { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; background: var(--bg-muted); padding: 4px; border-radius: 8px; }
+.timeline-segment { height: 24px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #fff; }
+.timeline-segment.work { background: var(--primary); }
+.timeline-segment.break { background: rgba(15, 159, 144, 0.55); }
+.timeline-segment.off { background: var(--bg-surface); color: var(--slate); }
+
+.preview-pills-summary { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 16px; }
+.slot-mini-pill { font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: var(--r-pill); background: var(--bg-muted); border: 1px solid var(--border); }
+.tip-box {
+  background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: var(--r-lg);
+  padding: 13px 15px; display: flex; align-items: flex-start; gap: 12px; font-size: 12.8px; color: var(--ink-secondary);
+}
+.schedule-footer-actions {
+  display: flex; align-items: center; justify-content: flex-end; gap: 12px;
+  margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border);
+}
+
+/* Cards, Campos y Tablas */
+.d-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 22px; margin-bottom: 20px; box-shadow: var(--shadow-sm); }
+.d-card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+.d-card-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; }
+.d-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.d-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.d-field { display: block; margin-bottom: 14px; }
+.d-field > span { display: block; font-size: 11.5px; font-weight: 600; text-transform: uppercase; color: var(--slate); margin-bottom: 6px; }
+.d-field input, .d-field select, .d-field textarea {
+  width: 100%; padding: 10px 13px; border: 1px solid var(--border-strong);
+  border-radius: var(--r-md); background: var(--bg-surface); color: var(--ink);
+}
+.d-field textarea { min-height: 76px; resize: vertical; }
+
+.d-table-wrap { overflow-x: auto; }
+.d-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.d-table th { text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--slate); padding: 12px 14px; background: var(--bg-subtle); border-bottom: 1px solid var(--border); white-space: nowrap; }
+.d-table td { padding: 13px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.d-table tbody tr.clickable-row { cursor: pointer; transition: background 0.12s ease; }
+.d-table tbody tr.clickable-row:hover { background: var(--primary-ghost); }
+
+.d-badge { display: inline-flex; padding: 4px 10px; border-radius: var(--r-pill); font-size: 11.5px; font-weight: 600; }
+.d-badge.confirmada { background: var(--success-bg); color: var(--success); }
+.d-badge.reagendada, .d-badge.pendiente { background: var(--warning-bg); color: var(--warning); }
+.d-badge.completada { background: var(--kpi-blue-bg); color: var(--kpi-blue-fg); }
+.d-badge.cancelada { background: var(--danger-bg); color: var(--danger); }
+
+.sync-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: var(--r-pill);
+  font-size: 12px; font-weight: 600; border: 0;
+  background: var(--success-bg); color: var(--success); cursor: pointer;
+}
+.sync-pill.loading { background: var(--warning-bg); color: var(--warning); }
+.sync-pill.error { background: var(--danger-bg); color: var(--danger); }
+
+.day-check-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.day-check-pill {
+  padding: 6px 11px; border-radius: 8px; border: 1px solid var(--border-strong);
+  background: var(--bg-surface); font-size: 12px; font-weight: 600; color: var(--slate); cursor: pointer;
+}
+.day-check-pill.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+/* Vista Previa de Mapa */
+.map-preview-box {
+  width: 100%; height: 220px; border-radius: var(--r-lg);
+  border: 1px solid var(--border); overflow: hidden; background: var(--bg-muted); margin-top: 10px;
+}
+.map-preview-box iframe { width: 100%; height: 100%; border: 0; }
+
+/* Selector de Temas */
+.theme-swatches { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.theme-swatch-btn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px;
+  border-radius: var(--r-lg); border: 2px solid var(--border); background: var(--bg-surface);
+  font-weight: 600; font-size: 13px; transition: 0.15s;
+}
+.theme-swatch-btn.active { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-ghost); }
+.swatch-dot { width: 18px; height: 18px; border-radius: 50%; }
+
+/* Modales Admin */
+.admin-modal {
+  position: fixed; inset: 0; z-index: 300; display: none;
+  align-items: center; justify-content: center; padding: 16px;
+  background: rgba(15, 23, 42, 0.6); pointer-events: none;
+}
+.admin-modal.open { display: flex; pointer-events: auto; }
+.admin-modal-card {
+  width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto;
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--r-2xl); padding: 26px; box-shadow: var(--shadow-lg);
+}
+.detail-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  padding: 16px; border-radius: var(--r-lg); background: var(--bg-subtle);
+  border: 1px solid var(--border); margin-bottom: 18px;
+}
+.detail-item small { display: block; font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--slate); }
+.detail-item strong { font-size: 14.5px; color: var(--ink); word-break: break-word; }
+
+.wa-templates-box {
+  border: 1px solid #86efac; background: rgba(22, 163, 74, 0.06);
+  border-radius: var(--r-lg); padding: 14px; margin-bottom: 18px;
+}
+.wa-templates-title {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  color: #15803d; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+}
+.wa-preset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.toast {
+  position: fixed; bottom: 24px; right: 24px; background: var(--teal-deep); color: #fff;
+  padding: 13px 22px; border-radius: var(--r-pill); font-weight: 600; font-size: 13.5px;
+  box-shadow: var(--shadow-lg); opacity: 0; transform: translateY(16px); pointer-events: none; transition: 0.25s; z-index: 500;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+.admin-backdrop {
+  display: none; position: fixed; inset: 0;
+  background: rgba(15, 23, 42, 0.45); z-index: 80; pointer-events: none;
+}
+.admin-backdrop.show { display: block; pointer-events: auto; }
+
+@media (max-width: 1080px) {
+  .schedule-workspace { grid-template-columns: 1fr; }
+  .kpi-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 960px) {
+  .admin-shell { grid-template-columns: 1fr; }
+  .admin-sidebar {
+    position: fixed; left: 0; top: 0; bottom: 0; width: 264px;
+    transform: translateX(-100%); transition: transform 0.22s ease;
+    box-shadow: var(--shadow-lg);
+  }
+  .admin-sidebar.open { transform: translateX(0); }
+  .admin-menu-btn { display: grid; }
+  .admin-topbar { padding: 0 14px; }
+  .admin-content { padding: 18px 14px; }
+  .kpi-grid-3 { grid-template-columns: 1fr; gap: 12px; }
+  .d-grid-2, .d-grid-3 { grid-template-columns: 1fr; gap: 12px; }
+}
+
+@media (max-width: 640px) {
+  .page-hero-head { flex-direction: column; align-items: stretch; gap: 12px; }
+  .page-hero-actions { width: 100%; display: flex; flex-wrap: wrap; gap: 8px; }
+  .page-hero-actions .d-btn { flex: 1 1 auto; justify-content: center; }
+  .kpi-grid-4 { grid-template-columns: 1fr; gap: 12px; }
+  .schedule-master-card, .schedule-subcard, .d-card { padding: 16px; }
+  .day-tabs-row { display: flex; overflow-x: auto; gap: 8px; padding-bottom: 4px; }
+  .day-tab-btn { flex: 1 0 54px; padding: 10px 8px; font-size: 13.5px; }
+  .shift-row {
+    flex-direction: column; align-items: stretch; gap: 8px;
+    padding: 12px; border: 1px solid var(--border); border-radius: var(--r-md); background: var(--bg-subtle);
+  }
+  .shift-times-group { width: 100%; justify-content: space-between; flex-wrap: wrap; }
+  .detail-grid, .wa-preset-grid { grid-template-columns: 1fr; }
+  .toast { left: 16px; right: 16px; bottom: 16px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="admin-shell">
+  <div class="admin-backdrop" id="adminBackdrop"></div>
+
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="admin-brand">
+      <div class="admin-brand-logo" id="dashBrandLogo">A</div>
+      <div>
+        <strong id="dashBrandName">Aevi Wellness</strong>
+        <span>Panel Pro</span>
+      </div>
+    </div>
+
+    <div class="nav-group-label">Operación</div>
+    <button type="button" class="admin-nav-btn active" data-dash-nav="citas">📅 Citas <span class="admin-nav-badge" id="navCitasCount">0</span></button>
+    <button type="button" class="admin-nav-btn" data-dash-nav="resumen">📋 Resumen</button>
+    <button type="button" class="admin-nav-btn" data-dash-nav="tablero">📊 Tablero</button>
+    <button type="button" class="admin-nav-btn" data-dash-nav="horarios">🕒 Configuración de Horarios</button>
+
+    <div class="nav-group-label">Catálogos y Equipo</div>
+    <button type="button" class="admin-nav-btn" data-dash-nav="especialistas">👥 Especialistas</button>
+    <button type="button" class="admin-nav-btn" data-dash-nav="servicios">✨ Servicios</button>
+
+    <div class="nav-group-label">Ajustes</div>
+    <button type="button" class="admin-nav-btn" data-dash-nav="negocio">🏢 Negocio y Contacto</button>
+    <button type="button" class="admin-nav-btn" data-dash-nav="ajustes">⚙️ Ajustes y Configuración</button>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <button type="button" class="admin-menu-btn" id="adminMenuBtn" aria-label="Abrir menú">☰</button>
+        <strong id="dashTopTitle" style="font-size:16px;font-family:var(--font-display);">Citas</strong>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <button type="button" class="sync-pill loading" id="syncStatusBadge" title="Toca para volver a sincronizar con Google Sheets">● Sincronizando…</button>
+        <button type="button" class="d-btn d-btn-outline d-btn-sm" id="btnQuickThemeToggle">🌓 Modo</button>
+      </div>
+    </header>
+
+    <div class="admin-content">
+
+      <!-- ====================================================================
+           1. CITAS
+           ==================================================================== -->
+      <section class="admin-panel active" data-dash-panel="citas">
+        <div class="page-hero-head">
+          <div>
+            <h1 class="page-hero-title">Citas Recibidas e Historial</h1>
+            <p class="page-hero-sub">Toca cualquier fila para abrir el expediente completo de la cita, cambiar su estado o confirmar por WhatsApp con un clic.</p>
+          </div>
+          <div class="page-hero-actions">
+            <button type="button" class="d-btn d-btn-primary" id="btnOpenNewBookingModal">＋ Nueva Cita Manual</button>
+          </div>
+        </div>
+        <div class="d-card">
+          <div class="d-card-head">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button type="button" class="d-btn d-btn-primary d-btn-sm" id="tabActiveBookings">Reservas Activas (<span id="countActiveTab">0</span>)</button>
+              <button type="button" class="d-btn d-btn-outline d-btn-sm" id="tabHistoryBookings">Historial (<span id="countHistoryTab">0</span>)</button>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;width:100%;max-width:480px;">
+              <input type="text" id="adminCitaSearch" placeholder="Buscar cliente, correo, teléfono o ID…" style="flex:1 1 200px;padding:8px 14px;border:1px solid var(--border-strong);border-radius:var(--r-pill);background:var(--bg-surface);">
+              <select id="adminCitaStatusFilter" style="padding:8px 14px;border:1px solid var(--border-strong);border-radius:var(--r-pill);background:var(--bg-surface);">
+                <option value="">Todos los estados</option>
+                <option value="Confirmada">Confirmada</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="Reagendada">Reagendada</option>
+                <option value="Completada">Completada</option>
+                <option value="Cancelada">Cancelada</option>
+              </select>
+            </div>
+          </div>
+          <div class="d-table-wrap">
+            <table class="d-table" id="adminBookingsTable">
+              <tbody><tr><td style="color:var(--slate);padding:18px;">Cargando citas desde Google Sheets…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           2. RESUMEN
+           ==================================================================== -->
+      <section class="admin-panel" data-dash-panel="resumen">
+        <div class="page-hero-head">
+          <div>
+            <h1 class="page-hero-title">Resumen de Próximas Citas</h1>
+            <p class="page-hero-sub">Agenda inmediata ordenada cronológicamente. Toca cualquier fila para ver todos los detalles y enviar WhatsApp.</p>
+          </div>
+          <div class="page-hero-actions">
+            <button type="button" class="d-btn d-btn-outline" data-goto-panel="tablero">📊 Ver KPIs en Tablero</button>
+            <button type="button" class="d-btn d-btn-primary" id="btnOpenNewBookingFromResumen">＋ Agendar Cita</button>
+          </div>
+        </div>
+        <div class="d-card">
+          <div class="d-card-head">
+            <h3 class="d-card-title">Próximas citas en agenda</h3>
+            <span style="font-size:12.5px;color:var(--slate);">Haz clic sobre una cita para abrir sus acciones rápidas</span>
+          </div>
+          <div class="d-table-wrap"><table class="d-table" id="dashUpcomingTable"></table></div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           3. TABLERO
+           ==================================================================== -->
+      <section class="admin-panel" data-dash-panel="tablero">
+        <div class="page-hero-head">
+          <div>
+            <h1 class="page-hero-title">Tablero de Control</h1>
+            <p class="page-hero-sub">Indicadores clave de reservas, cobertura de horarios, equipo y catálogo sincronizados con Google Sheets</p>
+          </div>
+          <div class="page-hero-actions">
+            <button type="button" class="d-btn d-btn-outline" data-goto-panel="horarios">🕒 Ir a Horarios</button>
+            <button type="button" class="d-btn d-btn-primary" data-goto-panel="citas">📅 Ver Citas</button>
+          </div>
+        </div>
+
+        <h3 class="d-card-title" style="margin-bottom:12px;">Indicadores de Citas y Catálogo (Resumen Operativo)</h3>
+        <div class="kpi-grid-4" id="summaryStatsGrid"></div>
+
+        <h3 class="d-card-title" style="margin:24px 0 12px;">Indicadores de Cobertura y Horarios</h3>
+        <div class="kpi-grid-3">
+          <div class="kpi-card">
+            <div class="kpi-icon teal">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+            </div>
+            <div>
+              <p class="kpi-title">Horarios Activos</p>
+              <p class="kpi-value" id="kpiActiveShifts">12</p>
+              <p class="kpi-sub teal" id="kpiActiveShiftsSub">Semana actual · Turnos configurados</p>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon purple">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <p class="kpi-title">Empleados Asignados</p>
+              <p class="kpi-value" id="kpiAssignedStaff">0</p>
+              <p class="kpi-sub green" id="kpiAssignedStaffSub">100% cubiertos</p>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon orange">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div>
+              <p class="kpi-title">Excepciones/Festivos</p>
+              <p class="kpi-value" id="kpiExceptionsCount">0</p>
+              <p class="kpi-sub orange" id="kpiNextExceptionSub">Sin festivos próximos</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           4. CONFIGURACIÓN DE HORARIOS (+ EXCEPCIONES / FESTIVOS)
+           ==================================================================== -->
+      <section class="admin-panel" data-dash-panel="horarios">
+        <div class="page-hero-head">
+          <div>
+            <h1 class="page-hero-title">Configuración de Horarios</h1>
+            <p class="page-hero-sub">Gestiona los turnos semanales de trabajo y los días festivos o excepciones desde un mismo lugar</p>
+          </div>
+          <div class="page-hero-actions">
+            <button type="button" class="d-btn d-btn-outline" id="btnImportExportSchedule">Importar/Exportar</button>
+            <button type="button" class="d-btn d-btn-primary" id="btnNewSchedulePreset">＋ Nuevo Horario</button>
+          </div>
+        </div>
+
+        <div class="schedule-master-card">
+          <div class="schedule-top-bar">
+            <h3>Horario Semanal</h3>
+            <div class="schedule-controls-right">
+              <label class="team-selector-wrap">
+                <span>Equipo:</span>
+                <select class="team-select" id="scheduleTeamSelect">
+                  <option value="all">Horario General (Negocio)</option>
+                </select>
+              </label>
+
+              <label class="switch-label">
+                <span>Horario Rotativo</span>
+                <input type="checkbox" id="rotativeToggle" class="hidden" checked>
+                <span class="toggle-switch"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="day-tabs-row" id="scheduleDayTabs">
+            <button type="button" class="day-tab-btn active" data-day="1">Lun</button>
+            <button type="button" class="day-tab-btn" data-day="2">Mar</button>
+            <button type="button" class="day-tab-btn" data-day="3">Mié</button>
+            <button type="button" class="day-tab-btn" data-day="4">Jue</button>
+            <button type="button" class="day-tab-btn" data-day="5">Vie</button>
+            <button type="button" class="day-tab-btn" data-day="6">Sáb</button>
+            <button type="button" class="day-tab-btn" data-day="0">Dom</button>
+          </div>
+
+          <div class="schedule-workspace">
+            <div class="schedule-subcard">
+              <div class="day-editor-head">
+                <div>
+                  <h4 class="day-editor-title" id="currentDayHeading">Lunes</h4>
+                  <p class="day-editor-sub" id="currentDaySub">Horario estándar</p>
+                </div>
+                <button type="button" class="d-btn d-btn-outline d-btn-sm" id="btnToggleDayClosed">Marcar cerrado</button>
+              </div>
+
+              <div class="shifts-container" id="dayShiftsContainer"></div>
+
+              <button type="button" class="btn-add-shift-dashed" id="btnAddShift">＋ Agregar turno</button>
+
+              <label class="apply-all-row">
+                <input type="checkbox" id="chkApplyWorkdays" checked>
+                <span>Aplicar este horario a todos los días laborales</span>
+              </label>
+            </div>
+
+            <div class="schedule-subcard">
+              <div style="margin-bottom:14px;">
+                <h4 class="day-editor-title">Vista Rápida Semanal</h4>
+                <p class="day-editor-sub">Previsualización</p>
+              </div>
+
+              <div class="preview-week-days">
+                <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+              </div>
+
+              <div class="timeline-bars-wrap" id="weeklyTimelineBars"></div>
+
+              <div style="margin-top:12px;">
+                <span style="font-size:11.5px;font-weight:700;text-transform:uppercase;color:var(--slate);">
+                  Horarios de cita generados (<span id="slotsCountPreview">0</span>):
+                </span>
+                <div class="preview-pills-summary" id="generatedSlotsPreview"></div>
+              </div>
+
+              <div class="tip-box">
+                <span>💡</span>
+                <div>
+                  <strong>Tip:</strong> Ajusta los turnos de mañana y tarde para calcular el descanso automáticamente. Usa <em>"Aplicar este horario a todos los días laborales"</em> para replicarlo en la semana.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="schedule-footer-actions">
+            <button type="button" class="d-btn d-btn-outline" id="btnResetScheduleChanges">Restablecer</button>
+            <button type="button" class="d-btn d-btn-primary" id="btnSaveScheduleChanges">✓ Guardar cambios</button>
+          </div>
+        </div>
+
+        <div class="d-card">
+          <div class="d-card-head">
+            <div>
+              <h3 class="d-card-title">🏖️ Excepciones y Días Festivos (Cerrados)</h3>
+              <p style="font-size:13px;color:var(--slate);">Las fechas agregadas aquí bloquearán automáticamente las reservas en el calendario de clientes.</p>
+            </div>
+          </div>
+          <div class="d-grid-3" style="align-items:end;margin-bottom:16px;">
+            <label class="d-field" style="margin:0;"><span>Fecha a bloquear</span><input type="date" id="excDateInput"></label>
+            <label class="d-field" style="margin:0;"><span>Motivo / Festividad</span><input type="text" id="excReasonInput" placeholder="Ej. Día festivo / Vacaciones"></label>
+            <button type="button" class="d-btn d-btn-primary" id="btnAddException">＋ Agregar Excepción</button>
+          </div>
+          <div id="exceptionsListContainer"></div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           5. ESPECIALISTAS
+           ==================================================================== -->
+      <section class="admin-panel" data-dash-panel="especialistas">
+        <div class="page-hero-head">
+          <div>
+            <h1 class="page-hero-title">Equipo de Especialistas</h1>
+            <p class="page-hero-sub">Profesionales que aparecen en el Paso 1 de fecha y hora</p>
+          </div>
+          <button type="button" class="d-btn d-btn-primary" id="btnAddSpecialist">＋ Añadir Especialista</button>
+        </div>
+        <div id="specialistsAdminList"></div>
+      </section>
+
+      <!-- ====================================================================
+           6. SERVICIOS
+           ==================================================================== -->
+      <section class="admin-panel" data-dash-panel="servicios">
+        <div class="page-hero-head">
+          <div>
+            <h1 class="page-hero-title">Catálogo de Servicios</h1>
+            <p class="page-hero-sub">Tratamientos, duración y precios</p>
+          </div>
+          <button type="button" class="d-btn d-btn-primary" id="btnAddService">＋ Añadir Servicio</button>
+        </div>
+        <div id="servicesAdminList"></div>
+      </section>
+
+      <!-- ====================================================================
+           7. NEGOCIO Y CONTACTO
+           ==================================================================== -->
+      <section class="admin-panel" data-dash-panel="negocio">
+        <div class="page-hero-head">
+          <div>
+            <h1 class="page-hero-title">Negocio, Redes Sociales y Ubicación</h1>
+            <p class="page-hero-sub">Configura la identidad de tu negocio, enlaces de contacto, redes sociales y mapa interactivo</p>
+          </div>
+          <button type="button" class="d-btn d-btn-primary" id="btnSaveBusinessConfigTop">✓ Guardar Todo en Sheets</button>
+        </div>
+
+        <div class="d-card">
+          <h3 class="d-card-title" style="margin-bottom:14px;">🏢 Identidad y Datos de Contacto</h3>
+          <div class="d-grid-2">
+            <label class="d-field"><span>Nombre del Negocio</span><input type="text" id="cfgBusinessName" placeholder="Aevi Wellness"></label>
+            <label class="d-field"><span>Moneda Predeterminada</span><input type="text" id="cfgCurrency" value="MXN" placeholder="MXN, USD, EUR"></label>
+            <label class="d-field"><span>Teléfono Principal</span><input type="text" id="cfgPhone" placeholder="+52 55 1234 5678"></label>
+            <label class="d-field"><span>WhatsApp Atención (solo dígitos con código de país)</span><input type="text" id="cfgWhatsapp" placeholder="525512345678"></label>
+            <label class="d-field"><span>Correo Electrónico</span><input type="email" id="cfgEmail" placeholder="hola@aeviwellness.com"></label>
+            <label class="d-field"><span>URL del Logo (Opcional)</span><input type="url" id="cfgLogoUrl" placeholder="https://..."></label>
+          </div>
+          <div class="d-grid-2">
+            <label class="d-field"><span>Texto de Barra de Anuncio Superior</span><input type="text" id="cfgAnnounceText" placeholder="Agenda hoy y recibe tu diagnóstico sin costo"></label>
+            <label class="d-field"><span>Estacionamiento / Información adicional</span><input type="text" id="cfgParking" placeholder="Valet parking disponible"></label>
+          </div>
+        </div>
+
+        <div class="d-card">
+          <h3 class="d-card-title" style="margin-bottom:14px;">🌐 Redes Sociales y Enlaces</h3>
+          <div class="d-grid-3">
+            <label class="d-field"><span>Instagram (URL)</span><input type="url" id="cfgInstagram" placeholder="https://instagram.com/tu_cuenta"></label>
+            <label class="d-field"><span>Facebook (URL)</span><input type="url" id="cfgFacebook" placeholder="https://facebook.com/tu_pagina"></label>
+            <label class="d-field"><span>TikTok (URL)</span><input type="url" id="cfgTiktok" placeholder="https://tiktok.com/@tu_cuenta"></label>
+          </div>
+          <div class="d-grid-2">
+            <label class="d-field"><span>Sitio Web / Enlace Externo</span><input type="url" id="cfgWebsite" placeholder="https://aeviwellness.com"></label>
+            <label class="d-field"><span>Enlace Público a Página de Reservas</span><input type="url" id="cfgBookingUrl" placeholder="https://script.google.com/.../exec"></label>
+          </div>
+        </div>
+
+        <div class="d-card">
+          <h3 class="d-card-title" style="margin-bottom:14px;">📍 Ubicación y Mapa</h3>
+          <label class="d-field"><span>Dirección Física Completa</span><input type="text" id="cfgAddress" placeholder="Av. Presidente Masaryk 123, Polanco, CDMX"></label>
+          <div class="d-grid-2">
+            <label class="d-field">
+              <span>Enlace directo de Google Maps (Cómo llegar)</span>
+              <input type="url" id="cfgMapLink" placeholder="https://www.google.com/maps/dir/?api=1&destination=...">
+            </label>
+            <label class="d-field">
+              <span>URL del Mapa Integrado (Iframe src)</span>
+              <input type="url" id="cfgMapEmbed" placeholder="https://www.openstreetmap.org/export/embed.html?...">
+            </label>
+          </div>
+          <div class="map-preview-box" id="adminMapPreview"></div>
+          <div style="display:flex;justify-content:flex-end;margin-top:16px;">
+            <button type="button" class="d-btn d-btn-primary" id="btnSaveBusinessConfig">✓ Guardar Negocio, Redes y Mapa</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           8. AJUSTES Y CONFIGURACIÓN
+           ==================================================================== -->
+      <section class="admin-panel" data-dash-panel="ajustes">
+        <div class="page-hero-head">
+          <div>
+            <h1 class="page-hero-title">Ajustes y Configuración del Sistema</h1>
+            <p class="page-hero-sub">Sincronización con Google Sheets, apariencia visual, modo oscuro y plantillas de WhatsApp</p>
+          </div>
+        </div>
+
+        <div class="d-card">
+          <div class="d-card-head">
+            <div>
+              <h3 class="d-card-title">☁️ Sincronización con Google Sheets</h3>
+              <p style="font-size:13.5px;color:var(--slate);margin-top:2px;">Actualiza manualmente las hojas de Reservas, Historial, Especialistas, Servicios y Config.</p>
+            </div>
+            <button type="button" class="d-btn d-btn-primary" id="btnSyncCloud">↻ Sincronizar con Google Sheets ahora</button>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding-top:10px;border-top:1px solid var(--border);font-size:13px;color:var(--slate);">
+            <span>Estado actual: <strong id="settingsSyncText" style="color:var(--ink);">Conectando…</strong></span>
+            <span>·</span>
+            <span>Última sincronización: <strong id="lastSyncTimeLabel" style="color:var(--ink);">—</strong></span>
+          </div>
+        </div>
+
+        <div class="d-card">
+          <h3 class="d-card-title" style="margin-bottom:14px;">🎨 Apariencia y Tema de la Aplicación</h3>
+          <div class="d-grid-2" style="align-items:center;margin-bottom:18px;">
+            <div>
+              <strong style="display:block;font-size:14.5px;">Modo Oscuro (Dark Mode)</strong>
+              <span style="font-size:13px;color:var(--slate);">Adapta el panel a entornos con poca iluminación para descansar la vista.</span>
+            </div>
+            <div style="display:flex;justify-content:flex-end;">
+              <label class="switch-label">
+                <span id="darkModeLabelText">Desactivado</span>
+                <input type="checkbox" id="chkDarkModeToggle" class="hidden">
+                <span class="toggle-switch"></span>
+              </label>
+            </div>
+          </div>
+
+          <div style="padding-top:14px;border-top:1px solid var(--border);">
+            <strong style="display:block;font-size:14px;margin-bottom:6px;">Color de Acento del Panel</strong>
+            <div class="theme-swatches" id="themeSwatchesGroup">
+              <button type="button" class="theme-swatch-btn active" data-theme-pick="teal"><span class="swatch-dot" style="background:#0f9f90;"></span>Teal Esmeralda</button>
+              <button type="button" class="theme-swatch-btn" data-theme-pick="indigo"><span class="swatch-dot" style="background:#4f46e5;"></span>Índigo Real</button>
+              <button type="button" class="theme-swatch-btn" data-theme-pick="rose"><span class="swatch-dot" style="background:#e11d48;"></span>Rosa Cuarzo</button>
+              <button type="button" class="theme-swatch-btn" data-theme-pick="amber"><span class="swatch-dot" style="background:#d97706;"></span>Ámbar Dorado</button>
+              <button type="button" class="theme-swatch-btn" data-theme-pick="slate"><span class="swatch-dot" style="background:#334155;"></span>Pizarra Minimal</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-card">
+          <h3 class="d-card-title" style="margin-bottom:8px;">💬 Mensaje Preconfigurado de Confirmación por WhatsApp</h3>
+          <p style="font-size:13px;color:var(--slate);margin-bottom:12px;">
+            Variables disponibles: <code>{nombre}</code>, <code>{fecha}</code>, <code>{hora}</code>, <code>{especialista}</code>, <code>{servicios}</code>, <code>{negocio}</code>, <code>{direccion}</code>
+          </p>
+          <label class="d-field">
+            <span>Plantilla principal al hacer clic en "Confirmar por WhatsApp"</span>
+            <textarea id="cfgWaTemplate"></textarea>
+          </label>
+          <button type="button" class="d-btn d-btn-primary" id="btnSaveWaTemplate">Guardar Plantilla de WhatsApp</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- MODAL DE DETALLE DE CITA -->
+<div class="admin-modal" id="bookingDetailModal">
+  <div class="admin-modal-card">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px;">
+      <div>
+        <span style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--slate);" id="detBookingSource">Detalle del Registro</span>
+        <h3 class="d-card-title" style="font-size:20px;margin-top:2px;" id="detClientName">Cliente</h3>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="d-badge confirmada" id="detStatusBadge">Confirmada</span>
+        <button type="button" class="d-btn d-btn-outline d-btn-sm" id="btnCloseDetailModal">✕</button>
+      </div>
+    </div>
+
+    <div class="detail-grid" id="detSummaryGrid"></div>
+
+    <div class="wa-templates-box">
+      <div class="wa-templates-title">💬 Enviar mensaje preconfigurado por WhatsApp (1 Clic)</div>
+      <div class="wa-preset-grid">
+        <button type="button" class="d-btn d-btn-whatsapp d-btn-sm" data-wa-preset="confirm">✅ Confirmar Cita</button>
+        <button type="button" class="d-btn d-btn-outline d-btn-sm" data-wa-preset="reminder">⏰ Recordatorio de Cita</button>
+        <button type="button" class="d-btn d-btn-outline d-btn-sm" data-wa-preset="rescheduled">📅 Aviso de Reagendado</button>
+        <button type="button" class="d-btn d-btn-outline d-btn-sm" data-wa-preset="thanks">✨ Agradecimiento</button>
+      </div>
+    </div>
+
+    <div id="detActiveActionsBox">
+      <span style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--slate);margin-bottom:8px;">
+        Acciones de la Reserva en Google Sheets
+      </span>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <button type="button" class="d-btn d-btn-primary d-btn-sm" id="btnDetConfirm">✓ Confirmar</button>
+        <button type="button" class="d-btn d-btn-outline d-btn-sm" id="btnDetReschedule">📅 Reagendar</button>
+        <button type="button" class="d-btn d-btn-outline d-btn-sm" id="btnDetComplete">🏆 Completar (Archivar)</button>
+        <button type="button" class="d-btn d-btn-danger d-btn-sm" id="btnDetCancel">✕ Cancelar Cita</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL REAGENDAR O CREAR CITA -->
+<div class="admin-modal" id="adminBookingModal">
+  <div class="admin-modal-card">
+    <h3 class="d-card-title" id="adminModalTitle" style="margin-bottom:14px;">Reagendar Cita</h3>
+    <input type="hidden" id="modalBookingId">
+    <div id="modalClientFields" class="hidden">
+      <label class="d-field"><span>Nombre del cliente</span><input type="text" id="modalClientName" placeholder="Nombre completo"></label>
+      <div class="d-grid-2">
+        <label class="d-field"><span>Correo</span><input type="email" id="modalClientEmail" placeholder="cliente@correo.com"></label>
+        <label class="d-field"><span>Teléfono / WhatsApp</span><input type="text" id="modalClientPhone" placeholder="+52 55 1234 5678"></label>
+      </div>
+      <label class="d-field"><span>Servicio</span><select id="modalClientService"></select></label>
+    </div>
+    <div class="d-grid-2">
+      <label class="d-field"><span>Fecha</span><input type="date" id="modalBookingDate"></label>
+      <label class="d-field"><span>Especialista</span><select id="modalBookingSpec"></select></label>
+    </div>
+    <label class="d-field">
+      <span>Horario (solo se permiten horarios disponibles)</span>
+      <select id="modalBookingTime"></select>
+    </label>
+    <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:18px;">
+      <button type="button" class="d-btn d-btn-outline" id="btnCloseAdminModal">Cancelar</button>
+      <button type="button" class="d-btn d-btn-primary" id="btnSaveAdminModal">Guardar en Sheets</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="appToast"></div>
+
+<!-- Botón flotante para abrir la consola de diagnóstico -->
+<button type="button" id="btnOpenDebug" title="Abrir consola de diagnóstico" style="position:fixed;top:14px;right:14px;z-index:9998;width:42px;height:42px;border-radius:50%;background:#1e293b;color:#fbbf24;border:2px solid #fbbf24;font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;">🐛</button>
+
+<script>
+(function() {
+  'use strict';
+  console.log('[Aevi Dashboard] Script iniciado');
+
+  /* =========================================================
+     CONFIGURACIÓN Y ESTADO PRINCIPAL
+     ========================================================= */
+  // === URL del backend de Google Apps Script ===
+  // Cámbiala si despliegas un nuevo web app.
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbxIpslooNGNBqrg6NAGwk5ElppYHDtC5sOPHU1uWoiaLu_73hs-wdQpIKjWgUe1XrTNKA/exec';
+  const PREFS_KEY = 'aevi_admin_ui_prefs_v1';
+
+  const DAY_NAMES_FULL = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+  const DAY_SHORT_ES = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+  const MONTHS_SHORT = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+
+  const DEFAULT_WA_CONFIRM_TEMPLATE =
+    'Hola *{nombre}* 👋, te escribimos de *{negocio}* para confirmar tu cita de *{servicios}* el día *{fecha}* a las *{hora}* con *{especialista}*. 📍 Te esperamos en {direccion}. ¡Responde a este mensaje si tienes cualquier duda!';
+
+  const defaultShiftsByDay = {
+    1: [{ label: 'Turno Mañana', start: '09:00', end: '14:00' }, { label: 'Turno Tarde', start: '15:00', end: '19:00' }],
+    2: [{ label: 'Turno Mañana', start: '09:00', end: '14:00' }, { label: 'Turno Tarde', start: '15:00', end: '19:00' }],
+    3: [{ label: 'Turno Mañana', start: '09:00', end: '14:00' }, { label: 'Turno Tarde', start: '15:00', end: '19:00' }],
+    4: [{ label: 'Turno Mañana', start: '09:00', end: '14:00' }, { label: 'Turno Tarde', start: '15:00', end: '19:00' }],
+    5: [{ label: 'Turno Mañana', start: '09:00', end: '14:00' }, { label: 'Turno Tarde', start: '15:00', end: '19:00' }],
+    6: [{ label: 'Turno Mañana', start: '09:00', end: '14:00' }],
+    0: []
+  };
+
+  const store = {
+    config: {
+      businessName: 'Aevi Wellness',
+      phone: '',
+      whatsapp: '',
+      email: '',
+      address: '',
+      currency: 'MXN',
+      logoUrl: '',
+      announceText: '',
+      parking: '',
+      instagram: '',
+      facebook: '',
+      tiktok: '',
+      website: '',
+      bookingUrl: '',
+      mapLink: '',
+      mapEmbed: '',
+      waTemplate: DEFAULT_WA_CONFIRM_TEMPLATE
+    },
+    shiftsMap: { all: JSON.parse(JSON.stringify(defaultShiftsByDay)) },
+    selectedScheduleTeam: 'all',
+    selectedScheduleDay: 1,
+    exceptions: [],
+    services: [],
+    specialists: [],
+    bookings: [],
+    history: [],
+    bookingsTab: 'active',
+    selectedBookingDetail: null,
+    selectedBookingIsHistory: false
+  };
+
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => Array.from(document.querySelectorAll(s));
+  const esc = (v) => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  function localTodayISO() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  }
+
+  let toastTimer;
+  function showToast(msg) {
+    const el = $('#appToast');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show'), 3800);
+  }
+
+  /* =========================================================
+     PANEL DE DIAGNÓSTICO (visible en pantalla, no solo en consola)
+     ========================================================= */
+  function ensureDebugPanel() {
+    let panel = document.getElementById('debugPanel');
+    if (panel) return;
+    panel = document.createElement('div');
+    panel.id = 'debugPanel';
+    panel.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#1e293b;color:#f1f5f9;font-family:monospace;font-size:11.5px;padding:10px 14px;max-height:38vh;overflow:auto;z-index:9999;display:none;border-top:2px solid #ef4444';
+    panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><strong style="color:#fbbf24;">⚠ Consola de Diagnóstico</strong><button type="button" id="btnCloseDebug" style="background:#ef4444;color:#fff;border:0;padding:3px 9px;border-radius:4px;cursor:pointer;font-size:11px;">Cerrar</button></div><div id="debugLog" style="white-space:pre-wrap;word-break:break-word;"></div>';
+    document.body.appendChild(panel);
+    panel.querySelector('#btnCloseDebug').addEventListener('click', () => { panel.style.display = 'none'; });
+  }
+  function showDebugPanel() { ensureDebugPanel(); document.getElementById('debugPanel').style.display = 'block'; }
+  function logDebug(level, msg) {
+    ensureDebugPanel();
+    const log = document.getElementById('debugLog');
+    const time = new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const color = level === 'err' ? '#fca5a5' : level === 'warn' ? '#fcd34d' : '#86efac';
+    const prefix = level === 'err' ? '✗ ERROR' : level === 'warn' ? '⚠ WARN ' : '✓ OK   ';
+    log.innerHTML += `<div style="color:${color};border-bottom:1px solid #334155;padding:3px 0;"><span style="color:#64748b">[${time}]</span> <strong>${prefix}</strong> ${String(msg).replace(/</g,'&lt;')}</div>`;
+    log.scrollTop = log.scrollHeight;
+    // Mostrar automáticamente solo en errores
+    if (level === 'err') showDebugPanel();
+  }
+  // Captura errores no controlados
+  window.addEventListener('error', (e) => {
+    logDebug('err', 'Error no capturado: ' + (e.message || 'desconocido') + (e.filename ? ' en ' + e.filename.split('/').pop() + ':' + e.lineno : ''));
+  });
+  window.addEventListener('unhandledrejection', (e) => {
+    const reason = (e && e.reason && (e.reason.message || e.reason)) || 'Promesa rechazada';
+    logDebug('err', 'Promesa rechazada: ' + reason);
+  });
+
+  function setSyncBadge(stateType, text) {
+    const badge = $('#syncStatusBadge');
+    if (badge) {
+      badge.className = 'sync-pill ' + (stateType || '');
+      badge.textContent = text;
+    }
+    const settingsText = $('#settingsSyncText');
+    if (settingsText) settingsText.textContent = text.replace('● ', '');
+  }
+
+  /* =========================================================
+     PREFERENCIAS VISUALES (MODO OSCURO Y TEMA)
+     ========================================================= */
+  function loadUiPrefs() {
+    try {
+      const raw = localStorage.getItem(PREFS_KEY);
+      if (!raw) return;
+      const prefs = JSON.parse(raw);
+      if (prefs.theme) applyThemeColor(prefs.theme, false);
+      if (prefs.mode) applyColorMode(prefs.mode, false);
+    } catch (e) {}
+  }
+
+  function saveUiPrefs() {
+    try {
+      localStorage.setItem(PREFS_KEY, JSON.stringify({
+        theme: document.documentElement.getAttribute('data-theme') || 'teal',
+        mode: document.documentElement.getAttribute('data-mode') || 'light'
+      }));
+    } catch (e) {}
+  }
+
+  function applyThemeColor(themeName, persist) {
+    document.documentElement.setAttribute('data-theme', themeName);
+    if (document.body) document.body.setAttribute('data-theme', themeName);
+    $$('[data-theme-pick]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.themePick === themeName);
+    });
+    if (persist !== false) saveUiPrefs();
+  }
+
+  function applyColorMode(modeName, persist) {
+    const isDark = modeName === 'dark';
+    const modeVal = isDark ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-mode', modeVal);
+    if (document.body) document.body.setAttribute('data-mode', modeVal);
+    if ($('#chkDarkModeToggle')) $('#chkDarkModeToggle').checked = isDark;
+    if ($('#darkModeLabelText')) $('#darkModeLabelText').textContent = isDark ? 'Activado' : 'Desactivado';
+    if (persist !== false) saveUiPrefs();
+  }
+
+  /* =========================================================
+     NORMALIZADORES Y UTILIDADES
+     ========================================================= */
+  function normalizeDateStr(val) {
+    if (!val) return '';
+    const str = String(val).trim().replace(/^'/, '');
+    if (/^\d{4}-\d{2}-\d{2}$/.test(str)) return str;
+    const d = new Date(str);
+    if (!isNaN(d.getTime())) {
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+    return str;
+  }
+
+  function normalizeTimeStr(val) {
+    if (!val) return '';
+    const str = String(val).trim().replace(/^'/, '');
+    const m = str.match(/^(\d{1,2}):(\d{2})/);
+    if (m) return String(m[1]).padStart(2, '0') + ':' + m[2];
+    if (str.includes('T')) {
+      const d = new Date(str);
+      if (!isNaN(d.getTime())) {
+        return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+      }
+    }
+    return str;
+  }
+
+  function parseNumberClean(val, fallback) {
+    if (typeof val === 'number' && !isNaN(val)) return val;
+    const cleaned = String(val ?? '').replace(/[^\d.]/g, '');
+    const n = parseFloat(cleaned);
+    return isNaN(n) ? (fallback || 0) : n;
+  }
+
+  function parseDaysList(raw) {
+    if (Array.isArray(raw)) return raw.map(Number).filter(n => !isNaN(n) && n >= 0 && n <= 6);
+    const str = String(raw ?? '').trim().replace(/^'/, '');
+    if (!str) return [1,2,3,4,5];
+    const parts = str.indexOf(',') >= 0
+      ? str.split(',')
+      : (/^[0-6]+$/.test(str) ? str.split('') : str.split(/[\s,;.|/-]+/));
+    return Array.from(new Set(
+      parts.map(x => Number(String(x).trim())).filter(n => !isNaN(n) && n >= 0 && n <= 6)
+    )).sort((a, b) => a - b);
+  }
+
+  function normalizeBookingRow(r) {
+    return {
+      id: String(r.ID ?? r.Id ?? r.id ?? ''),
+      date: normalizeDateStr(r.Fecha ?? r.fecha ?? r.date ?? ''),
+      time: normalizeTimeStr(r.Hora ?? r.hora ?? r.time ?? ''),
+      specialistId: String(r.EspecialistaID ?? r.EspecialistaId ?? r.especialistaId ?? r.specialistId ?? ''),
+      name: String(r.Nombre ?? r.nombre ?? r.name ?? r.Cliente ?? ''),
+      email: String(r.Email ?? r.email ?? r.Correo ?? ''),
+      phone: String(r.Teléfono ?? r.Telefono ?? r.telefono ?? r.phone ?? ''),
+      services: String(r.Servicios ?? r.servicios ?? r.services ?? ''),
+      status: String(r.Estado ?? r.estado ?? r.status ?? 'Confirmada')
+    };
+  }
+
+  function timeToMinutes(t) {
+    const clean = normalizeTimeStr(t || '08:00');
+    const parts = clean.split(':').map(Number);
+    const h = (!isNaN(parts[0]) && parts[0] >= 0 && parts[0] <= 24) ? parts[0] : 8;
+    const m = (!isNaN(parts[1]) && parts[1] >= 0 && parts[1] < 60) ? parts[1] : 0;
+    return Math.max(0, Math.min(1440, h * 60 + m));
+  }
+
+  function minutesToTime(mins) {
+    const safe = Math.max(0, Math.min(1440, Number(mins) || 0));
+    return String(Math.floor(safe / 60)).padStart(2, '0') + ':' + String(safe % 60).padStart(2, '0');
+  }
+
+  function format12h(time24) {
+    const clean = normalizeTimeStr(time24 || '08:00');
+    const [hRaw, mRaw] = clean.split(':').map(Number);
+    const h = isNaN(hRaw) ? 8 : hRaw;
+    const m = isNaN(mRaw) ? 0 : mRaw;
+    const suffix = h >= 12 ? 'PM' : 'AM';
+    return `${String(h % 12 || 12).padStart(2, '0')}:${String(m || 0).padStart(2, '0')} ${suffix}`;
+  }
+
+  function getSpecialistName(specId) {
+    const sp = store.specialists.find(s => s.id === String(specId).trim());
+    return sp ? sp.name : (specId || 'Especialista asignado');
+  }
+
+  function formatServicesNames(rawServices) {
+    if (!rawServices) return 'Tratamiento';
+    return String(rawServices).split(',').map(part => {
+      const clean = part.trim();
+      const found = store.services.find(s => s.id === clean || s.name.toLowerCase() === clean.toLowerCase());
+      return found ? found.name : clean;
+    }).join(', ');
+  }
+
+  function estimateBookingTotal(rawServices) {
+    if (!rawServices) return 0;
+    return String(rawServices).split(',').reduce((sum, part) => {
+      const clean = part.trim();
+      const found = store.services.find(s => s.id === clean || s.name.toLowerCase() === clean.toLowerCase());
+      return sum + (found ? Number(found.price) || 0 : 0);
+    }, 0);
+  }
+
+  function buildWhatsAppLinkForBooking(booking, presetType) {
+    let rawDigits = String(booking.phone || '').replace(/\D/g, '');
+    if (rawDigits.length === 10) rawDigits = '52' + rawDigits;
+
+    const vars = {
+      '{nombre}': booking.name || 'Cliente',
+      '{fecha}': booking.date || '',
+      '{hora}': booking.time || '',
+      '{especialista}': getSpecialistName(booking.specialistId),
+      '{servicios}': formatServicesNames(booking.services),
+      '{negocio}': store.config.businessName || 'Aevi Wellness',
+      '{direccion}': store.config.address || 'nuestra sucursal'
+    };
+
+    let template = store.config.waTemplate || DEFAULT_WA_CONFIRM_TEMPLATE;
+    if (presetType === 'reminder') {
+      template = 'Hola *{nombre}* ✨, te recordamos tu cita en *{negocio}* programada para el *{fecha}* a las *{hora}* ({servicios}) con *{especialista}*. Te esperamos en {direccion}. ¡Confírmanos tu asistencia por aquí!';
+    } else if (presetType === 'rescheduled') {
+      template = 'Hola *{nombre}* 📅, te confirmamos que tu cita en *{negocio}* ha sido actualizada para el día *{fecha}* a las *{hora}* con *{especialista}*. ¡Te esperamos!';
+    } else if (presetType === 'thanks') {
+      template = 'Hola *{nombre}* 🌿, muchas gracias por tu visita a *{negocio}*. Esperamos que hayas disfrutado tu ritual de *{servicios}*. ¡Será un gusto volver a verte pronto!';
+    }
+
+    let message = template;
+    Object.entries(vars).forEach(([k, v]) => {
+      message = message.split(k).join(v);
+    });
+
+    const baseUrl = rawDigits ? `https://wa.me/${rawDigits}` : `https://wa.me/`;
+    return `${baseUrl}?text=${encodeURIComponent(message)}`;
+  }
+
+  function slotsStringToShifts(slotsCsv) {
+    const raw = String(slotsCsv || '').replace(/^'/, '').trim();
+    if (!raw) return [];
+    const mins = raw.split(',')
+      .map(s => normalizeTimeStr(s))
+      .filter(s => /^\d{2}:\d{2}$/.test(s))
+      .map(timeToMinutes)
+      .sort((a, b) => a - b);
+    if (!mins.length) return [];
+
+    const groups = [];
+    let curStart = mins[0];
+    let curPrev = mins[0];
+
+    for (let i = 1; i < mins.length; i++) {
+      if (mins[i] - curPrev <= 60) {
+        curPrev = mins[i];
+      } else {
+        groups.push({ start: curStart, end: Math.min(1440, curPrev + 60) });
+        curStart = mins[i];
+        curPrev = mins[i];
+      }
+    }
+    groups.push({ start: curStart, end: Math.min(1440, curPrev + 60) });
+
+    return groups.map((g, idx) => ({
+      label: idx === 0 ? 'Turno Mañana' : (idx === 1 ? 'Turno Tarde' : `Turno ${idx + 1}`),
+      start: minutesToTime(g.start),
+      end: minutesToTime(g.end)
+    }));
+  }
+
+  function generateSlotsFromShifts(shifts) {
+    const slots = [];
+    (Array.isArray(shifts) ? shifts : []).forEach(sh => {
+      if (!sh) return;
+      const s = timeToMinutes(sh.start);
+      const e = timeToMinutes(sh.end);
+      if (e <= s) return;
+      let guard = 0;
+      for (let m = s; m + 60 <= e && guard < 24; m += 60, guard++) {
+        const t = minutesToTime(m);
+        if (!slots.includes(t)) slots.push(t);
+      }
+    });
+    return slots.sort();
+  }
+
+  /* =========================================================
+     MOTOR DE CONEXIÓN A GOOGLE SHEETS (MISMO MOTOR QUE INDEX.HTML)
+     ========================================================= */
+  async function gasGet(action, params) {
+    const url = new URL(GAS_URL);
+    url.searchParams.set('action', action);
+    url.searchParams.set('_t', Date.now());
+    Object.entries(params || {}).forEach(([k, v]) => url.searchParams.set(k, v));
+    const res = await fetch(url.toString(), { method: 'GET', redirect: 'follow' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return res.json();
+  }
+
+  async function gasPost(action, payload) {
+    const res = await fetch(GAS_URL, {
+      method: 'POST',
+      redirect: 'follow',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(Object.assign({ action }, payload || {}))
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+    if (json && json.error) throw new Error(json.error);
+    return json;
+  }
+
+  let isSyncingNow = false;
+  async function syncFromGoogleSheets(silent) {
+    if (isSyncingNow) {
+      logDebug('warn', 'syncFromGoogleSheets: ya hay una sincronización en curso, se omite');
+      return;
+    }
+    isSyncingNow = true;
+    setSyncBadge('loading', '● Sincronizando…');
+    logDebug('ok', 'Iniciando sincronización con ' + GAS_URL.substring(0, 70) + '…');
+
+    try {
+      logDebug('ok', 'Lanzando 5 peticiones GET en paralelo (getConfig, getServices, getSpecialists, getBookings, getHistory)');
+      const [config, services, specialists, bookings, history] = await Promise.all([
+        gasGet('getConfig').catch((e) => { logDebug('err', 'getConfig falló: ' + e.message); return ({}); }),
+        gasGet('getServices').catch((e) => { logDebug('err', 'getServices falló: ' + e.message); return []; }),
+        gasGet('getSpecialists').catch((e) => { logDebug('err', 'getSpecialists falló: ' + e.message); return []; }),
+        gasGet('getBookings').catch((e) => { logDebug('err', 'getBookings falló: ' + e.message); return []; }),
+        gasGet('getHistory').catch((e) => { logDebug('err', 'getHistory falló: ' + e.message); return []; })
+      ]);
+
+      logDebug('ok', `Respuestas: config=${typeof config} services=${Array.isArray(services) ? services.length + ' items' : 'NO array'} specialists=${Array.isArray(specialists) ? specialists.length + ' items' : 'NO array'} bookings=${Array.isArray(bookings) ? bookings.length + ' items' : 'NO array'} history=${Array.isArray(history) ? history.length + ' items' : 'NO array'}`);
+
+      if (config && config.error) {
+        logDebug('err', 'getConfig devolvió error: ' + config.error);
+      }
+      if (config && !config.error && typeof config === 'object') {
+        store.config = Object.assign({}, store.config, config);
+        if (!store.config.waTemplate) store.config.waTemplate = DEFAULT_WA_CONFIRM_TEMPLATE;
+
+        const cleanShiftsJson = String(config.shifts_json || '').trim().replace(/^'/, '');
+        if (cleanShiftsJson) {
+          try {
+            const parsedShifts = JSON.parse(cleanShiftsJson);
+            if (parsedShifts && typeof parsedShifts === 'object') {
+              store.shiftsMap = parsedShifts;
+            }
+          } catch (e) {}
+        } else {
+          const rebuilt = {};
+          let hasAnyScheduleKey = false;
+          for (let d = 0; d <= 6; d++) {
+            if (Object.prototype.hasOwnProperty.call(config, 'schedule_' + d)) {
+              hasAnyScheduleKey = true;
+              rebuilt[d] = slotsStringToShifts(config['schedule_' + d]);
+            } else {
+              rebuilt[d] = defaultShiftsByDay[d] || [];
+            }
+          }
+          if (hasAnyScheduleKey) store.shiftsMap.all = rebuilt;
+        }
+
+        const cleanExcJson = String(config.exceptions_json || '').trim().replace(/^'/, '');
+        if (cleanExcJson) {
+          try {
+            const parsedExc = JSON.parse(cleanExcJson);
+            if (Array.isArray(parsedExc)) store.exceptions = parsedExc;
+          } catch (e) {}
+        }
+        logDebug('ok', 'Config cargada. businessName=' + (store.config.businessName || '(vacío)') + ', phone=' + (store.config.phone || '(vacío)'));
+      }
+
+      store.services = (Array.isArray(services) ? services : []).map(s => ({
+        id: String(s.ID ?? s.Id ?? s.id ?? ''),
+        name: String(s.Nombre ?? s.nombre ?? s.name ?? ''),
+        desc: String(s.Descripción ?? s.Descripcion ?? s.descripcion ?? s.desc ?? ''),
+        duration: parseNumberClean(s.Duración ?? s.Duracion ?? s.duracion ?? s.duration, 60),
+        price: parseNumberClean(s.Precio ?? s.precio ?? s.price, 0)
+      })).filter(s => s.id || s.name);
+
+      store.specialists = (Array.isArray(specialists) ? specialists : []).map(sp => ({
+        id: String(sp.ID ?? sp.Id ?? sp.id ?? ''),
+        name: String(sp.Nombre ?? sp.nombre ?? sp.name ?? ''),
+        role: String(sp.Rol ?? sp.rol ?? sp.role ?? sp.Especialidad ?? ''),
+        days: parseDaysList(sp.Días ?? sp.Dias ?? sp.dias ?? sp.days)
+      })).filter(sp => sp.id && sp.name);  // CORREGIDO: && excluye especialistas sin ID
+
+      store.bookings = (Array.isArray(bookings) ? bookings : [])
+        .map(normalizeBookingRow)
+        .filter(b => b.id || b.name);
+
+      store.history = (Array.isArray(history) ? history : [])
+        .map(normalizeBookingRow)
+        .filter(b => b.id || b.name);
+
+      renderAllPanels();
+      setSyncBadge('', '● Conectado a Sheets');
+      if ($('#lastSyncTimeLabel')) {
+        $('#lastSyncTimeLabel').textContent = new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+      }
+      if (!silent) showToast('Datos sincronizados con Google Sheets ✓');
+      logDebug('ok', 'Sincronización completada. Servicios=' + store.services.length + ', Especialistas=' + store.specialists.length + ', Reservas=' + store.bookings.length);
+    } catch (err) {
+      setSyncBadge('error', '● Reintentar conexión');
+      if (!silent) showToast('Error de conexión: ' + err.message);
+      logDebug('err', 'Error fatal en syncFromGoogleSheets: ' + (err.stack || err.message));
+    } finally {
+      isSyncingNow = false;
+    }
+  }
+
+  /* =========================================================
+     MODAL DE DETALLE DE CITA
+     ========================================================= */
+  function openBookingDetailModal(bookingId, isFromHistory) {
+    const sourceList = isFromHistory ? store.history : store.bookings;
+    const bk = sourceList.find(x => x.id === bookingId);
+    if (!bk) return;
+
+    store.selectedBookingDetail = bk;
+    store.selectedBookingIsHistory = !!isFromHistory;
+
+    $('#detBookingSource').textContent = isFromHistory ? 'Registro en Historial' : 'Reserva Activa en Agenda';
+    $('#detClientName').textContent = bk.name || 'Cliente sin nombre';
+
+    const badgeClass = bk.status.toLowerCase().includes('cancel') ? 'cancelada'
+                     : bk.status.toLowerCase().includes('reagend') ? 'reagendada'
+                     : bk.status.toLowerCase().includes('complet') ? 'completada' : 'confirmada';
+    const badgeEl = $('#detStatusBadge');
+    badgeEl.className = 'd-badge ' + badgeClass;
+    badgeEl.textContent = bk.status;
+
+    const estPrice = estimateBookingTotal(bk.services);
+
+    $('#detSummaryGrid').innerHTML = `
+      <div class="detail-item"><small>Fecha</small><strong>${esc(bk.date || '—')}</strong></div>
+      <div class="detail-item"><small>Hora</small><strong>${esc(bk.time || '—')}</strong></div>
+      <div class="detail-item"><small>Especialista Asignado</small><strong>${esc(getSpecialistName(bk.specialistId))}</strong></div>
+      <div class="detail-item"><small>Total Estimado</small><strong>$${estPrice} ${esc(store.config.currency || 'MXN')}</strong></div>
+      <div class="detail-item" style="grid-column:1 / -1;"><small>Servicios Solicitados</small><strong>${esc(formatServicesNames(bk.services))}</strong></div>
+      <div class="detail-item"><small>Correo Electrónico</small><strong>${esc(bk.email || '—')}</strong></div>
+      <div class="detail-item"><small>Teléfono / WhatsApp</small><strong>${esc(bk.phone || 'Sin teléfono')}</strong></div>
+      <div class="detail-item" style="grid-column:1 / -1;"><small>ID de Reserva</small><strong style="font-size:12px;color:var(--slate);">${esc(bk.id)}</strong></div>
+    `;
+
+    $('#detActiveActionsBox').classList.toggle('hidden', !!isFromHistory);
+    $('#bookingDetailModal').classList.add('open');
+  }
+
+  /* =========================================================
+     RENDERIZADO DE TABLERO, RESUMEN Y CITAS
+     ========================================================= */
+  function renderResumenAndBookings() {
+    const activeCount = store.bookings.length;
+    const historyCount = store.history.length;
+    $('#navCitasCount').textContent = activeCount;
+    $('#countActiveTab').textContent = activeCount;
+    $('#countHistoryTab').textContent = historyCount;
+
+    const todayISO = localTodayISO();
+    const todayBookings = store.bookings.filter(b => b.date === todayISO).length;
+
+    $('#summaryStatsGrid').innerHTML = `
+      <div class="kpi-card">
+        <div class="kpi-icon teal"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+        <div><p class="kpi-title">Citas Hoy (${todayISO})</p><p class="kpi-value">${todayBookings}</p><p class="kpi-sub teal">Programadas para hoy</p></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon blue"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div><p class="kpi-title">Reservas Activas</p><p class="kpi-value">${activeCount}</p><p class="kpi-sub green">En hoja Reservas</p></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon purple"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+        <div><p class="kpi-title">Especialistas en Sheets</p><p class="kpi-value">${store.specialists.length}</p><p class="kpi-sub teal">Equipo activo</p></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon orange"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div><p class="kpi-title">Servicios en Sheets</p><p class="kpi-value">${store.services.length}</p><p class="kpi-sub orange">Catálogo publicado</p></div>
+      </div>
+    `;
+
+    const upcoming = store.bookings.slice().sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time)).slice(0, 12);
+    $('#dashUpcomingTable').innerHTML = upcoming.length
+      ? `<thead><tr><th>Fecha</th><th>Hora</th><th>Cliente</th><th>Especialista</th><th>Servicios</th><th>Estado</th><th>Acción Rápida</th></tr></thead><tbody>` +
+        upcoming.map(b => {
+          const waHref = buildWhatsAppLinkForBooking(b, 'confirm');
+          const badgeClass = b.status.toLowerCase().includes('cancel') ? 'cancelada'
+                           : b.status.toLowerCase().includes('reagend') ? 'reagendada'
+                           : b.status.toLowerCase().includes('complet') ? 'completada' : 'confirmada';
+          return `
+            <tr class="clickable-row" data-row-detail="${esc(b.id)}" data-row-history="0">
+              <td><strong>${esc(b.date)}</strong></td>
+              <td>${esc(b.time)}</td>
+              <td><strong>${esc(b.name)}</strong><br><small style="color:var(--slate);">${esc(b.phone || b.email)}</small></td>
+              <td>${esc(getSpecialistName(b.specialistId))}</td>
+              <td>${esc(formatServicesNames(b.services))}</td>
+              <td><span class="d-badge ${badgeClass}">${esc(b.status)}</span></td>
+              <td>
+                <a href="${esc(waHref)}" target="_blank" rel="noopener" class="d-btn d-btn-whatsapp d-btn-sm">💬 WhatsApp</a>
+              </td>
+            </tr>`;
+        }).join('') + `</tbody>`
+      : `<tbody><tr><td style="color:var(--slate);padding:18px;">No hay próximas citas activas en la hoja "Reservas".</td></tr></tbody>`;
+
+    renderBookingsTable();
+  }
+
+  function renderBookingsTable() {
+    const q = ($('#adminCitaSearch').value || '').toLowerCase().trim();
+    const statusFilter = $('#adminCitaStatusFilter').value.toLowerCase();
+    const isHistory = store.bookingsTab === 'history';
+
+    $('#tabActiveBookings').className = 'd-btn d-btn-sm ' + (!isHistory ? 'd-btn-primary' : 'd-btn-outline');
+    $('#tabHistoryBookings').className = 'd-btn d-btn-sm ' + (isHistory ? 'd-btn-primary' : 'd-btn-outline');
+
+    let rows = (isHistory ? store.history : store.bookings).slice()
+      .sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time));
+
+    if (statusFilter) {
+      rows = rows.filter(b => b.status.toLowerCase().includes(statusFilter));
+    }
+    if (q) {
+      rows = rows.filter(b =>
+        `${b.id} ${b.name} ${b.email} ${b.phone} ${b.services}`.toLowerCase().includes(q)
+      );
+    }
+
+    const table = $('#adminBookingsTable');
+    if (!rows.length) {
+      table.innerHTML = `<tbody><tr><td style="color:var(--slate);padding:20px;">No hay registros en ${isHistory ? 'Historial' : 'Reservas Activas'} que coincidan.</td></tr></tbody>`;
+      return;
+    }
+
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th>Fecha</th><th>Hora</th><th>Cliente / Contacto</th>
+          <th>Especialista</th><th>Servicios</th><th>Estado</th><th>Acciones / WhatsApp</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows.map(b => {
+          const badgeClass = b.status.toLowerCase().includes('cancel') ? 'cancelada'
+                           : b.status.toLowerCase().includes('reagend') ? 'reagendada'
+                           : b.status.toLowerCase().includes('complet') ? 'completada' : 'confirmada';
+          const waHref = buildWhatsAppLinkForBooking(b, 'confirm');
+          return `
+            <tr class="clickable-row" data-row-detail="${esc(b.id)}" data-row-history="${isHistory ? '1' : '0'}">
+              <td><strong>${esc(b.date)}</strong></td>
+              <td>${esc(b.time)}</td>
+              <td>
+                <strong>${esc(b.name)}</strong><br>
+                <small style="color:var(--slate);">${esc(b.email)} ${b.phone ? '· ' + esc(b.phone) : ''}</small>
+              </td>
+              <td>${esc(getSpecialistName(b.specialistId))}</td>
+              <td>${esc(formatServicesNames(b.services))}</td>
+              <td><span class="d-badge ${badgeClass}">${esc(b.status)}</span></td>
+              <td>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center;">
+                  <a href="${esc(waHref)}" target="_blank" rel="noopener" class="d-btn d-btn-whatsapp d-btn-sm">💬 WhatsApp</a>
+                  ${!isHistory ? `
+                    <button type="button" class="d-btn d-btn-outline d-btn-sm" data-bk-confirm="${esc(b.id)}">✓ Confirmar</button>
+                    <button type="button" class="d-btn d-btn-outline d-btn-sm" data-bk-reschedule="${esc(b.id)}">📅 Reagendar</button>
+                    <button type="button" class="d-btn d-btn-outline d-btn-sm" data-bk-complete="${esc(b.id)}">🏆 Completar</button>
+                    <button type="button" class="d-btn d-btn-danger d-btn-sm" data-bk-cancel="${esc(b.id)}">✕</button>
+                  ` : `<button type="button" class="d-btn d-btn-outline d-btn-sm" data-bk-open-detail="${esc(b.id)}">👁️ Ver</button>`}
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('')}
+      </tbody>
+    `;
+  }
+
+  function openRescheduleModalForBooking(bk) {
+    $('#adminModalTitle').textContent = `Reagendar cita de ${bk.name}`;
+    $('#modalBookingId').value = bk.id;
+    $('#modalClientFields').classList.add('hidden');
+    $('#modalBookingDate').value = bk.date;
+    $('#modalBookingSpec').innerHTML = store.specialists.map(sp =>
+      `<option value="${esc(sp.id)}">${esc(sp.name)}</option>`
+    ).join('');
+    $('#modalBookingSpec').value = bk.specialistId;
+    refreshAdminModalAvailableSlots(bk.time, bk.id);
+    $('#adminBookingModal').classList.add('open');
+  }
+
+  function refreshAdminModalAvailableSlots(preferredTime, ignoreBookingId) {
+    const dateVal = $('#modalBookingDate').value;
+    const specId = $('#modalBookingSpec').value;
+    const timeSelect = $('#modalBookingTime');
+    if (!dateVal || !specId) {
+      timeSelect.innerHTML = `<option value="">Selecciona fecha y especialista</option>`;
+      return;
+    }
+
+    const dObj = new Date(dateVal + 'T12:00:00');
+    const wd = dObj.getDay();
+    const spec = store.specialists.find(s => s.id === specId);
+    if (spec && spec.days.length && !spec.days.includes(wd)) {
+      timeSelect.innerHTML = `<option value="">Especialista no labora este día</option>`;
+      return;
+    }
+
+    const masterSched = store.shiftsMap.all || defaultShiftsByDay;
+    const daySlots = generateSlotsFromShifts(masterSched[wd] || []);
+    if (!daySlots.length) {
+      timeSelect.innerHTML = `<option value="">Día cerrado</option>`;
+      return;
+    }
+
+    const occupiedTimes = store.bookings
+      .filter(b => b.id !== ignoreBookingId && b.date === dateVal && b.specialistId === specId && !b.status.toLowerCase().includes('cancel'))
+      .map(b => normalizeTimeStr(b.time));
+
+    timeSelect.innerHTML = daySlots.map(t => {
+      const isTaken = occupiedTimes.includes(t);
+      return `<option value="${esc(t)}" ${isTaken ? 'disabled' : ''}>${esc(t)} ${isTaken ? '— (Ocupado)' : '— (Disponible)'}</option>`;
+    }).join('');
+
+    if (preferredTime && !occupiedTimes.includes(preferredTime)) {
+      timeSelect.value = preferredTime;
+    } else {
+      const firstFree = daySlots.find(t => !occupiedTimes.includes(t));
+      timeSelect.value = firstFree || '';
+    }
+  }
+
+  function openNewManualBookingModal() {
+    $('#adminModalTitle').textContent = 'Nueva Cita Manual';
+    $('#modalBookingId').value = '';
+    $('#modalClientFields').classList.remove('hidden');
+    $('#modalClientName').value = '';
+    $('#modalClientEmail').value = '';
+    $('#modalClientPhone').value = '';
+    $('#modalBookingDate').value = localTodayISO();
+    $('#modalClientService').innerHTML = store.services.length
+      ? store.services.map(s => `<option value="${esc(s.name)}">${esc(s.name)} ($${s.price})</option>`).join('')
+      : `<option value="Servicio general">Servicio general</option>`;
+    $('#modalBookingSpec').innerHTML = store.specialists.map(sp =>
+      `<option value="${esc(sp.id)}">${esc(sp.name)}</option>`
+    ).join('');
+    refreshAdminModalAvailableSlots('09:00', '');
+    $('#adminBookingModal').classList.add('open');
+  }
+
+  /* =========================================================
+     MÓDULO CONFIGURACIÓN DE HORARIOS
+     ========================================================= */
+  function getActiveSchedule() {
+    const team = store.selectedScheduleTeam || 'all';
+    if (!store.shiftsMap[team]) {
+      store.shiftsMap[team] = JSON.parse(JSON.stringify(store.shiftsMap.all || defaultShiftsByDay));
+    }
+    return store.shiftsMap[team];
+  }
+
+  function renderSchedulePreviewOnly() {
+    const scheduleByDay = getActiveSchedule();
+    const d = store.selectedScheduleDay;
+    const dayShifts = Array.isArray(scheduleByDay[d]) ? scheduleByDay[d] : [];
+
+    let totalShifts = 0;
+    for (let i = 0; i <= 6; i++) totalShifts += (Array.isArray(scheduleByDay[i]) ? scheduleByDay[i].length : 0);
+    $('#kpiActiveShifts').textContent = totalShifts;
+    $('#kpiAssignedStaff').textContent = store.specialists.length;
+    $('#kpiExceptionsCount').textContent = store.exceptions.length;
+
+    const nextExc = store.exceptions.slice().sort((a, b) => String(a.date).localeCompare(String(b.date)))[0];
+    $('#kpiNextExceptionSub').textContent = nextExc ? `Próximo: ${nextExc.date}` : 'Sin festivos próximos';
+
+    $$('#scheduleDayTabs .day-tab-btn').forEach(btn => {
+      const bDay = Number(btn.dataset.day);
+      btn.classList.toggle('active', bDay === d);
+      btn.classList.toggle('is-off-day', !(scheduleByDay[bDay] || []).length);
+    });
+
+    const order = [1,2,3,4,5,6,0];
+    const workRow = order.map(idx => {
+      const s = (scheduleByDay[idx] || []).filter(x => x && x.start && x.end);
+      return s.length
+        ? `<div class="timeline-segment work">${String(s[0].start).slice(0,2)}-${String(s[s.length-1].end).slice(0,2)}h</div>`
+        : `<div class="timeline-segment off">Cerrado</div>`;
+    }).join('');
+    const breakRow = order.map(idx => {
+      const s = (scheduleByDay[idx] || []).filter(x => x && x.start && x.end);
+      return s.length >= 2
+        ? `<div class="timeline-segment break">${String(s[0].end).slice(0,2)}-${String(s[1].start).slice(0,2)}h</div>`
+        : `<div class="timeline-segment off">-</div>`;
+    }).join('');
+    $('#weeklyTimelineBars').innerHTML = `<div class="timeline-bar-track">${workRow}</div><div class="timeline-bar-track">${breakRow}</div>`;
+
+    const slots = generateSlotsFromShifts(dayShifts);
+    $('#slotsCountPreview').textContent = slots.length;
+    $('#generatedSlotsPreview').innerHTML = slots.length
+      ? slots.map(t => `<span class="slot-mini-pill">${esc(t)}</span>`).join('')
+      : `<span class="slot-mini-pill">Cerrado</span>`;
+  }
+
+  function renderScheduleModule() {
+    const sel = $('#scheduleTeamSelect');
+    const curTeam = store.selectedScheduleTeam;
+    sel.innerHTML = `<option value="all">Horario General (Negocio)</option>` +
+      store.specialists.map(sp => `<option value="${esc(sp.id)}">${esc(sp.name)} (${esc(sp.role)})</option>`).join('');
+    sel.value = store.specialists.some(s => s.id === curTeam) ? curTeam : 'all';
+    store.selectedScheduleTeam = sel.value;
+
+    const scheduleByDay = getActiveSchedule();
+    const d = store.selectedScheduleDay;
+    const dayShifts = Array.isArray(scheduleByDay[d]) ? scheduleByDay[d] : [];
+
+    const now = new Date();
+    const refDate = new Date(now);
+    refDate.setDate(now.getDate() + (d - now.getDay()));
+    $('#currentDayHeading').textContent = `${DAY_NAMES_FULL[d]} - ${refDate.getDate()} ${MONTHS_SHORT[refDate.getMonth()]}`;
+    $('#currentDaySub').textContent = dayShifts.length ? 'Horario estándar' : 'Día cerrado (sin turnos)';
+    $('#btnToggleDayClosed').textContent = dayShifts.length ? 'Marcar cerrado' : 'Abrir horario';
+
+    const container = $('#dayShiftsContainer');
+    if (!dayShifts.length) {
+      container.innerHTML = `<div class="break-card"><div class="break-main-line">🌙 Sin horario asignado (Cerrado en reservas)</div></div>`;
+    } else {
+      let html = '';
+      dayShifts.forEach((sh, idx) => {
+        const safeLabel = (sh && sh.label) || `Turno ${idx + 1}`;
+        const safeStart = normalizeTimeStr((sh && sh.start) || '09:00') || '09:00';
+        const safeEnd   = normalizeTimeStr((sh && sh.end) || '14:00') || '14:00';
+        if (idx > 0) {
+          const prevEnd = normalizeTimeStr((dayShifts[idx - 1] && dayShifts[idx - 1].end) || '14:00') || '14:00';
+          const diff = timeToMinutes(safeStart) - timeToMinutes(prevEnd);
+          if (diff > 0) {
+            html += `
+              <div class="break-card">
+                <div class="break-main-line">Descanso ☕ ${format12h(prevEnd)} — ${format12h(safeStart)}</div>
+                <div class="break-sub-line">Descanso ${(diff / 60).toFixed(diff % 60 ? 1 : 0)} hora(s)</div>
+              </div>`;
+          }
+        }
+        html += `
+          <div class="shift-row" data-shift-idx="${idx}">
+            <input type="text" class="shift-label-input" data-sfield="label" value="${esc(safeLabel)}">
+            <div class="shift-times-group">
+              <label class="time-pill-box">🕒 <input type="time" data-sfield="start" value="${esc(safeStart)}"></label>
+              <span>-</span>
+              <label class="time-pill-box">🕒 <input type="time" data-sfield="end" value="${esc(safeEnd)}"></label>
+              <button type="button" class="icon-trash-btn" data-del-shift="${idx}" title="Eliminar turno">🗑️</button>
+            </div>
+          </div>`;
+      });
+      container.innerHTML = html;
+    }
+
+    renderSchedulePreviewOnly();
+  }
+
+  function renderExceptionsAdmin() {
+    const box = $('#exceptionsListContainer');
+    if (!store.exceptions.length) {
+      box.innerHTML = `<p style="color:var(--slate);font-size:13.5px;">No hay días festivos o excepciones configuradas.</p>`;
+      return;
+    }
+    box.innerHTML = store.exceptions.map((ex, i) => `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border:1px solid var(--border);border-radius:var(--r-md);margin-bottom:8px;background:var(--bg-subtle);">
+        <span>📅 <strong>${esc(ex.date)}</strong> — ${esc(ex.reason || 'Cerrado')}</span>
+        <button type="button" class="d-btn d-btn-danger d-btn-sm" data-exc-del="${i}">Quitar</button>
+      </div>
+    `).join('');
+  }
+
+  function renderSpecialistsAdmin() {
+    const container = $('#specialistsAdminList');
+    if (!store.specialists.length) {
+      container.innerHTML = `<div class="d-card" style="color:var(--slate);">No hay especialistas en la hoja "Especialistas". Añade el primero arriba.</div>`;
+      return;
+    }
+
+    container.innerHTML = store.specialists.map((sp, i) => `
+      <div class="d-card" data-sp-card="${i}">
+        <div class="d-grid-2">
+          <label class="d-field"><span>Nombre</span><input type="text" data-sp-field="name" value="${esc(sp.name)}"></label>
+          <label class="d-field"><span>Rol / Especialidad</span><input type="text" data-sp-field="role" value="${esc(sp.role)}"></label>
+        </div>
+        <div class="d-field">
+          <span>Días laborales (0=Dom … 6=Sáb)</span>
+          <div class="day-check-pills">
+            ${[1,2,3,4,5,6,0].map(d => `
+              <button type="button" class="day-check-pill ${sp.days.includes(d) ? 'active' : ''}" data-sp-day="${d}">
+                ${DAY_SHORT_ES[d]}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+          <small style="color:var(--slate);">ID: ${esc(sp.id || 'Nuevo')}</small>
+          <div style="display:flex;gap:8px;">
+            <button type="button" class="d-btn d-btn-danger d-btn-sm" data-sp-delete="${i}">Eliminar</button>
+            <button type="button" class="d-btn d-btn-primary d-btn-sm" data-sp-save="${i}">Guardar en Sheets</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderServicesAdmin() {
+    const container = $('#servicesAdminList');
+    if (!store.services.length) {
+      container.innerHTML = `<div class="d-card" style="color:var(--slate);">No hay servicios en la hoja "Servicios". Añade el primero arriba.</div>`;
+      return;
+    }
+
+    container.innerHTML = store.services.map((s, i) => `
+      <div class="d-card" data-srv-card="${i}">
+        <div class="d-grid-3">
+          <label class="d-field"><span>Nombre del Servicio</span><input type="text" data-srv-field="name" value="${esc(s.name)}"></label>
+          <label class="d-field"><span>Duración (min)</span><input type="number" data-srv-field="duration" value="${Number(s.duration) || 60}"></label>
+          <label class="d-field"><span>Precio ($)</span><input type="number" data-srv-field="price" value="${Number(s.price) || 0}"></label>
+        </div>
+        <label class="d-field"><span>Descripción</span><input type="text" data-srv-field="desc" value="${esc(s.desc)}"></label>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;">
+          <small style="color:var(--slate);">ID: ${esc(s.id || 'Nuevo')}</small>
+          <div style="display:flex;gap:8px;">
+            <button type="button" class="d-btn d-btn-danger d-btn-sm" data-srv-delete="${i}">Eliminar</button>
+            <button type="button" class="d-btn d-btn-primary d-btn-sm" data-srv-save="${i}">Guardar en Sheets</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderMapPreview() {
+    const embedUrl = ($('#cfgMapEmbed').value || store.config.mapEmbed || '').trim();
+    const box = $('#adminMapPreview');
+    if (!box) return;
+    if (embedUrl) {
+      box.innerHTML = `<iframe src="${esc(embedUrl)}" loading="lazy" title="Vista previa del mapa"></iframe>`;
+    } else {
+      box.innerHTML = `<div style="display:grid;place-items:center;height:100%;color:var(--slate);font-size:13px;">Pega una URL de iframe (embed) arriba para previsualizar el mapa aquí</div>`;
+    }
+  }
+
+  async function saveBusinessAndSocialConfig(btn) {
+    const origText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Guardando en Sheets…';
+
+    const payload = {
+      businessName: $('#cfgBusinessName').value.trim(),
+      currency: $('#cfgCurrency').value.trim() || 'MXN',
+      phone: $('#cfgPhone').value.trim(),
+      whatsapp: $('#cfgWhatsapp').value.trim(),
+      email: $('#cfgEmail').value.trim(),
+      logoUrl: $('#cfgLogoUrl').value.trim(),
+      announceText: $('#cfgAnnounceText').value.trim(),
+      parking: $('#cfgParking').value.trim(),
+      instagram: $('#cfgInstagram').value.trim(),
+      facebook: $('#cfgFacebook').value.trim(),
+      tiktok: $('#cfgTiktok').value.trim(),
+      website: $('#cfgWebsite').value.trim(),
+      bookingUrl: $('#cfgBookingUrl').value.trim(),
+      address: $('#cfgAddress').value.trim(),
+      mapLink: $('#cfgMapLink').value.trim(),
+      mapEmbed: $('#cfgMapEmbed').value.trim()
+    };
+
+    try {
+      await gasPost('updateConfig', { config: payload });
+      Object.assign(store.config, payload);
+      renderAllPanels();
+      showToast('Negocio, redes sociales y mapa guardados en Sheets ✓');
+    } catch (err) {
+      showToast('Error al guardar: ' + err.message);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = origText;
+    }
+  }
+
+  function renderAllPanels() {
+    try {
+      const bName = store.config.businessName || 'Aevi Wellness';
+      $('#dashBrandName').textContent = bName;
+      if (store.config.logoUrl) {
+        $('#dashBrandLogo').innerHTML = `<img src="${esc(store.config.logoUrl)}" alt="">`;
+      } else {
+        $('#dashBrandLogo').textContent = bName.charAt(0).toUpperCase();
+      }
+    } catch (e) {}
+
+    try { renderResumenAndBookings(); } catch (e) { console.warn(e); }
+    try { renderScheduleModule(); } catch (e) { console.warn(e); }
+    try { renderExceptionsAdmin(); } catch (e) { console.warn(e); }
+    try { renderSpecialistsAdmin(); } catch (e) { console.warn(e); }
+    try { renderServicesAdmin(); } catch (e) { console.warn(e); }
+
+    try {
+      $('#cfgBusinessName').value = store.config.businessName || '';
+      $('#cfgCurrency').value = store.config.currency || 'MXN';
+      $('#cfgPhone').value = store.config.phone || '';
+      $('#cfgWhatsapp').value = store.config.whatsapp || '';
+      $('#cfgEmail').value = store.config.email || '';
+      $('#cfgLogoUrl').value = store.config.logoUrl || '';
+      $('#cfgAnnounceText').value = store.config.announceText || '';
+      $('#cfgParking').value = store.config.parking || '';
+      $('#cfgInstagram').value = store.config.instagram || '';
+      $('#cfgFacebook').value = store.config.facebook || '';
+      $('#cfgTiktok').value = store.config.tiktok || '';
+      $('#cfgWebsite').value = store.config.website || '';
+      $('#cfgBookingUrl').value = store.config.bookingUrl || '';
+      $('#cfgAddress').value = store.config.address || '';
+      $('#cfgMapLink').value = store.config.mapLink || '';
+      $('#cfgMapEmbed').value = store.config.mapEmbed || '';
+      $('#cfgWaTemplate').value = store.config.waTemplate || DEFAULT_WA_CONFIRM_TEMPLATE;
+      renderMapPreview();
+    } catch (e) { console.warn(e); }
+  }
+
+  /* =========================================================
+     EVENTOS DE NAVEGACIÓN Y ACCIONES
+     ========================================================= */
+  function activateDashboardPanel(target) {
+    if (!target) return;
+    $$('[data-dash-nav]').forEach(b => b.classList.toggle('active', b.dataset.dashNav === target));
+    $$('[data-dash-panel]').forEach(p => p.classList.toggle('active', p.dataset.dashPanel === target));
+    const navBtn = document.querySelector(`[data-dash-nav="${target}"]`);
+    if (navBtn) $('#dashTopTitle').textContent = navBtn.textContent.replace(/\d+$/, '').trim();
+    $('#adminSidebar').classList.remove('open');
+    $('#adminBackdrop').classList.remove('show');
+    try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {}
+  }
+
+  document.addEventListener('click', (e) => {
+    const navBtn = e.target.closest('[data-dash-nav]');
+    if (navBtn) {
+      e.preventDefault();
+      activateDashboardPanel(navBtn.dataset.dashNav);
+      return;
+    }
+    const gotoBtn = e.target.closest('[data-goto-panel]');
+    if (gotoBtn) {
+      e.preventDefault();
+      activateDashboardPanel(gotoBtn.dataset.gotoPanel);
+      return;
+    }
+  });
+
+  $('#adminMenuBtn').addEventListener('click', () => {
+    $('#adminSidebar').classList.toggle('open');
+    $('#adminBackdrop').classList.toggle('show');
+  });
+
+  $('#adminBackdrop').addEventListener('click', () => {
+    $('#adminSidebar').classList.remove('open');
+    $('#adminBackdrop').classList.remove('show');
+  });
+
+  $('#btnQuickThemeToggle').addEventListener('click', () => {
+    const cur = (document.body.getAttribute('data-mode') || document.documentElement.getAttribute('data-mode')) === 'dark' ? 'light' : 'dark';
+    applyColorMode(cur, true);
+  });
+
+  $('#chkDarkModeToggle').addEventListener('change', (e) => {
+    applyColorMode(e.target.checked ? 'dark' : 'light', true);
+  });
+
+  $('#themeSwatchesGroup').addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-theme-pick]');
+    if (!btn) return;
+    applyThemeColor(btn.dataset.themePick, true);
+    showToast('Tema visual actualizado ✓');
+  });
+
+  $('#syncStatusBadge').addEventListener('click', () => syncFromGoogleSheets(false));
+  $('#btnSyncCloud').addEventListener('click', () => syncFromGoogleSheets(false));
+
+  $('#tabActiveBookings').addEventListener('click', () => { store.bookingsTab = 'active'; renderBookingsTable(); });
+  $('#tabHistoryBookings').addEventListener('click', () => { store.bookingsTab = 'history'; renderBookingsTable(); });
+  $('#adminCitaSearch').addEventListener('input', renderBookingsTable);
+  $('#adminCitaStatusFilter').addEventListener('change', renderBookingsTable);
+
+  ['#dashUpcomingTable', '#adminBookingsTable'].forEach(sel => {
+    $(sel).addEventListener('click', (e) => {
+      const row = e.target.closest('tr[data-row-detail]');
+      if (!row) return;
+      if (e.target.closest('button, a')) return;
+      openBookingDetailModal(row.dataset.rowDetail, row.dataset.rowHistory === '1');
+    });
+  });
+
+  $('#btnCloseDetailModal').addEventListener('click', () => $('#bookingDetailModal').classList.remove('open'));
+  $('#bookingDetailModal').addEventListener('click', (e) => {
+    if (e.target === $('#bookingDetailModal')) $('#bookingDetailModal').classList.remove('open');
+  });
+  $('#adminBookingModal').addEventListener('click', (e) => {
+    if (e.target === $('#adminBookingModal')) $('#adminBookingModal').classList.remove('open');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      $('#bookingDetailModal').classList.remove('open');
+      $('#adminBookingModal').classList.remove('open');
+    }
+  });
+
+  /* =========================================================
+     MODAL NUEVA CITA / REAGENDAR
+     ========================================================= */
+  $('#btnOpenNewBookingModal').addEventListener('click', openNewManualBookingModal);
+  $('#btnOpenNewBookingFromResumen').addEventListener('click', openNewManualBookingModal);
+  $('#btnCloseAdminModal').addEventListener('click', () => $('#adminBookingModal').classList.remove('open'));
+  $('#modalBookingDate').addEventListener('change', () => refreshAdminModalAvailableSlots($('#modalBookingTime').value, $('#modalBookingId').value));
+  $('#modalBookingSpec').addEventListener('change', () => refreshAdminModalAvailableSlots($('#modalBookingTime').value, $('#modalBookingId').value));
+
+  $('#btnSaveAdminModal').addEventListener('click', async () => {
+    const btn = $('#btnSaveAdminModal');
+    const original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Guardando…';
+    try {
+      const id = $('#modalBookingId').value;
+      const dateVal = $('#modalBookingDate').value;
+      const specId = $('#modalBookingSpec').value;
+      const timeVal = $('#modalBookingTime').value;
+      if (!dateVal || !specId || !timeVal) throw new Error('Completa fecha, especialista y hora');
+
+      if (id) {
+        await gasPost('rescheduleBooking', {
+          id,
+          bookingId: id,
+          date: dateVal,
+          newDate: dateVal,
+          time: timeVal,
+          newTime: timeVal,
+          specialistId: specId
+        });
+        showToast('Cita reagendada en Google Sheets ✓');
+      } else {
+        const booking = {
+          name: $('#modalClientName').value.trim(),
+          email: $('#modalClientEmail').value.trim(),
+          phone: $('#modalClientPhone').value.trim(),
+          services: $('#modalClientService').value,
+          date: dateVal,
+          time: timeVal,
+          specialistId: specId
+        };
+        await gasPost('createBooking', Object.assign({ booking }, booking));
+        showToast('Nueva cita registrada en Google Sheets ✓');
+      }
+      $('#adminBookingModal').classList.remove('open');
+      await syncFromGoogleSheets(true);
+    } catch (err) {
+      showToast('Error: ' + err.message);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = original;
+    }
+  });
+
+  /* =========================================================
+     ACCIONES DEL MODAL DE DETALLE Y TABLA DE CITAS
+     ========================================================= */
+  async function changeBookingState(bookingId, newStatus) {
+    try {
+      if (newStatus === 'Completada') {
+        await gasPost('moveToHistory', { id: bookingId, bookingId });
+        showToast('Cita completada y archivada en Historial ✓');
+      } else if (newStatus === 'Cancelada') {
+        await gasPost('cancelBooking', { id: bookingId, bookingId, reason: 'Cancelada desde panel admin' });
+        showToast('Cita cancelada y archivada en Historial ✓');
+      } else {
+        await gasPost('updateBookingStatus', { id: bookingId, bookingId, status: newStatus });
+        showToast('Estado actualizado a ' + newStatus + ' ✓');
+      }
+      $('#bookingDetailModal').classList.remove('open');
+      await syncFromGoogleSheets(true);
+    } catch (err) {
+      showToast('Error: ' + err.message);
+    }
+  }
+
+  $('#btnDetConfirm').addEventListener('click', () => {
+    const bk = store.selectedBookingDetail;
+    if (bk) changeBookingState(bk.id, 'Confirmada');
+  });
+  $('#btnDetComplete').addEventListener('click', () => {
+    const bk = store.selectedBookingDetail;
+    if (bk) changeBookingState(bk.id, 'Completada');
+  });
+  $('#btnDetCancel').addEventListener('click', () => {
+    const bk = store.selectedBookingDetail;
+    if (bk) changeBookingState(bk.id, 'Cancelada');
+  });
+  $('#btnDetReschedule').addEventListener('click', () => {
+    const bk = store.selectedBookingDetail;
+    if (!bk) return;
+    $('#bookingDetailModal').classList.remove('open');
+    openRescheduleModalForBooking(bk);
+  });
+
+  $$('[data-wa-preset]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const bk = store.selectedBookingDetail;
+      if (!bk) return;
+      window.open(buildWhatsAppLinkForBooking(bk, btn.dataset.waPreset), '_blank', 'noopener');
+    });
+  });
+
+  $('#adminBookingsTable').addEventListener('click', (e) => {
+    const confirmBtn  = e.target.closest('[data-bk-confirm]');
+    const reschedBtn  = e.target.closest('[data-bk-reschedule]');
+    const completeBtn = e.target.closest('[data-bk-complete]');
+    const cancelBtn   = e.target.closest('[data-bk-cancel]');
+    const openBtn     = e.target.closest('[data-bk-open-detail]');
+
+    if (confirmBtn) {
+      e.stopPropagation();
+      changeBookingState(confirmBtn.dataset.bkConfirm, 'Confirmada');
+    } else if (reschedBtn) {
+      e.stopPropagation();
+      const bk = store.bookings.find(b => b.id === reschedBtn.dataset.bkReschedule);
+      if (bk) openRescheduleModalForBooking(bk);
+    } else if (completeBtn) {
+      e.stopPropagation();
+      changeBookingState(completeBtn.dataset.bkComplete, 'Completada');
+    } else if (cancelBtn) {
+      e.stopPropagation();
+      changeBookingState(cancelBtn.dataset.bkCancel, 'Cancelada');
+    } else if (openBtn) {
+      e.stopPropagation();
+      openBookingDetailModal(openBtn.dataset.bkOpenDetail, true);
+    }
+  });
+
+  /* =========================================================
+     MÓDULO HORARIOS
+     ========================================================= */
+  $('#scheduleTeamSelect').addEventListener('change', (e) => {
+    store.selectedScheduleTeam = e.target.value;
+    renderScheduleModule();
+  });
+
+  $('#scheduleDayTabs').addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-day]');
+    if (!btn) return;
+    store.selectedScheduleDay = Number(btn.dataset.day);
+    renderScheduleModule();
+  });
+
+  $('#btnToggleDayClosed').addEventListener('click', () => {
+    const schedule = getActiveSchedule();
+    const d = store.selectedScheduleDay;
+    schedule[d] = (schedule[d] || []).length ? [] : [
+      { label: 'Turno Mañana', start: '09:00', end: '14:00' },
+      { label: 'Turno Tarde', start: '15:00', end: '19:00' }
+    ];
+    renderScheduleModule();
+  });
+
+  $('#btnAddShift').addEventListener('click', () => {
+    const schedule = getActiveSchedule();
+    const d = store.selectedScheduleDay;
+    if (!schedule[d]) schedule[d] = [];
+    const last = schedule[d][schedule[d].length - 1];
+    const startMin = last ? Math.min(1380, timeToMinutes(last.end) + 60) : timeToMinutes('09:00');
+    schedule[d].push({
+      label: schedule[d].length === 0 ? 'Turno Mañana' : (schedule[d].length === 1 ? 'Turno Tarde' : 'Turno ' + (schedule[d].length + 1)),
+      start: minutesToTime(startMin),
+      end: minutesToTime(Math.min(1440, startMin + 240))
+    });
+    renderScheduleModule();
+  });
+
+  $('#dayShiftsContainer').addEventListener('input', (e) => {
+    const row = e.target.closest('[data-shift-idx]');
+    if (!row) return;
+    const idx = Number(row.dataset.shiftIdx);
+    const field = e.target.dataset.sfield;
+    const schedule = getActiveSchedule();
+    const d = store.selectedScheduleDay;
+    if (schedule[d] && schedule[d][idx] && field) {
+      schedule[d][idx][field] = e.target.value;
+      renderSchedulePreviewOnly();
+    }
+  });
+
+  $('#dayShiftsContainer').addEventListener('change', (e) => {
+    if (e.target.type === 'time') renderScheduleModule();
+  });
+
+  $('#dayShiftsContainer').addEventListener('click', (e) => {
+    const delBtn = e.target.closest('[data-del-shift]');
+    if (!delBtn) return;
+    const idx = Number(delBtn.dataset.delShift);
+    const schedule = getActiveSchedule();
+    const d = store.selectedScheduleDay;
+    if (schedule[d]) {
+      schedule[d].splice(idx, 1);
+      renderScheduleModule();
+    }
+  });
+
+  $('#btnResetScheduleChanges').addEventListener('click', () => syncFromGoogleSheets(false));
+
+  $('#btnSaveScheduleChanges').addEventListener('click', async () => {
+    const btn = $('#btnSaveScheduleChanges');
+    const orig = btn.textContent;
+    const sched = getActiveSchedule();
+    const d = store.selectedScheduleDay;
+
+    if ($('#chkApplyWorkdays').checked && d >= 1 && d <= 5) {
+      [1,2,3,4,5].forEach(wd => {
+        sched[wd] = JSON.parse(JSON.stringify(sched[d]));
+      });
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Guardando…';
+    try {
+      const configPayload = { shifts_json: JSON.stringify(store.shiftsMap) };
+      const masterSched = store.shiftsMap.all || sched;
+      for (let i = 0; i <= 6; i++) {
+        configPayload['schedule_' + i] = generateSlotsFromShifts(masterSched[i] || []).join(',');
+      }
+
+      if (store.selectedScheduleTeam !== 'all') {
+        const sp = store.specialists.find(s => s.id === store.selectedScheduleTeam);
+        if (sp) {
+          const activeDays = [0,1,2,3,4,5,6].filter(dayIdx => (sched[dayIdx] || []).length > 0);
+          sp.days = activeDays;
+          await gasPost('saveSpecialist', {
+            specialist: { id: sp.id, nombre: sp.name, rol: sp.role, dias: activeDays.join(',') },
+            specialistId: sp.id, name: sp.name, role: sp.role, days: activeDays.join(',')
+          });
+        }
+      }
+
+      await gasPost('updateConfig', { config: configPayload });
+      renderScheduleModule();
+      showToast('Horarios guardados en Sheets ✓');
+    } catch (err) {
+      showToast('Error al guardar: ' + err.message);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = orig;
+    }
+  });
+
+  $('#btnNewSchedulePreset').addEventListener('click', () => {
+    store.shiftsMap.all = JSON.parse(JSON.stringify(defaultShiftsByDay));
+    renderScheduleModule();
+    showToast('Plantilla aplicada. Pulsa "Guardar cambios" para subir a Sheets.');
+  });
+
+  $('#btnImportExportSchedule').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(store.shiftsMap, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'horarios-aevi.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+    showToast('Horario exportado ✓');
+  });
+
+  /* =========================================================
+     EXCEPCIONES / FESTIVOS
+     ========================================================= */
+  $('#btnAddException').addEventListener('click', async () => {
+    const dateVal = $('#excDateInput').value;
+    const reasonVal = $('#excReasonInput').value.trim() || 'Cerrado';
+    if (!dateVal) {
+      showToast('Selecciona una fecha');
+      return;
+    }
+    store.exceptions.push({ id: 'exc-' + Date.now(), date: dateVal, reason: reasonVal });
+    $('#excDateInput').value = '';
+    $('#excReasonInput').value = '';
+    renderExceptionsAdmin();
+    renderSchedulePreviewOnly();
+    try {
+      await gasPost('updateConfig', { config: { exceptions_json: JSON.stringify(store.exceptions) } });
+      showToast('Excepción agregada en Sheets ✓');
+    } catch (err) {
+      showToast('Error: ' + err.message);
+    }
+  });
+
+  $('#exceptionsListContainer').addEventListener('click', async (e) => {
+    const delBtn = e.target.closest('[data-exc-del]');
+    if (!delBtn) return;
+    store.exceptions.splice(Number(delBtn.dataset.excDel), 1);
+    renderExceptionsAdmin();
+    renderSchedulePreviewOnly();
+    try {
+      await gasPost('updateConfig', { config: { exceptions_json: JSON.stringify(store.exceptions) } });
+      showToast('Excepción eliminada ✓');
+    } catch (err) {
+      showToast('Error: ' + err.message);
+    }
+  });
+
+  /* =========================================================
+     ESPECIALISTAS
+     ========================================================= */
+  $('#btnAddSpecialist').addEventListener('click', () => {
+    store.specialists.unshift({ id: '', name: 'Nuevo Especialista', role: 'Especialista', days: [1,2,3,4,5] });
+    renderSpecialistsAdmin();
+  });
+
+  $('#specialistsAdminList').addEventListener('input', (e) => {
+    const card = e.target.closest('[data-sp-card]');
+    if (!card) return;
+    const idx = Number(card.dataset.spCard);
+    const field = e.target.dataset.spField;
+    if (field && store.specialists[idx]) store.specialists[idx][field] = e.target.value;
+  });
+
+  $('#specialistsAdminList').addEventListener('click', async (e) => {
+    const card = e.target.closest('[data-sp-card]');
+    if (!card) return;
+    const idx = Number(card.dataset.spCard);
+    const sp = store.specialists[idx];
+    if (!sp) return;
+
+    const dayBtn  = e.target.closest('[data-sp-day]');
+    const delBtn  = e.target.closest('[data-sp-delete]');
+    const saveBtn = e.target.closest('[data-sp-save]');
+
+    if (dayBtn) {
+      e.preventDefault();
+      const day = Number(dayBtn.dataset.spDay);
+      sp.days = sp.days.includes(day) ? sp.days.filter(d => d !== day) : [...sp.days, day].sort((a, b) => a - b);
+      dayBtn.classList.toggle('active');
+    } else if (delBtn) {
+      if (!sp.id) {
+        store.specialists.splice(idx, 1);
+        renderSpecialistsAdmin();
+        return;
+      }
+      delBtn.disabled = true;
+      try {
+        await gasPost('deleteSpecialist', { id: sp.id, specialistId: sp.id });
+        store.specialists.splice(idx, 1);
+        renderAllPanels();
+        showToast('Especialista eliminado ✓');
+      } catch (err) {
+        showToast('Error: ' + err.message);
+        delBtn.disabled = false;
+      }
+    } else if (saveBtn) {
+      sp.name = card.querySelector('[data-sp-field="name"]').value.trim();
+      sp.role = card.querySelector('[data-sp-field="role"]').value.trim();
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Guardando…';
+      try {
+        const res = await gasPost('saveSpecialist', {
+          specialist: { id: sp.id, nombre: sp.name, rol: sp.role, dias: sp.days.join(',') },
+          specialistId: sp.id, name: sp.name, role: sp.role, days: sp.days.join(',')
+        });
+        if (res && res.id) sp.id = res.id;
+        showToast('Especialista guardado ✓');
+        await syncFromGoogleSheets(true);
+      } catch (err) {
+        showToast('Error: ' + err.message);
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Guardar en Sheets';
+      }
+    }
+  });
+
+  /* =========================================================
+     SERVICIOS
+     ========================================================= */
+  $('#btnAddService').addEventListener('click', () => {
+    store.services.unshift({ id: '', name: 'Nuevo Servicio', desc: '', duration: 60, price: 900 });
+    renderServicesAdmin();
+  });
+
+  $('#servicesAdminList').addEventListener('input', (e) => {
+    const card = e.target.closest('[data-srv-card]');
+    if (!card) return;
+    const idx = Number(card.dataset.srvCard);
+    const field = e.target.dataset.srvField;
+    if (field && store.services[idx]) {
+      store.services[idx][field] = (field === 'duration' || field === 'price')
+        ? (Number(e.target.value) || 0) : e.target.value;
+    }
+  });
+
+  $('#servicesAdminList').addEventListener('click', async (e) => {
+    const card = e.target.closest('[data-srv-card]');
+    if (!card) return;
+    const idx = Number(card.dataset.srvCard);
+    const s = store.services[idx];
+    if (!s) return;
+
+    const delBtn  = e.target.closest('[data-srv-delete]');
+    const saveBtn = e.target.closest('[data-srv-save]');
+
+    if (delBtn) {
+      if (!s.id) {
+        store.services.splice(idx, 1);
+        renderServicesAdmin();
+        return;
+      }
+      delBtn.disabled = true;
+      try {
+        await gasPost('deleteService', { id: s.id, serviceId: s.id });
+        store.services.splice(idx, 1);
+        renderAllPanels();
+        showToast('Servicio eliminado ✓');
+      } catch (err) {
+        showToast('Error: ' + err.message);
+        delBtn.disabled = false;
+      }
+    } else if (saveBtn) {
+      s.name = card.querySelector('[data-srv-field="name"]').value.trim();
+      s.duration = Number(card.querySelector('[data-srv-field="duration"]').value) || 60;
+      s.price = Number(card.querySelector('[data-srv-field="price"]').value) || 0;
+      s.desc = card.querySelector('[data-srv-field="desc"]').value.trim();
+      if (!s.name) { showToast('El nombre del servicio es obligatorio'); return; }
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Guardando…';
+      try {
+        const res = await gasPost('saveService', {
+          service: { id: s.id, nombre: s.name, descripcion: s.desc, duracion: s.duration, precio: s.price },
+          serviceId: s.id, name: s.name, desc: s.desc, duration: s.duration, price: s.price
+        });
+        if (res && res.id) s.id = res.id;
+        showToast('Servicio guardado ✓');
+        await syncFromGoogleSheets(true);
+      } catch (err) {
+        showToast('Error: ' + err.message);
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Guardar en Sheets';
+      }
+    }
+  });
+
+  /* =========================================================
+     NEGOCIO / MAPA / PLANTILLA WHATSAPP
+     ========================================================= */
+  $('#btnSaveBusinessConfig').addEventListener('click', (e) => saveBusinessAndSocialConfig(e.currentTarget));
+  $('#btnSaveBusinessConfigTop').addEventListener('click', (e) => saveBusinessAndSocialConfig(e.currentTarget));
+  $('#cfgMapEmbed').addEventListener('input', renderMapPreview);
+
+  $('#btnSaveWaTemplate').addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
+    const orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Guardando…';
+    try {
+      const tpl = $('#cfgWaTemplate').value.trim() || DEFAULT_WA_CONFIRM_TEMPLATE;
+      await gasPost('updateConfig', { config: { waTemplate: tpl } });
+      store.config.waTemplate = tpl;
+      showToast('Plantilla WhatsApp guardada ✓');
+    } catch (err) {
+      showToast('Error: ' + err.message);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = orig;
+    }
+  });
+
+  /* =========================================================
+     INICIALIZACIÓN
+     ========================================================= */
+  loadUiPrefs();
+  activateDashboardPanel('citas');
+  renderAllPanels();
+
+  // Botón flotante para abrir consola de diagnóstico
+  const btnOpenDebug = document.getElementById('btnOpenDebug');
+  if (btnOpenDebug) {
+    btnOpenDebug.addEventListener('click', () => {
+      ensureDebugPanel();
+      showDebugPanel();
+      if (!document.getElementById('debugLog').innerHTML) {
+        logDebug('ok', 'Consola abierta manualmente. Estado actual: services=' + store.services.length + ', specialists=' + store.specialists.length + ', bookings=' + store.bookings.length);
+      }
+    });
+  }
+  logDebug('ok', 'Dashboard inicializado. GAS_URL=' + GAS_URL.substring(0, 80) + '…');
+  logDebug('ok', 'Para ver errores detallados, mantén presionado el botón 🐛 arriba a la derecha.');
+
+  syncFromGoogleSheets(true).catch(err => {
+    console.error('[Aevi Dashboard] Error de sincronización inicial:', err);
+    showToast('No se pudo conectar con Google Sheets');
+    logDebug('err', 'Error fatal en init: ' + (err.stack || err.message));
+  });
+})();
+</script>
 </body>
+</html>
 </html>
