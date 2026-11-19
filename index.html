@@ -61,7 +61,7 @@
   --brand-accent-soft: rgba(102, 71, 240, 0.10);
   --brand-accent-ghost: rgba(102, 71, 240, 0.06);
 
-  /* CTA Principal: Ink Black (#202020), nunca #000 puro ni violeta */
+  /* CTA Principal: Ink Black (#202020) */
   --cta-bg: var(--color-ink-black);
   --cta-hover: #333333;
   --cta-fg: #ffffff;
@@ -123,7 +123,7 @@
 }
 
 /* ==========================================================================
-   TEMAS DE ACENTO DE MARCA (Quirúrgicos: badges, marca e indicadores)
+   TEMAS DE ACENTO DE MARCA
    ========================================================================== */
 html[data-theme="violet"], body[data-theme="violet"] {
   --brand-accent: #6647f0;
@@ -228,7 +228,7 @@ code {
 .hidden { display: none !important; }
 
 /* ==========================================================================
-   LAYOUT PRINCIPAL (Workspace + Sidebar Limpio)
+   LAYOUT PRINCIPAL
    ========================================================================== */
 .admin-shell {
   display: grid;
@@ -256,7 +256,6 @@ html[data-mode="dark"] .admin-sidebar {
   background: var(--gradient-dark-fade);
 }
 
-/* Identidad de Marca con Borde Cónico Giratorio (Firma ClickUp) */
 .admin-brand {
   display: flex;
   align-items: center;
@@ -333,7 +332,6 @@ html[data-mode="dark"] .admin-sidebar {
   color: transparent;
 }
 
-/* Etiquetas de Grupo en Sometype Mono (10px, tracking 0.08em) */
 .nav-group-label {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -344,7 +342,6 @@ html[data-mode="dark"] .admin-sidebar {
   padding: 14px 12px 4px;
 }
 
-/* Botones de Navegación Pill (9999px) */
 .admin-nav-btn {
   display: flex;
   align-items: center;
@@ -385,12 +382,7 @@ html[data-mode="dark"] .admin-nav-btn:hover {
   border-radius: var(--r-pill);
   line-height: 1.3;
 }
-.admin-nav-btn.active .admin-nav-badge {
-  background: var(--brand-accent);
-  color: #ffffff;
-}
 
-/* Topbar Minimalista */
 .admin-main {
   display: flex;
   flex-direction: column;
@@ -445,7 +437,7 @@ html[data-mode="dark"] .admin-topbar {
 }
 
 /* ==========================================================================
-   CABECERAS DE PÁGINA — PLUS JAKARTA SANS BOLD + NEGATIVE TRACKING
+   CABECERAS DE PÁGINA
    ========================================================================== */
 .page-hero-head {
   display: flex;
@@ -478,8 +470,49 @@ html[data-mode="dark"] .admin-topbar {
   flex-wrap: wrap;
 }
 
+/* Selector compacto de moneda (Servicios) */
+.compact-currency-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  min-height: 40px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  transition: border-color 0.15s ease;
+}
+.compact-currency-wrap:focus-within {
+  border-color: var(--color-signal-blue);
+  box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.12);
+}
+.compact-currency-wrap label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ash);
+  white-space: nowrap;
+}
+.compact-currency-select {
+  border: 0;
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-display);
+  outline: none;
+  cursor: pointer;
+  padding: 4px 2px;
+}
+html[data-mode="dark"] .compact-currency-select option {
+  background: #1b1b20;
+  color: #f8f9fa;
+}
+
 /* ==========================================================================
-   BOTONES CLICKUP — 9999PX PILL CURVE + INK BLACK CTA
+   BOTONES CLICKUP
    ========================================================================== */
 .d-btn {
   display: inline-flex;
@@ -501,7 +534,6 @@ html[data-mode="dark"] .admin-topbar {
 .d-btn:active { transform: scale(0.98); }
 .d-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
-/* Filled Dark CTA Button (#202020) */
 .d-btn-primary {
   background: var(--cta-bg);
   color: var(--cta-fg);
@@ -512,7 +544,6 @@ html[data-mode="dark"] .admin-topbar {
   border-color: var(--cta-hover);
 }
 
-/* Ghost Outline Button (#e8e8e8 -> #0091ff hover accent) */
 .d-btn-outline {
   background: var(--bg-surface);
   color: var(--ink);
@@ -524,7 +555,6 @@ html[data-mode="dark"] .admin-topbar {
   color: var(--ink-display);
 }
 
-/* Botón Peligro */
 .d-btn-danger {
   background: var(--bg-surface);
   color: var(--danger);
@@ -535,8 +565,16 @@ html[data-mode="dark"] .admin-topbar {
   color: #ffffff;
   border-color: var(--danger);
 }
+.d-btn-danger-solid {
+  background: var(--danger);
+  color: #ffffff;
+  border-color: var(--danger);
+}
+.d-btn-danger-solid:hover {
+  background: #be123c;
+  border-color: #be123c;
+}
 
-/* Botón WhatsApp (Emerald ClickUp Accent) */
 .d-btn-whatsapp {
   background: var(--color-emerald);
   color: #ffffff;
@@ -571,8 +609,72 @@ html[data-mode="dark"] .admin-topbar {
   color: var(--danger);
 }
 
+/* Barra de filtro de período (Hoy / Semana / Mes / Todas) */
+.period-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border-radius: var(--r-card);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+}
+.period-pills-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.period-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--ink-secondary);
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 700;
+  transition: 0.15s ease;
+}
+.period-pill-btn:hover {
+  border-color: var(--color-signal-blue);
+  color: var(--ink-display);
+}
+.period-pill-btn.active {
+  background: var(--brand-accent);
+  border-color: var(--brand-accent);
+  color: #ffffff;
+}
+.period-pill-count {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  padding: 1px 6px;
+  border-radius: var(--r-pill);
+  background: rgba(0, 0, 0, 0.08);
+}
+.period-pill-btn.active .period-pill-count {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+html[data-mode="dark"] .period-pill-count {
+  background: rgba(255, 255, 255, 0.10);
+}
+.period-caption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ash);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 /* ==========================================================================
-   TARJETAS KPI (STAT CALLOUT CARDS — FLAT + MONO LABELS + BOLD ONYX NUMBERS)
+   TARJETAS KPI
    ========================================================================== */
 .kpi-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
 .kpi-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
@@ -634,7 +736,7 @@ html[data-mode="dark"] .admin-topbar {
 .kpi-sub.orange { color: var(--kpi-orange-fg); }
 
 /* ==========================================================================
-   MÓDULO DE HORARIO SEMANAL
+   MÓDULO DE HORARIO SEMANAL (GENERAL Y POR ESPECIALISTA)
    ========================================================================== */
 .schedule-master-card {
   background: var(--bg-surface);
@@ -665,26 +767,6 @@ html[data-mode="dark"] .admin-topbar {
   gap: 20px;
   flex-wrap: wrap;
 }
-.team-selector-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--slate);
-}
-.team-select {
-  padding: 8px 32px 8px 14px;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--r-input);
-  font-weight: 600;
-  color: var(--ink);
-  background: var(--bg-surface);
-}
-.team-select:focus {
-  outline: none;
-  border-color: var(--color-signal-blue);
-}
 
 .switch-label {
   display: inline-flex;
@@ -702,6 +784,7 @@ html[data-mode="dark"] .admin-topbar {
   background: var(--border-strong);
   border-radius: var(--r-pill);
   transition: 0.2s var(--ease-settle);
+  flex-shrink: 0;
 }
 .toggle-switch::after {
   content: '';
@@ -718,12 +801,11 @@ input:checked + .toggle-switch { background: var(--cta-bg); }
 html[data-mode="dark"] input:checked + .toggle-switch { background: var(--brand-accent); }
 input:checked + .toggle-switch::after { transform: translateX(20px); }
 
-/* Tabs de Días en Pill Curve (9999px) */
 .day-tabs-row {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 .day-tab-btn {
   padding: 10px 12px;
@@ -769,6 +851,7 @@ input:checked + .toggle-switch::after { transform: translateX(20px); }
   justify-content: space-between;
   margin-bottom: 18px;
   gap: 12px;
+  flex-wrap: wrap;
 }
 .day-editor-title {
   font-family: var(--font-display);
@@ -807,7 +890,7 @@ input:checked + .toggle-switch::after { transform: translateX(20px); }
   background: transparent;
   padding: 4px 8px;
   border-radius: var(--r-input);
-  width: 120px;
+  width: 130px;
 }
 .shift-label-input:focus {
   outline: none;
@@ -980,8 +1063,48 @@ input:checked + .toggle-switch::after { transform: translateX(20px); }
   border-top: 1px solid var(--border);
 }
 
+/* Editor de horario embebido dentro de cada tarjeta de Especialista */
+.sp-schedule-panel {
+  margin-top: 14px;
+  padding: 18px;
+  border-radius: var(--r-card);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+}
+.sp-schedule-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.sp-schedule-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--brand-accent-soft);
+  color: var(--brand-accent);
+}
+.sp-schedule-tag.general {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--slate);
+}
+.sp-schedule-editor-body {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
 /* ==========================================================================
-   CARDS, FORMULARIOS Y TABLAS DE DATOS (DENSAS Y LIMPIAS)
+   CARDS, FORMULARIOS Y TABLAS DE DATOS
    ========================================================================== */
 .d-card {
   background: var(--bg-surface);
@@ -1036,7 +1159,6 @@ input:checked + .toggle-switch::after { transform: translateX(20px); }
 }
 .d-field textarea { min-height: 82px; resize: vertical; }
 
-/* Inputs de Búsqueda y Filtro */
 #adminCitaSearch, #adminCitaStatusFilter {
   border-radius: var(--r-pill) !important;
   border: 1px solid var(--border-strong) !important;
@@ -1051,7 +1173,6 @@ input:checked + .toggle-switch::after { transform: translateX(20px); }
   background: var(--bg-surface) !important;
 }
 
-/* Tablas Densa Estilo Lista de Tareas ClickUp */
 .d-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--border);
@@ -1090,25 +1211,27 @@ input:checked + .toggle-switch::after { transform: translateX(20px); }
   background: var(--bg-subtle);
 }
 
-/* Status Pills — Sometype Mono + 9999px Pill */
+/* Status Pills */
 .d-badge {
   display: inline-flex;
   align-items: center;
+  gap: 4px;
   padding: 3px 10px;
   border-radius: var(--r-pill);
   font-family: var(--font-mono);
   font-size: 10.5px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   line-height: 1.4;
+  white-space: nowrap;
 }
 .d-badge.confirmada { background: var(--color-mint); color: #090c1d; }
 .d-badge.completada { background: var(--color-signal-blue); color: #ffffff; }
+.d-badge.finalizado-tiempo { background: var(--warning-bg); color: var(--warning); border: 1px solid rgba(180, 83, 9, 0.25); }
 .d-badge.reagendada, .d-badge.pendiente { background: var(--brand-accent-soft); color: var(--brand-accent); }
 .d-badge.cancelada { background: var(--danger-bg); color: var(--danger); }
 
-/* Píldora de Estado de Sincronización */
 .sync-pill {
   display: inline-flex;
   align-items: center;
@@ -1141,7 +1264,6 @@ html[data-mode="dark"] .sync-pill {
   color: var(--danger);
 }
 
-/* Píldoras de Días Laborales */
 .day-check-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
 .day-check-pill {
   padding: 6px 13px;
@@ -1162,7 +1284,6 @@ html[data-mode="dark"] .sync-pill {
   color: var(--cta-fg);
 }
 
-/* Vista Previa de Mapa */
 .map-preview-box {
   width: 100%;
   height: 220px;
@@ -1174,7 +1295,6 @@ html[data-mode="dark"] .sync-pill {
 }
 .map-preview-box iframe { width: 100%; height: 100%; border: 0; }
 
-/* Selector de Temas (Feature Tag Pills) */
 .theme-swatches { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
 .theme-swatch-btn {
   display: inline-flex;
@@ -1200,7 +1320,7 @@ html[data-mode="dark"] .sync-pill {
 .swatch-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
 
 /* ==========================================================================
-   MODALES ADMIN (20PX LARGE CARD RADIUS)
+   MODALES ADMIN Y MODAL DE CONFIRMACIÓN
    ========================================================================== */
 .admin-modal {
   position: fixed;
@@ -1216,6 +1336,7 @@ html[data-mode="dark"] .sync-pill {
   pointer-events: none;
 }
 .admin-modal.open { display: flex; pointer-events: auto; }
+.admin-modal.confirm-layer { z-index: 450; }
 .admin-modal-card {
   width: 100%;
   max-width: 580px;
@@ -1227,6 +1348,22 @@ html[data-mode="dark"] .sync-pill {
   padding: 28px;
   box-shadow: var(--shadow-modal);
   animation: fadeSlide 0.25s var(--ease-settle);
+}
+.admin-modal-card.confirm-card {
+  max-width: 440px;
+  padding: 26px;
+}
+
+.confirm-icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-pill);
+  background: var(--danger-bg);
+  color: var(--danger);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  margin-bottom: 14px;
 }
 
 .detail-grid {
@@ -1277,10 +1414,10 @@ html[data-mode="dark"] .sync-pill {
 }
 .wa-preset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
-/* Toast Notificación en Dark Fade */
+/* Toast Notificación */
 .toast {
   position: fixed;
-  bottom: 72px;
+  bottom: 24px;
   right: 22px;
   background: var(--color-ink-black);
   color: #ffffff;
@@ -1298,30 +1435,6 @@ html[data-mode="dark"] .sync-pill {
   z-index: 500;
 }
 .toast.show { opacity: 1; transform: translateY(0); }
-
-/* Botón Flotante de Consola Diagnóstico */
-.debug-fab {
-  position: fixed;
-  bottom: 20px;
-  right: 22px;
-  z-index: 480;
-  width: 42px;
-  height: 42px;
-  border-radius: var(--r-pill);
-  background: var(--color-ink-black);
-  color: #ffffff;
-  border: 1px solid var(--border-strong);
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: var(--shadow-subtle);
-  display: grid;
-  place-items: center;
-  transition: transform 0.15s ease, border-color 0.15s ease;
-}
-.debug-fab:hover {
-  transform: scale(1.06);
-  border-color: var(--brand-accent);
-}
 
 .admin-backdrop {
   display: none;
@@ -1372,7 +1485,7 @@ html[data-mode="dark"] .sync-pill {
   .shift-row { flex-direction: column; align-items: stretch; gap: 10px; }
   .shift-times-group { width: 100%; justify-content: space-between; flex-wrap: wrap; }
   .detail-grid, .wa-preset-grid { grid-template-columns: 1fr; }
-  .toast { left: 16px; right: 16px; bottom: 72px; text-align: center; }
+  .toast { left: 16px; right: 16px; bottom: 24px; text-align: center; }
 }
 </style>
 </head>
@@ -1383,12 +1496,11 @@ html[data-mode="dark"] .sync-pill {
 
   <aside class="admin-sidebar" id="adminSidebar">
     <div class="admin-brand">
-      <!-- Emblem con borde conic-gradient animado (1 elemento signature por vista) -->
       <div class="admin-brand-logo-wrap">
-        <div class="admin-brand-logo" id="dashBrandLogo">A</div>
+        <div class="admin-brand-logo" id="dashBrandLogo">V</div>
       </div>
       <div>
-        <strong id="dashBrandName">Aevi Wellness</strong>
+        <strong id="dashBrandName">Vagabundo Barbería</strong>
         <span>Panel Pro</span>
       </div>
     </div>
@@ -1397,7 +1509,7 @@ html[data-mode="dark"] .sync-pill {
     <button type="button" class="admin-nav-btn active" data-dash-nav="citas">📅 Citas <span class="admin-nav-badge" id="navCitasCount">0</span></button>
     <button type="button" class="admin-nav-btn" data-dash-nav="resumen">📋 Resumen</button>
     <button type="button" class="admin-nav-btn" data-dash-nav="tablero">📊 Tablero</button>
-    <button type="button" class="admin-nav-btn" data-dash-nav="horarios">🕒 Configuración de Horarios</button>
+    <button type="button" class="admin-nav-btn" data-dash-nav="horarios">🕒 Horarios Generales</button>
 
     <div class="nav-group-label">Catálogos y Equipo</div>
     <button type="button" class="admin-nav-btn" data-dash-nav="especialistas">👥 Especialistas</button>
@@ -1416,20 +1528,19 @@ html[data-mode="dark"] .sync-pill {
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
         <button type="button" class="sync-pill loading" id="syncStatusBadge" title="Toca para volver a sincronizar con Google Sheets">● Sincronizando…</button>
-        <button type="button" class="d-btn d-btn-outline d-btn-sm" id="btnQuickThemeToggle">🌓 Modo</button>
       </div>
     </header>
 
     <div class="admin-content">
 
       <!-- ====================================================================
-           1. CITAS
+           1. CITAS (ACTIVAS: HOY / SEMANA / MES + HISTORIAL DE RESERVAS)
            ==================================================================== -->
       <section class="admin-panel active" data-dash-panel="citas">
         <div class="page-hero-head">
           <div>
-            <h1 class="page-hero-title">Citas Recibidas e Historial</h1>
-            <p class="page-hero-sub">Toca cualquier fila para abrir el expediente completo de la cita, cambiar su estado o confirmar por WhatsApp con un clic.</p>
+            <h1 class="page-hero-title">Citas e Historial de Reservas</h1>
+            <p class="page-hero-sub">Filtra las citas activas de hoy, la semana o el mes, o consulta las citas completadas en el historial. Las citas con más de 6 h transcurridas se finalizan automáticamente.</p>
           </div>
           <div class="page-hero-actions">
             <button type="button" class="d-btn d-btn-primary" id="btnOpenNewBookingModal">＋ Nueva Cita Manual</button>
@@ -1439,7 +1550,7 @@ html[data-mode="dark"] .sync-pill {
           <div class="d-card-head">
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
               <button type="button" class="d-btn d-btn-primary d-btn-sm" id="tabActiveBookings">Reservas Activas (<span id="countActiveTab">0</span>)</button>
-              <button type="button" class="d-btn d-btn-outline d-btn-sm" id="tabHistoryBookings">Historial (<span id="countHistoryTab">0</span>)</button>
+              <button type="button" class="d-btn d-btn-outline d-btn-sm" id="tabHistoryBookings">Historial de Reservas (<span id="countHistoryTab">0</span>)</button>
             </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap;width:100%;max-width:480px;">
               <input type="text" id="adminCitaSearch" placeholder="Buscar cliente, correo, teléfono o ID…" style="flex:1 1 200px;padding:8px 16px;">
@@ -1449,10 +1560,23 @@ html[data-mode="dark"] .sync-pill {
                 <option value="Pendiente">Pendiente</option>
                 <option value="Reagendada">Reagendada</option>
                 <option value="Completada">Completada</option>
+                <option value="Finalizado por tiempo">Finalizado por tiempo</option>
                 <option value="Cancelada">Cancelada</option>
               </select>
             </div>
           </div>
+
+          <!-- Selector de periodo para citas activas (Predeterminado: Hoy) -->
+          <div class="period-filter-bar" id="activePeriodBar">
+            <div class="period-pills-group" id="activePeriodPills">
+              <button type="button" class="period-pill-btn active" data-period="today">Hoy <span class="period-pill-count" id="cntPeriodToday">0</span></button>
+              <button type="button" class="period-pill-btn" data-period="week">Semana <span class="period-pill-count" id="cntPeriodWeek">0</span></button>
+              <button type="button" class="period-pill-btn" data-period="month">Mes <span class="period-pill-count" id="cntPeriodMonth">0</span></button>
+              <button type="button" class="period-pill-btn" data-period="all">Todas <span class="period-pill-count" id="cntPeriodAll">0</span></button>
+            </div>
+            <span class="period-caption" id="activePeriodCaption">Mostrando citas de hoy</span>
+          </div>
+
           <div class="d-table-wrap">
             <table class="d-table" id="adminBookingsTable">
               <tbody><tr><td style="color:var(--slate);padding:20px;">Cargando citas desde Google Sheets…</td></tr></tbody>
@@ -1511,7 +1635,7 @@ html[data-mode="dark"] .sync-pill {
             <div>
               <p class="kpi-title">Horarios Activos</p>
               <p class="kpi-value" id="kpiActiveShifts">12</p>
-              <p class="kpi-sub teal" id="kpiActiveShiftsSub">Semana actual · Turnos configurados</p>
+              <p class="kpi-sub teal" id="kpiActiveShiftsSub">Semana actual · Turnos generales</p>
             </div>
           </div>
 
@@ -1520,9 +1644,9 @@ html[data-mode="dark"] .sync-pill {
               <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
             <div>
-              <p class="kpi-title">Empleados Asignados</p>
+              <p class="kpi-title">Especialistas Asignados</p>
               <p class="kpi-value" id="kpiAssignedStaff">0</p>
-              <p class="kpi-sub green" id="kpiAssignedStaffSub">100% cubiertos</p>
+              <p class="kpi-sub green" id="kpiAssignedStaffSub">Configuración individual disponible</p>
             </div>
           </div>
 
@@ -1540,31 +1664,25 @@ html[data-mode="dark"] .sync-pill {
       </section>
 
       <!-- ====================================================================
-           4. CONFIGURACIÓN DE HORARIOS (+ EXCEPCIONES / FESTIVOS)
+           4. HORARIOS GENERALES DEL NEGOCIO (+ EXCEPCIONES / FESTIVOS)
            ==================================================================== -->
       <section class="admin-panel" data-dash-panel="horarios">
         <div class="page-hero-head">
           <div>
-            <h1 class="page-hero-title">Configuración de Horarios</h1>
-            <p class="page-hero-sub">Gestiona los turnos semanales de trabajo y los días festivos o excepciones desde un mismo lugar</p>
+            <h1 class="page-hero-title">Horarios Generales del Negocio</h1>
+            <p class="page-hero-sub">Define los turnos base de apertura del establecimiento y días festivos. Los horarios individuales se editan dentro de cada especialista.</p>
           </div>
           <div class="page-hero-actions">
-            <button type="button" class="d-btn d-btn-outline" id="btnImportExportSchedule">Importar/Exportar</button>
-            <button type="button" class="d-btn d-btn-primary" id="btnNewSchedulePreset">＋ Nuevo Horario</button>
+            <button type="button" class="d-btn d-btn-outline" data-goto-panel="especialistas">👥 Horarios por Especialista</button>
+            <button type="button" class="d-btn d-btn-outline" id="btnImportExportSchedule">Exportar JSON</button>
+            <button type="button" class="d-btn d-btn-primary" id="btnNewSchedulePreset">＋ Plantilla Base</button>
           </div>
         </div>
 
         <div class="schedule-master-card">
           <div class="schedule-top-bar">
-            <h3>Horario Semanal</h3>
+            <h3>Horario Semanal General</h3>
             <div class="schedule-controls-right">
-              <label class="team-selector-wrap">
-                <span>Equipo:</span>
-                <select class="team-select" id="scheduleTeamSelect">
-                  <option value="all">Horario General (Negocio)</option>
-                </select>
-              </label>
-
               <label class="switch-label">
                 <span>Horario Rotativo</span>
                 <input type="checkbox" id="rotativeToggle" class="hidden" checked>
@@ -1599,14 +1717,14 @@ html[data-mode="dark"] .sync-pill {
 
               <label class="apply-all-row">
                 <input type="checkbox" id="chkApplyWorkdays" checked>
-                <span>Aplicar este horario a todos los días laborales</span>
+                <span>Aplicar este horario a todos los días laborales (Lun–Vie)</span>
               </label>
             </div>
 
             <div class="schedule-subcard">
               <div style="margin-bottom:14px;">
                 <h4 class="day-editor-title">Vista Rápida Semanal</h4>
-                <p class="day-editor-sub">Previsualización</p>
+                <p class="day-editor-sub">Previsualización general</p>
               </div>
 
               <div class="preview-week-days">
@@ -1625,7 +1743,7 @@ html[data-mode="dark"] .sync-pill {
               <div class="tip-box">
                 <span>💡</span>
                 <div>
-                  <strong>Tip:</strong> Ajusta los turnos de mañana y tarde para calcular el descanso automáticamente. Usa <em>"Aplicar este horario a todos los días laborales"</em> para replicarlo en la semana.
+                  <strong>Tip:</strong> Este horario sirve como plantilla general del negocio. Si un barbero o especialista tiene un turno distinto, configúralo directamente en su tarjeta dentro de <strong>Especialistas</strong>.
                 </div>
               </div>
             </div>
@@ -1633,7 +1751,7 @@ html[data-mode="dark"] .sync-pill {
 
           <div class="schedule-footer-actions">
             <button type="button" class="d-btn d-btn-outline" id="btnResetScheduleChanges">Restablecer</button>
-            <button type="button" class="d-btn d-btn-primary" id="btnSaveScheduleChanges">✓ Guardar cambios</button>
+            <button type="button" class="d-btn d-btn-primary" id="btnSaveScheduleChanges">✓ Guardar Horario General</button>
           </div>
         </div>
 
@@ -1654,13 +1772,13 @@ html[data-mode="dark"] .sync-pill {
       </section>
 
       <!-- ====================================================================
-           5. ESPECIALISTAS
+           5. ESPECIALISTAS (CON HORARIO INDIVIDUAL POR ESPECIALISTA)
            ==================================================================== -->
       <section class="admin-panel" data-dash-panel="especialistas">
         <div class="page-hero-head">
           <div>
             <h1 class="page-hero-title">Equipo de Especialistas</h1>
-            <p class="page-hero-sub">Profesionales que aparecen en el Paso 1 de fecha y hora</p>
+            <p class="page-hero-sub">Gestiona a cada profesional, sus días laborales y su horario personalizado por turnos directamente en su ficha.</p>
           </div>
           <button type="button" class="d-btn d-btn-primary" id="btnAddSpecialist">＋ Añadir Especialista</button>
         </div>
@@ -1668,15 +1786,30 @@ html[data-mode="dark"] .sync-pill {
       </section>
 
       <!-- ====================================================================
-           6. SERVICIOS
+           6. SERVICIOS (CON SELECTOR DE MONEDA MINIMIZADO ARRIBA A LA DERECHA)
            ==================================================================== -->
       <section class="admin-panel" data-dash-panel="servicios">
         <div class="page-hero-head">
           <div>
             <h1 class="page-hero-title">Catálogo de Servicios</h1>
-            <p class="page-hero-sub">Tratamientos, duración y precios</p>
+            <p class="page-hero-sub">Tratamientos, duración y precios publicados en reservas</p>
           </div>
-          <button type="button" class="d-btn d-btn-primary" id="btnAddService">＋ Añadir Servicio</button>
+          <div class="page-hero-actions">
+            <div class="compact-currency-wrap" title="Moneda del catálogo de servicios">
+              <label for="srvCurrencySelect">Moneda</label>
+              <select id="srvCurrencySelect" class="compact-currency-select" aria-label="Seleccionar moneda">
+                <option value="MXN">MXN ($)</option>
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="COP">COP ($)</option>
+                <option value="ARS">ARS ($)</option>
+                <option value="CLP">CLP ($)</option>
+                <option value="PEN">PEN (S/)</option>
+                <option value="GTQ">GTQ (Q)</option>
+              </select>
+            </div>
+            <button type="button" class="d-btn d-btn-primary" id="btnAddService">＋ Añadir Servicio</button>
+          </div>
         </div>
         <div id="servicesAdminList"></div>
       </section>
@@ -1696,17 +1829,14 @@ html[data-mode="dark"] .sync-pill {
         <div class="d-card">
           <h3 class="d-card-title" style="margin-bottom:16px;">🏢 Identidad y Datos de Contacto</h3>
           <div class="d-grid-2">
-            <label class="d-field"><span>Nombre del Negocio</span><input type="text" id="cfgBusinessName" placeholder="Aevi Wellness"></label>
-            <label class="d-field"><span>Moneda Predeterminada</span><input type="text" id="cfgCurrency" value="MXN" placeholder="MXN, USD, EUR"></label>
+            <label class="d-field"><span>Nombre del Negocio</span><input type="text" id="cfgBusinessName" placeholder="Vagabundo Barbería"></label>
             <label class="d-field"><span>Teléfono Principal</span><input type="text" id="cfgPhone" placeholder="+52 55 1234 5678"></label>
             <label class="d-field"><span>WhatsApp Atención (solo dígitos con código de país)</span><input type="text" id="cfgWhatsapp" placeholder="525512345678"></label>
-            <label class="d-field"><span>Correo Electrónico</span><input type="email" id="cfgEmail" placeholder="hola@aeviwellness.com"></label>
+            <label class="d-field"><span>Correo Electrónico</span><input type="email" id="cfgEmail" placeholder="hola@negocio.com"></label>
             <label class="d-field"><span>URL del Logo (Opcional)</span><input type="url" id="cfgLogoUrl" placeholder="https://..."></label>
-          </div>
-          <div class="d-grid-2">
-            <label class="d-field"><span>Texto de Barra de Anuncio Superior</span><input type="text" id="cfgAnnounceText" placeholder="Agenda hoy y recibe tu diagnóstico sin costo"></label>
             <label class="d-field"><span>Estacionamiento / Información adicional</span><input type="text" id="cfgParking" placeholder="Valet parking disponible"></label>
           </div>
+          <label class="d-field"><span>Texto de Barra de Anuncio Superior</span><input type="text" id="cfgAnnounceText" placeholder="Agenda hoy y recibe tu diagnóstico sin costo"></label>
         </div>
 
         <div class="d-card">
@@ -1717,7 +1847,7 @@ html[data-mode="dark"] .sync-pill {
             <label class="d-field"><span>TikTok (URL)</span><input type="url" id="cfgTiktok" placeholder="https://tiktok.com/@tu_cuenta"></label>
           </div>
           <div class="d-grid-2">
-            <label class="d-field"><span>Sitio Web / Enlace Externo</span><input type="url" id="cfgWebsite" placeholder="https://aeviwellness.com"></label>
+            <label class="d-field"><span>Sitio Web / Enlace Externo</span><input type="url" id="cfgWebsite" placeholder="https://tunegocio.com"></label>
             <label class="d-field"><span>Enlace Público a Página de Reservas</span><input type="url" id="cfgBookingUrl" placeholder="https://script.google.com/.../exec"></label>
           </div>
         </div>
@@ -1743,13 +1873,13 @@ html[data-mode="dark"] .sync-pill {
       </section>
 
       <!-- ====================================================================
-           8. AJUSTES Y CONFIGURACIÓN
+           8. AJUSTES Y CONFIGURACIÓN DEL SISTEMA (MODO OSCURO + CONSOLA 🐛)
            ==================================================================== -->
       <section class="admin-panel" data-dash-panel="ajustes">
         <div class="page-hero-head">
           <div>
             <h1 class="page-hero-title">Ajustes y Configuración del Sistema</h1>
-            <p class="page-hero-sub">Sincronización con Google Sheets, apariencia visual, modo oscuro y plantillas de WhatsApp</p>
+            <p class="page-hero-sub">Sincronización con Google Sheets, modo oscuro, tema visual, plantillas de WhatsApp y consola de diagnóstico</p>
           </div>
         </div>
 
@@ -1769,10 +1899,10 @@ html[data-mode="dark"] .sync-pill {
         </div>
 
         <div class="d-card">
-          <h3 class="d-card-title" style="margin-bottom:16px;">🎨 Apariencia y Tema de la Aplicación</h3>
+          <h3 class="d-card-title" style="margin-bottom:16px;">🎨 Apariencia y Modo Oscuro</h3>
           <div class="d-grid-2" style="align-items:center;margin-bottom:18px;">
             <div>
-              <strong style="display:block;font-family:var(--font-display);font-size:15px;color:var(--ink-display);">Modo Oscuro (Dark Fade)</strong>
+              <strong style="display:block;font-family:var(--font-display);font-size:15px;color:var(--ink-display);">🌓 Modo Oscuro (Dark Fade)</strong>
               <span style="font-size:13px;color:var(--slate);">Activa las superficies oscuras de alto contraste para entornos con poca iluminación.</span>
             </div>
             <div style="display:flex;justify-content:flex-end;">
@@ -1807,6 +1937,17 @@ html[data-mode="dark"] .sync-pill {
             <textarea id="cfgWaTemplate"></textarea>
           </label>
           <button type="button" class="d-btn d-btn-primary" id="btnSaveWaTemplate">Guardar Plantilla de WhatsApp</button>
+        </div>
+
+        <!-- Consola de Diagnóstico reubicada dentro de Ajustes -->
+        <div class="d-card">
+          <div class="d-card-head" style="margin-bottom:0;">
+            <div>
+              <h3 class="d-card-title">🐛 Consola de Diagnóstico</h3>
+              <p style="font-size:13.5px;color:var(--slate);margin-top:4px;">Revisa registros de conexión, eventos de sincronización y errores técnicos del panel en tiempo real.</p>
+            </div>
+            <button type="button" class="d-btn d-btn-outline" id="btnOpenDebug">🐛 Abrir Consola de Diagnóstico</button>
+          </div>
         </div>
       </section>
 
@@ -1882,25 +2023,40 @@ html[data-mode="dark"] .sync-pill {
   </div>
 </div>
 
-<div class="toast" id="appToast"></div>
+<!-- MODAL UNIVERSAL DE CONFIRMACIÓN (CANCELAR / ELIMINAR) -->
+<div class="admin-modal confirm-layer" id="confirmActionModal" role="dialog" aria-modal="true" aria-labelledby="confirmModalTitle">
+  <div class="admin-modal-card confirm-card">
+    <div class="confirm-icon-circle">⚠️</div>
+    <h3 class="d-card-title" id="confirmModalTitle" style="font-size:20px;margin-bottom:8px;">Confirmar acción</h3>
+    <p id="confirmModalMessage" style="font-size:14px;color:var(--slate);line-height:1.55;margin-bottom:22px;">
+      ¿Estás seguro de que deseas continuar? Esta acción no se puede deshacer fácilmente.
+    </p>
+    <div style="display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;">
+      <button type="button" class="d-btn d-btn-outline" id="btnConfirmCancel">Volver</button>
+      <button type="button" class="d-btn d-btn-danger-solid" id="btnConfirmProceed">Sí, continuar</button>
+    </div>
+  </div>
+</div>
 
-<!-- Botón flotante para abrir la consola de diagnóstico -->
-<button type="button" id="btnOpenDebug" class="debug-fab" title="Abrir consola de diagnóstico">🐛</button>
+<div class="toast" id="appToast"></div>
 
 <script>
 (function() {
   'use strict';
-  console.log('[Aevi Dashboard] Script iniciado');
 
   /* =========================================================
      CONFIGURACIÓN Y ESTADO PRINCIPAL
      ========================================================= */
   const GAS_URL = 'https://script.google.com/macros/s/AKfycbxIpslooNGNBqrg6NAGwk5ElppYHDtC5sOPHU1uWoiaLu_73hs-wdQpIKjWgUe1XrTNKA/exec';
   const PREFS_KEY = 'aevi_admin_ui_prefs_v1';
+  const AUTO_COMPLETE_HOURS = 6;
+  const AUTO_COMPLETE_MS = AUTO_COMPLETE_HOURS * 60 * 60 * 1000;
+  const AUTO_COMPLETE_LABEL = 'Finalizado por tiempo';
 
   const DAY_NAMES_FULL = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
   const DAY_SHORT_ES = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
   const MONTHS_SHORT = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const MONTHS_FULL = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 
   const DEFAULT_WA_CONFIRM_TEMPLATE =
     'Hola *{nombre}* 👋, te escribimos de *{negocio}* para confirmar tu cita de *{servicios}* el día *{fecha}* a las *{hora}* con *{especialista}*. 📍 Te esperamos en {direccion}. ¡Responde a este mensaje si tienes cualquier duda!';
@@ -1917,7 +2073,7 @@ html[data-mode="dark"] .sync-pill {
 
   const store = {
     config: {
-      businessName: 'Aevi Wellness',
+      businessName: 'Vagabundo Barbería',
       phone: '',
       whatsapp: '',
       email: '',
@@ -1936,25 +2092,37 @@ html[data-mode="dark"] .sync-pill {
       waTemplate: DEFAULT_WA_CONFIRM_TEMPLATE
     },
     shiftsMap: { all: JSON.parse(JSON.stringify(defaultShiftsByDay)) },
-    selectedScheduleTeam: 'all',
     selectedScheduleDay: 1,
+    specialistUiState: {}, // { [spKey]: { expanded: boolean, selectedDay: number } }
     exceptions: [],
     services: [],
     specialists: [],
     bookings: [],
     history: [],
-    bookingsTab: 'active',
+    bookingsTab: 'active',      // 'active' | 'history'
+    activePeriod: 'today',      // 'today' | 'week' | 'month' | 'all'
     selectedBookingDetail: null,
     selectedBookingIsHistory: false
   };
+
+  const autoCompletedSessionIds = new Set();
 
   const $ = (s) => document.querySelector(s);
   const $$ = (s) => Array.from(document.querySelectorAll(s));
   const esc = (v) => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-  function localTodayISO() {
-    const d = new Date();
+  function formatDateISO(d) {
     return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  }
+
+  function localTodayISO() {
+    return formatDateISO(new Date());
+  }
+
+  function addDaysISO(baseISO, daysToAdd) {
+    const [y, m, d] = baseISO.split('-').map(Number);
+    const dt = new Date(y, (m || 1) - 1, (d || 1) + daysToAdd);
+    return formatDateISO(dt);
   }
 
   let toastTimer;
@@ -1968,7 +2136,39 @@ html[data-mode="dark"] .sync-pill {
   }
 
   /* =========================================================
-     PANEL DE DIAGNÓSTICO EN PANTALLA
+     VENTANA EMERGENTE DE CONFIRMACIÓN REUTILIZABLE
+     ========================================================= */
+  let confirmResolver = null;
+  function openConfirmModal(options) {
+    const opts = options || {};
+    $('#confirmModalTitle').textContent = opts.title || '¿Confirmar acción?';
+    $('#confirmModalMessage').textContent = opts.message || '¿Seguro que deseas continuar?';
+    $('#btnConfirmCancel').textContent = opts.cancelText || 'No, volver';
+    $('#btnConfirmProceed').textContent = opts.confirmText || 'Sí, confirmar';
+    $('#confirmActionModal').classList.add('open');
+
+    return new Promise((resolve) => {
+      confirmResolver = resolve;
+    });
+  }
+
+  function closeConfirmModal(result) {
+    $('#confirmActionModal').classList.remove('open');
+    if (confirmResolver) {
+      const fn = confirmResolver;
+      confirmResolver = null;
+      fn(!!result);
+    }
+  }
+
+  $('#btnConfirmCancel').addEventListener('click', () => closeConfirmModal(false));
+  $('#btnConfirmProceed').addEventListener('click', () => closeConfirmModal(true));
+  $('#confirmActionModal').addEventListener('click', (e) => {
+    if (e.target === $('#confirmActionModal')) closeConfirmModal(false);
+  });
+
+  /* =========================================================
+     PANEL DE DIAGNÓSTICO EN PANTALLA (ABIERTO DESDE AJUSTES)
      ========================================================= */
   function ensureDebugPanel() {
     let panel = document.getElementById('debugPanel');
@@ -1976,7 +2176,7 @@ html[data-mode="dark"] .sync-pill {
     panel = document.createElement('div');
     panel.id = 'debugPanel';
     panel.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:linear-gradient(rgb(17,17,17) 24%, rgb(0,0,0));color:#f8f9fa;font-family:var(--font-mono);font-size:11.5px;padding:12px 16px;max-height:38vh;overflow:auto;z-index:9999;display:none;border-top:2px solid #6647f0';
-    panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><strong style="color:#6ee7b7;letter-spacing:0.06em;text-transform:uppercase;">⚠ Consola de Diagnóstico</strong><button type="button" id="btnCloseDebug" style="background:#202020;color:#fff;border:1px solid #444;padding:4px 12px;border-radius:9999px;cursor:pointer;font-size:11px;font-weight:600;">Cerrar</button></div><div id="debugLog" style="white-space:pre-wrap;word-break:break-word;"></div>';
+    panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><strong style="color:#6ee7b7;letter-spacing:0.06em;text-transform:uppercase;">🐛 Consola de Diagnóstico</strong><button type="button" id="btnCloseDebug" style="background:#202020;color:#fff;border:1px solid #444;padding:4px 12px;border-radius:9999px;cursor:pointer;font-size:11px;font-weight:600;">Cerrar</button></div><div id="debugLog" style="white-space:pre-wrap;word-break:break-word;"></div>';
     document.body.appendChild(panel);
     panel.querySelector('#btnCloseDebug').addEventListener('click', () => { panel.style.display = 'none'; });
   }
@@ -1989,7 +2189,6 @@ html[data-mode="dark"] .sync-pill {
     const prefix = level === 'err' ? '✗ ERROR' : level === 'warn' ? '⚠ WARN ' : '✓ OK   ';
     log.innerHTML += `<div style="color:${color};border-bottom:1px solid #26262c;padding:4px 0;"><span style="color:#838383">[${time}]</span> <strong>${prefix}</strong> ${String(msg).replace(/</g,'&lt;')}</div>`;
     log.scrollTop = log.scrollHeight;
-    if (level === 'err') showDebugPanel();
   }
   window.addEventListener('error', (e) => {
     logDebug('err', 'Error no capturado: ' + (e.message || 'desconocido') + (e.filename ? ' en ' + e.filename.split('/').pop() + ':' + e.lineno : ''));
@@ -2058,9 +2257,7 @@ html[data-mode="dark"] .sync-pill {
     const str = String(val).trim().replace(/^'/, '');
     if (/^\d{4}-\d{2}-\d{2}$/.test(str)) return str;
     const d = new Date(str);
-    if (!isNaN(d.getTime())) {
-      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-    }
+    if (!isNaN(d.getTime())) return formatDateISO(d);
     return str;
   }
 
@@ -2076,6 +2273,33 @@ html[data-mode="dark"] .sync-pill {
       }
     }
     return str;
+  }
+
+  function parseBookingDateTime(dateStr, timeStr) {
+    const dClean = normalizeDateStr(dateStr);
+    const tClean = normalizeTimeStr(timeStr);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dClean)) return null;
+    const [y, m, d] = dClean.split('-').map(Number);
+    let hh = 0, mm = 0;
+    if (/^\d{2}:\d{2}$/.test(tClean)) {
+      [hh, mm] = tClean.split(':').map(Number);
+    }
+    const dt = new Date(y, m - 1, d, hh, mm, 0, 0);
+    return isNaN(dt.getTime()) ? null : dt;
+  }
+
+  function isBookingFinishedStatus(status) {
+    const st = String(status || '').toLowerCase();
+    return st.includes('complet') || st.includes('cancel') || st.includes('finaliz');
+  }
+
+  function getStatusBadgeClass(status) {
+    const st = String(status || '').toLowerCase();
+    if (st.includes('cancel')) return 'cancelada';
+    if (st.includes('tiempo') || st.includes('finaliz')) return 'finalizado-tiempo';
+    if (st.includes('complet')) return 'completada';
+    if (st.includes('reagend') || st.includes('pendient')) return 'reagendada';
+    return 'confirmada';
   }
 
   function parseNumberClean(val, fallback) {
@@ -2138,6 +2362,12 @@ html[data-mode="dark"] .sync-pill {
     return sp ? sp.name : (specId || 'Especialista asignado');
   }
 
+  function getSpecialistKey(sp, idx) {
+    if (sp.id) return sp.id;
+    if (!sp._tmpKey) sp._tmpKey = 'tmp_sp_' + Date.now() + '_' + idx;
+    return sp._tmpKey;
+  }
+
   function formatServicesNames(rawServices) {
     if (!rawServices) return 'Tratamiento';
     return String(rawServices).split(',').map(part => {
@@ -2166,7 +2396,7 @@ html[data-mode="dark"] .sync-pill {
       '{hora}': booking.time || '',
       '{especialista}': getSpecialistName(booking.specialistId),
       '{servicios}': formatServicesNames(booking.services),
-      '{negocio}': store.config.businessName || 'Aevi Wellness',
+      '{negocio}': store.config.businessName || 'Vagabundo Barbería',
       '{direccion}': store.config.address || 'nuestra sucursal'
     };
 
@@ -2176,7 +2406,7 @@ html[data-mode="dark"] .sync-pill {
     } else if (presetType === 'rescheduled') {
       template = 'Hola *{nombre}* 📅, te confirmamos que tu cita en *{negocio}* ha sido actualizada para el día *{fecha}* a las *{hora}* con *{especialista}*. ¡Te esperamos!';
     } else if (presetType === 'thanks') {
-      template = 'Hola *{nombre}* 🌿, muchas gracias por tu visita a *{negocio}*. Esperamos que hayas disfrutado tu ritual de *{servicios}*. ¡Será un gusto volver a verte pronto!';
+      template = 'Hola *{nombre}* 🌿, muchas gracias por tu visita a *{negocio}*. Esperamos que hayas disfrutado tu servicio de *{servicios}*. ¡Será un gusto volver a verte pronto!';
     }
 
     let message = template;
@@ -2262,6 +2492,69 @@ html[data-mode="dark"] .sync-pill {
     return json;
   }
 
+  /* =========================================================
+     AUTO-FINALIZACIÓN DE CITAS CON MÁS DE 6 HORAS PASADAS
+     ========================================================= */
+  let isCheckingExpired = false;
+  async function checkAndAutoCompleteExpiredBookings() {
+    if (isCheckingExpired || !store.bookings.length) return;
+    isCheckingExpired = true;
+    const nowMs = Date.now();
+    const expired = [];
+
+    for (const bk of store.bookings) {
+      if (!bk.id || isBookingFinishedStatus(bk.status) || autoCompletedSessionIds.has(bk.id)) continue;
+      const dt = parseBookingDateTime(bk.date, bk.time);
+      if (!dt) continue;
+      if (nowMs - dt.getTime() >= AUTO_COMPLETE_MS) {
+        expired.push(bk);
+      }
+    }
+
+    if (!expired.length) {
+      isCheckingExpired = false;
+      return;
+    }
+
+    logDebug('warn', `Detectadas ${expired.length} cita(s) con más de ${AUTO_COMPLETE_HOURS} horas transcurridas. Finalizando automáticamente…`);
+    let processedCount = 0;
+
+    for (const bk of expired) {
+      autoCompletedSessionIds.add(bk.id);
+      try {
+        await gasPost('updateBookingStatus', {
+          id: bk.id,
+          bookingId: bk.id,
+          status: AUTO_COMPLETE_LABEL
+        }).catch(() => {});
+
+        await gasPost('moveToHistory', {
+          id: bk.id,
+          bookingId: bk.id,
+          status: AUTO_COMPLETE_LABEL,
+          reason: `${AUTO_COMPLETE_LABEL} (+${AUTO_COMPLETE_HOURS}h)`
+        });
+
+        bk.status = AUTO_COMPLETE_LABEL;
+        store.bookings = store.bookings.filter(item => item.id !== bk.id);
+        if (!store.history.some(h => h.id === bk.id)) {
+          store.history.unshift(Object.assign({}, bk, { status: AUTO_COMPLETE_LABEL }));
+        }
+        processedCount++;
+        logDebug('ok', `Cita ${bk.id} (${bk.name} · ${bk.date} ${bk.time}) marcada como "${AUTO_COMPLETE_LABEL}" y movida al historial.`);
+      } catch (err) {
+        autoCompletedSessionIds.delete(bk.id);
+        logDebug('err', `No se pudo auto-finalizar cita ${bk.id}: ${err.message}`);
+      }
+    }
+
+    if (processedCount > 0) {
+      renderResumenAndBookings();
+      showToast(`⏱ ${processedCount} cita(s) marcada(s) como "${AUTO_COMPLETE_LABEL}" y movidas al historial`);
+    }
+    isCheckingExpired = false;
+  }
+
   let isSyncingNow = false;
   async function syncFromGoogleSheets(silent) {
     if (isSyncingNow) {
@@ -2270,10 +2563,9 @@ html[data-mode="dark"] .sync-pill {
     }
     isSyncingNow = true;
     setSyncBadge('loading', '● Sincronizando…');
-    logDebug('ok', 'Iniciando sincronización con ' + GAS_URL.substring(0, 70) + '…');
+    logDebug('ok', 'Iniciando sincronización con Google Sheets…');
 
     try {
-      logDebug('ok', 'Lanzando 5 peticiones GET en paralelo (getConfig, getServices, getSpecialists, getBookings, getHistory)');
       const [config, services, specialists, bookings, history] = await Promise.all([
         gasGet('getConfig').catch((e) => { logDebug('err', 'getConfig falló: ' + e.message); return ({}); }),
         gasGet('getServices').catch((e) => { logDebug('err', 'getServices falló: ' + e.message); return []; }),
@@ -2282,11 +2574,6 @@ html[data-mode="dark"] .sync-pill {
         gasGet('getHistory').catch((e) => { logDebug('err', 'getHistory falló: ' + e.message); return []; })
       ]);
 
-      logDebug('ok', `Respuestas: config=${typeof config} services=${Array.isArray(services) ? services.length + ' items' : 'NO array'} specialists=${Array.isArray(specialists) ? specialists.length + ' items' : 'NO array'} bookings=${Array.isArray(bookings) ? bookings.length + ' items' : 'NO array'} history=${Array.isArray(history) ? history.length + ' items' : 'NO array'}`);
-
-      if (config && config.error) {
-        logDebug('err', 'getConfig devolvió error: ' + config.error);
-      }
       if (config && !config.error && typeof config === 'object') {
         store.config = Object.assign({}, store.config, config);
         if (!store.config.waTemplate) store.config.waTemplate = DEFAULT_WA_CONFIRM_TEMPLATE;
@@ -2320,7 +2607,6 @@ html[data-mode="dark"] .sync-pill {
             if (Array.isArray(parsedExc)) store.exceptions = parsedExc;
           } catch (e) {}
         }
-        logDebug('ok', 'Config cargada. businessName=' + (store.config.businessName || '(vacío)') + ', phone=' + (store.config.phone || '(vacío)'));
       }
 
       store.services = (Array.isArray(services) ? services : []).map(s => ({
@@ -2347,41 +2633,76 @@ html[data-mode="dark"] .sync-pill {
         .filter(b => b.id || b.name);
 
       renderAllPanels();
-      setSyncBadge('', '● Conectado a Sheets');
+      setSyncBadge('', '● Conectado');
       if ($('#lastSyncTimeLabel')) {
         $('#lastSyncTimeLabel').textContent = new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
       }
       if (!silent) showToast('Datos sincronizados con Google Sheets ✓');
-      logDebug('ok', 'Sincronización completada. Servicios=' + store.services.length + ', Especialistas=' + store.specialists.length + ', Reservas=' + store.bookings.length);
+      logDebug('ok', `Sincronizado: Servicios=${store.services.length}, Especialistas=${store.specialists.length}, Activas=${store.bookings.length}, Historial=${store.history.length}`);
+
+      // Revisar automáticamente citas pasadas por 6 horas
+      await checkAndAutoCompleteExpiredBookings();
     } catch (err) {
       setSyncBadge('error', '● Reintentar conexión');
       if (!silent) showToast('Error de conexión: ' + err.message);
-      logDebug('err', 'Error fatal en syncFromGoogleSheets: ' + (err.stack || err.message));
+      logDebug('err', 'Error en syncFromGoogleSheets: ' + (err.stack || err.message));
     } finally {
       isSyncingNow = false;
     }
   }
 
   /* =========================================================
+     LISTAS DERIVADAS DE CITAS ACTIVAS E HISTORIAL
+     ========================================================= */
+  function getActiveBookingsList() {
+    return store.bookings.filter(b => !isBookingFinishedStatus(b.status));
+  }
+
+  function getHistoryBookingsList() {
+    const map = new Map();
+    store.history.forEach(h => map.set(h.id || ('h_' + Math.random()), h));
+    // Incluye también citas finalizadas/completadas/canceladas si aún residen en la hoja Reservas
+    store.bookings.forEach(b => {
+      if (isBookingFinishedStatus(b.status) && !map.has(b.id)) {
+        map.set(b.id, b);
+      }
+    });
+    return Array.from(map.values());
+  }
+
+  function filterActiveByPeriod(list, period) {
+    const today = localTodayISO();
+    if (period === 'today') {
+      return list.filter(b => b.date === today);
+    }
+    if (period === 'week') {
+      const endWeek = addDaysISO(today, 6);
+      return list.filter(b => b.date >= today && b.date <= endWeek);
+    }
+    if (period === 'month') {
+      const monthPrefix = today.slice(0, 7);
+      return list.filter(b => String(b.date || '').startsWith(monthPrefix));
+    }
+    return list.slice();
+  }
+
+  /* =========================================================
      MODAL DE DETALLE DE CITA
      ========================================================= */
   function openBookingDetailModal(bookingId, isFromHistory) {
-    const sourceList = isFromHistory ? store.history : store.bookings;
-    const bk = sourceList.find(x => x.id === bookingId);
+    const sourceList = isFromHistory ? getHistoryBookingsList() : getActiveBookingsList();
+    const bk = sourceList.find(x => x.id === bookingId) || store.bookings.find(x => x.id === bookingId) || store.history.find(x => x.id === bookingId);
     if (!bk) return;
 
     store.selectedBookingDetail = bk;
-    store.selectedBookingIsHistory = !!isFromHistory;
+    store.selectedBookingIsHistory = !!isFromHistory || isBookingFinishedStatus(bk.status);
 
-    $('#detBookingSource').textContent = isFromHistory ? 'Registro en Historial' : 'Reserva Activa en Agenda';
+    $('#detBookingSource').textContent = store.selectedBookingIsHistory ? 'Registro en Historial de Reservas' : 'Reserva Activa en Agenda';
     $('#detClientName').textContent = bk.name || 'Cliente sin nombre';
 
-    const badgeClass = bk.status.toLowerCase().includes('cancel') ? 'cancelada'
-                     : bk.status.toLowerCase().includes('reagend') ? 'reagendada'
-                     : bk.status.toLowerCase().includes('complet') ? 'completada' : 'confirmada';
     const badgeEl = $('#detStatusBadge');
-    badgeEl.className = 'd-badge ' + badgeClass;
-    badgeEl.textContent = bk.status;
+    badgeEl.className = 'd-badge ' + getStatusBadgeClass(bk.status);
+    badgeEl.textContent = bk.status.toLowerCase().includes('tiempo') ? '⏱ ' + bk.status : bk.status;
 
     const estPrice = estimateBookingTotal(bk.services);
 
@@ -2396,7 +2717,7 @@ html[data-mode="dark"] .sync-pill {
       <div class="detail-item" style="grid-column:1 / -1;"><small>ID de Reserva</small><strong style="font-family:var(--font-mono);font-size:12px;color:var(--slate);">${esc(bk.id)}</strong></div>
     `;
 
-    $('#detActiveActionsBox').classList.toggle('hidden', !!isFromHistory);
+    $('#detActiveActionsBox').classList.toggle('hidden', store.selectedBookingIsHistory);
     $('#bookingDetailModal').classList.add('open');
   }
 
@@ -2404,23 +2725,23 @@ html[data-mode="dark"] .sync-pill {
      RENDERIZADO DE TABLERO, RESUMEN Y CITAS
      ========================================================= */
   function renderResumenAndBookings() {
-    const activeCount = store.bookings.length;
-    const historyCount = store.history.length;
-    $('#navCitasCount').textContent = activeCount;
-    $('#countActiveTab').textContent = activeCount;
-    $('#countHistoryTab').textContent = historyCount;
-
+    const activeList = getActiveBookingsList();
+    const historyList = getHistoryBookingsList();
     const todayISO = localTodayISO();
-    const todayBookings = store.bookings.filter(b => b.date === todayISO).length;
+    const todayBookings = activeList.filter(b => b.date === todayISO).length;
+
+    $('#navCitasCount').textContent = todayBookings;
+    $('#countActiveTab').textContent = activeList.length;
+    $('#countHistoryTab').textContent = historyList.length;
 
     $('#summaryStatsGrid').innerHTML = `
       <div class="kpi-card">
         <div class="kpi-icon teal"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-        <div><p class="kpi-title">Citas Hoy (${todayISO})</p><p class="kpi-value">${todayBookings}</p><p class="kpi-sub teal">Programadas para hoy</p></div>
+        <div><p class="kpi-title">Citas Hoy (${todayISO})</p><p class="kpi-value">${todayBookings}</p><p class="kpi-sub teal">Activas para hoy</p></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-icon blue"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-        <div><p class="kpi-title">Reservas Activas</p><p class="kpi-value">${activeCount}</p><p class="kpi-sub green">En hoja Reservas</p></div>
+        <div><p class="kpi-title">Reservas Activas</p><p class="kpi-value">${activeList.length}</p><p class="kpi-sub green">En hoja Reservas</p></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-icon purple"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
@@ -2428,18 +2749,16 @@ html[data-mode="dark"] .sync-pill {
       </div>
       <div class="kpi-card">
         <div class="kpi-icon orange"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-        <div><p class="kpi-title">Servicios en Sheets</p><p class="kpi-value">${store.services.length}</p><p class="kpi-sub orange">Catálogo publicado</p></div>
+        <div><p class="kpi-title">Servicios en Sheets</p><p class="kpi-value">${store.services.length}</p><p class="kpi-sub orange">Catálogo (${esc(store.config.currency || 'MXN')})</p></div>
       </div>
     `;
 
-    const upcoming = store.bookings.slice().sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time)).slice(0, 12);
+    const upcoming = activeList.slice().sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time)).slice(0, 12);
     $('#dashUpcomingTable').innerHTML = upcoming.length
       ? `<thead><tr><th>Fecha</th><th>Hora</th><th>Cliente</th><th>Especialista</th><th>Servicios</th><th>Estado</th><th>Acción Rápida</th></tr></thead><tbody>` +
         upcoming.map(b => {
           const waHref = buildWhatsAppLinkForBooking(b, 'confirm');
-          const badgeClass = b.status.toLowerCase().includes('cancel') ? 'cancelada'
-                           : b.status.toLowerCase().includes('reagend') ? 'reagendada'
-                           : b.status.toLowerCase().includes('complet') ? 'completada' : 'confirmada';
+          const badgeClass = getStatusBadgeClass(b.status);
           return `
             <tr class="clickable-row" data-row-detail="${esc(b.id)}" data-row-history="0">
               <td><strong style="font-family:var(--font-mono);font-size:12.5px;">${esc(b.date)}</strong></td>
@@ -2466,8 +2785,39 @@ html[data-mode="dark"] .sync-pill {
     $('#tabActiveBookings').className = 'd-btn d-btn-sm ' + (!isHistory ? 'd-btn-primary' : 'd-btn-outline');
     $('#tabHistoryBookings').className = 'd-btn d-btn-sm ' + (isHistory ? 'd-btn-primary' : 'd-btn-outline');
 
-    let rows = (isHistory ? store.history : store.bookings).slice()
-      .sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time));
+    // Mostrar/ocultar barra de periodo (Hoy / Semana / Mes / Todas) solo en Reservas Activas
+    $('#activePeriodBar').classList.toggle('hidden', isHistory);
+
+    const activeList = getActiveBookingsList();
+    const historyList = getHistoryBookingsList();
+
+    // Contadores por periodo
+    $('#cntPeriodToday').textContent = filterActiveByPeriod(activeList, 'today').length;
+    $('#cntPeriodWeek').textContent = filterActiveByPeriod(activeList, 'week').length;
+    $('#cntPeriodMonth').textContent = filterActiveByPeriod(activeList, 'month').length;
+    $('#cntPeriodAll').textContent = activeList.length;
+
+    $$('#activePeriodPills [data-period]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.period === store.activePeriod);
+    });
+
+    const todayISO = localTodayISO();
+    const nowDate = new Date();
+    const captionMap = {
+      today: `Mostrando citas activas de hoy (${todayISO})`,
+      week: `Mostrando citas activas de la semana (${todayISO} al ${addDaysISO(todayISO, 6)})`,
+      month: `Mostrando citas activas de ${MONTHS_FULL[nowDate.getMonth()]} ${nowDate.getFullYear()}`,
+      all: 'Mostrando todas las citas activas registradas'
+    };
+    $('#activePeriodCaption').textContent = captionMap[store.activePeriod] || '';
+
+    let rows;
+    if (isHistory) {
+      rows = historyList.slice().sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time));
+    } else {
+      rows = filterActiveByPeriod(activeList, store.activePeriod)
+        .sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
+    }
 
     if (statusFilter) {
       rows = rows.filter(b => b.status.toLowerCase().includes(statusFilter));
@@ -2480,7 +2830,12 @@ html[data-mode="dark"] .sync-pill {
 
     const table = $('#adminBookingsTable');
     if (!rows.length) {
-      table.innerHTML = `<tbody><tr><td style="color:var(--slate);padding:20px;">No hay registros en ${isHistory ? 'Historial' : 'Reservas Activas'} que coincidan.</td></tr></tbody>`;
+      const emptyPeriodLabel = isHistory
+        ? 'el Historial de Reservas'
+        : (store.activePeriod === 'today' ? 'hoy'
+          : store.activePeriod === 'week' ? 'esta semana'
+          : store.activePeriod === 'month' ? 'este mes' : 'Reservas Activas');
+      table.innerHTML = `<tbody><tr><td style="color:var(--slate);padding:20px;">No hay citas registradas para ${emptyPeriodLabel}${q || statusFilter ? ' con ese filtro' : ''}.</td></tr></tbody>`;
       return;
     }
 
@@ -2493,9 +2848,8 @@ html[data-mode="dark"] .sync-pill {
       </thead>
       <tbody>
         ${rows.map(b => {
-          const badgeClass = b.status.toLowerCase().includes('cancel') ? 'cancelada'
-                           : b.status.toLowerCase().includes('reagend') ? 'reagendada'
-                           : b.status.toLowerCase().includes('complet') ? 'completada' : 'confirmada';
+          const badgeClass = getStatusBadgeClass(b.status);
+          const badgeLabel = b.status.toLowerCase().includes('tiempo') ? '⏱ ' + b.status : b.status;
           const waHref = buildWhatsAppLinkForBooking(b, 'confirm');
           return `
             <tr class="clickable-row" data-row-detail="${esc(b.id)}" data-row-history="${isHistory ? '1' : '0'}">
@@ -2507,7 +2861,7 @@ html[data-mode="dark"] .sync-pill {
               </td>
               <td>${esc(getSpecialistName(b.specialistId))}</td>
               <td>${esc(formatServicesNames(b.services))}</td>
-              <td><span class="d-badge ${badgeClass}">${esc(b.status)}</span></td>
+              <td><span class="d-badge ${badgeClass}">${esc(badgeLabel)}</span></td>
               <td>
                 <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
                   <a href="${esc(waHref)}" target="_blank" rel="noopener" class="d-btn d-btn-whatsapp d-btn-sm">💬 WhatsApp</a>
@@ -2515,7 +2869,7 @@ html[data-mode="dark"] .sync-pill {
                     <button type="button" class="d-btn d-btn-outline d-btn-sm" data-bk-confirm="${esc(b.id)}">✓ Confirmar</button>
                     <button type="button" class="d-btn d-btn-outline d-btn-sm" data-bk-reschedule="${esc(b.id)}">📅 Reagendar</button>
                     <button type="button" class="d-btn d-btn-outline d-btn-sm" data-bk-complete="${esc(b.id)}">🏆 Completar</button>
-                    <button type="button" class="d-btn d-btn-danger d-btn-sm" data-bk-cancel="${esc(b.id)}">✕</button>
+                    <button type="button" class="d-btn d-btn-danger d-btn-sm" data-bk-cancel="${esc(b.id)}" title="Cancelar cita">✕</button>
                   ` : `<button type="button" class="d-btn d-btn-outline d-btn-sm" data-bk-open-detail="${esc(b.id)}">👁️ Ver</button>`}
                 </div>
               </td>
@@ -2539,6 +2893,15 @@ html[data-mode="dark"] .sync-pill {
     $('#adminBookingModal').classList.add('open');
   }
 
+  function getScheduleForSpecialistDay(specId, wd) {
+    const custom = specId && store.shiftsMap[specId];
+    if (custom && typeof custom === 'object') {
+      return Array.isArray(custom[wd]) ? custom[wd] : [];
+    }
+    const general = store.shiftsMap.all || defaultShiftsByDay;
+    return Array.isArray(general[wd]) ? general[wd] : [];
+  }
+
   function refreshAdminModalAvailableSlots(preferredTime, ignoreBookingId) {
     const dateVal = $('#modalBookingDate').value;
     const specId = $('#modalBookingSpec').value;
@@ -2551,20 +2914,22 @@ html[data-mode="dark"] .sync-pill {
     const dObj = new Date(dateVal + 'T12:00:00');
     const wd = dObj.getDay();
     const spec = store.specialists.find(s => s.id === specId);
-    if (spec && spec.days.length && !spec.days.includes(wd)) {
+    const hasCustom = !!(specId && store.shiftsMap[specId]);
+
+    if (!hasCustom && spec && spec.days.length && !spec.days.includes(wd)) {
       timeSelect.innerHTML = `<option value="">Especialista no labora este día</option>`;
       return;
     }
 
-    const masterSched = store.shiftsMap.all || defaultShiftsByDay;
-    const daySlots = generateSlotsFromShifts(masterSched[wd] || []);
+    const dayShifts = getScheduleForSpecialistDay(specId, wd);
+    const daySlots = generateSlotsFromShifts(dayShifts);
     if (!daySlots.length) {
-      timeSelect.innerHTML = `<option value="">Día cerrado</option>`;
+      timeSelect.innerHTML = `<option value="">Sin turnos disponibles este día</option>`;
       return;
     }
 
     const occupiedTimes = store.bookings
-      .filter(b => b.id !== ignoreBookingId && b.date === dateVal && b.specialistId === specId && !b.status.toLowerCase().includes('cancel'))
+      .filter(b => b.id !== ignoreBookingId && b.date === dateVal && b.specialistId === specId && !isBookingFinishedStatus(b.status))
       .map(b => normalizeTimeStr(b.time));
 
     timeSelect.innerHTML = daySlots.map(t => {
@@ -2589,7 +2954,7 @@ html[data-mode="dark"] .sync-pill {
     $('#modalClientPhone').value = '';
     $('#modalBookingDate').value = localTodayISO();
     $('#modalClientService').innerHTML = store.services.length
-      ? store.services.map(s => `<option value="${esc(s.name)}">${esc(s.name)} ($${s.price})</option>`).join('')
+      ? store.services.map(s => `<option value="${esc(s.name)}">${esc(s.name)} ($${s.price} ${esc(store.config.currency || 'MXN')})</option>`).join('')
       : `<option value="Servicio general">Servicio general</option>`;
     $('#modalBookingSpec').innerHTML = store.specialists.map(sp =>
       `<option value="${esc(sp.id)}">${esc(sp.name)}</option>`
@@ -2599,18 +2964,17 @@ html[data-mode="dark"] .sync-pill {
   }
 
   /* =========================================================
-     MÓDULO CONFIGURACIÓN DE HORARIOS
+     MÓDULO HORARIOS GENERALES DEL NEGOCIO
      ========================================================= */
-  function getActiveSchedule() {
-    const team = store.selectedScheduleTeam || 'all';
-    if (!store.shiftsMap[team]) {
-      store.shiftsMap[team] = JSON.parse(JSON.stringify(store.shiftsMap.all || defaultShiftsByDay));
+  function getGeneralSchedule() {
+    if (!store.shiftsMap.all) {
+      store.shiftsMap.all = JSON.parse(JSON.stringify(defaultShiftsByDay));
     }
-    return store.shiftsMap[team];
+    return store.shiftsMap.all;
   }
 
   function renderSchedulePreviewOnly() {
-    const scheduleByDay = getActiveSchedule();
+    const scheduleByDay = getGeneralSchedule();
     const d = store.selectedScheduleDay;
     const dayShifts = Array.isArray(scheduleByDay[d]) ? scheduleByDay[d] : [];
 
@@ -2651,15 +3015,42 @@ html[data-mode="dark"] .sync-pill {
       : `<span class="slot-mini-pill">Cerrado</span>`;
   }
 
-  function renderScheduleModule() {
-    const sel = $('#scheduleTeamSelect');
-    const curTeam = store.selectedScheduleTeam;
-    sel.innerHTML = `<option value="all">Horario General (Negocio)</option>` +
-      store.specialists.map(sp => `<option value="${esc(sp.id)}">${esc(sp.name)} (${esc(sp.role)})</option>`).join('');
-    sel.value = store.specialists.some(s => s.id === curTeam) ? curTeam : 'all';
-    store.selectedScheduleTeam = sel.value;
+  function buildShiftsEditorMarkup(dayShifts, deleteAttrName) {
+    if (!dayShifts.length) {
+      return `<div class="break-card"><div class="break-main-line">🌙 Sin horario asignado (Día cerrado / descanso)</div></div>`;
+    }
+    let html = '';
+    dayShifts.forEach((sh, idx) => {
+      const safeLabel = (sh && sh.label) || `Turno ${idx + 1}`;
+      const safeStart = normalizeTimeStr((sh && sh.start) || '09:00') || '09:00';
+      const safeEnd   = normalizeTimeStr((sh && sh.end) || '14:00') || '14:00';
+      if (idx > 0) {
+        const prevEnd = normalizeTimeStr((dayShifts[idx - 1] && dayShifts[idx - 1].end) || '14:00') || '14:00';
+        const diff = timeToMinutes(safeStart) - timeToMinutes(prevEnd);
+        if (diff > 0) {
+          html += `
+            <div class="break-card">
+              <div class="break-main-line">Descanso ☕ ${format12h(prevEnd)} — ${format12h(safeStart)}</div>
+              <div class="break-sub-line">Descanso ${(diff / 60).toFixed(diff % 60 ? 1 : 0)} hora(s)</div>
+            </div>`;
+        }
+      }
+      html += `
+        <div class="shift-row" data-shift-idx="${idx}">
+          <input type="text" class="shift-label-input" data-sfield="label" value="${esc(safeLabel)}">
+          <div class="shift-times-group">
+            <label class="time-pill-box">🕒 <input type="time" data-sfield="start" value="${esc(safeStart)}"></label>
+            <span>-</span>
+            <label class="time-pill-box">🕒 <input type="time" data-sfield="end" value="${esc(safeEnd)}"></label>
+            <button type="button" class="icon-trash-btn" ${deleteAttrName}="${idx}" title="Eliminar turno">🗑️</button>
+          </div>
+        </div>`;
+    });
+    return html;
+  }
 
-    const scheduleByDay = getActiveSchedule();
+  function renderScheduleModule() {
+    const scheduleByDay = getGeneralSchedule();
     const d = store.selectedScheduleDay;
     const dayShifts = Array.isArray(scheduleByDay[d]) ? scheduleByDay[d] : [];
 
@@ -2667,43 +3058,10 @@ html[data-mode="dark"] .sync-pill {
     const refDate = new Date(now);
     refDate.setDate(now.getDate() + (d - now.getDay()));
     $('#currentDayHeading').textContent = `${DAY_NAMES_FULL[d]} - ${refDate.getDate()} ${MONTHS_SHORT[refDate.getMonth()]}`;
-    $('#currentDaySub').textContent = dayShifts.length ? 'Horario estándar' : 'Día cerrado (sin turnos)';
+    $('#currentDaySub').textContent = dayShifts.length ? 'Horario estándar del negocio' : 'Día cerrado (sin turnos)';
     $('#btnToggleDayClosed').textContent = dayShifts.length ? 'Marcar cerrado' : 'Abrir horario';
 
-    const container = $('#dayShiftsContainer');
-    if (!dayShifts.length) {
-      container.innerHTML = `<div class="break-card"><div class="break-main-line">🌙 Sin horario asignado (Cerrado en reservas)</div></div>`;
-    } else {
-      let html = '';
-      dayShifts.forEach((sh, idx) => {
-        const safeLabel = (sh && sh.label) || `Turno ${idx + 1}`;
-        const safeStart = normalizeTimeStr((sh && sh.start) || '09:00') || '09:00';
-        const safeEnd   = normalizeTimeStr((sh && sh.end) || '14:00') || '14:00';
-        if (idx > 0) {
-          const prevEnd = normalizeTimeStr((dayShifts[idx - 1] && dayShifts[idx - 1].end) || '14:00') || '14:00';
-          const diff = timeToMinutes(safeStart) - timeToMinutes(prevEnd);
-          if (diff > 0) {
-            html += `
-              <div class="break-card">
-                <div class="break-main-line">Descanso ☕ ${format12h(prevEnd)} — ${format12h(safeStart)}</div>
-                <div class="break-sub-line">Descanso ${(diff / 60).toFixed(diff % 60 ? 1 : 0)} hora(s)</div>
-              </div>`;
-          }
-        }
-        html += `
-          <div class="shift-row" data-shift-idx="${idx}">
-            <input type="text" class="shift-label-input" data-sfield="label" value="${esc(safeLabel)}">
-            <div class="shift-times-group">
-              <label class="time-pill-box">🕒 <input type="time" data-sfield="start" value="${esc(safeStart)}"></label>
-              <span>-</span>
-              <label class="time-pill-box">🕒 <input type="time" data-sfield="end" value="${esc(safeEnd)}"></label>
-              <button type="button" class="icon-trash-btn" data-del-shift="${idx}" title="Eliminar turno">🗑️</button>
-            </div>
-          </div>`;
-      });
-      container.innerHTML = html;
-    }
-
+    $('#dayShiftsContainer').innerHTML = buildShiftsEditorMarkup(dayShifts, 'data-del-shift');
     renderSchedulePreviewOnly();
   }
 
@@ -2721,6 +3079,28 @@ html[data-mode="dark"] .sync-pill {
     `).join('');
   }
 
+  /* =========================================================
+     ESPECIALISTAS (CON CONFIGURADOR DE HORARIO POR ESPECIALISTA)
+     ========================================================= */
+  function getSpecialistScheduleSummary(sp, spKey) {
+    const custom = store.shiftsMap[spKey];
+    if (custom && typeof custom === 'object') {
+      const activeDays = [1,2,3,4,5,6,0].filter(d => Array.isArray(custom[d]) && custom[d].length > 0);
+      return {
+        isCustom: true,
+        text: activeDays.length
+          ? `Horario personalizado · ${activeDays.map(d => DAY_SHORT_ES[d]).join(', ')}`
+          : 'Horario personalizado · Sin turnos asignados'
+      };
+    }
+    return {
+      isCustom: false,
+      text: sp.days.length
+        ? `Horario general · ${sp.days.map(d => DAY_SHORT_ES[d]).join(', ')}`
+        : 'Sin días laborales activos'
+    };
+  }
+
   function renderSpecialistsAdmin() {
     const container = $('#specialistsAdminList');
     if (!store.specialists.length) {
@@ -2728,14 +3108,28 @@ html[data-mode="dark"] .sync-pill {
       return;
     }
 
-    container.innerHTML = store.specialists.map((sp, i) => `
-      <div class="d-card" data-sp-card="${i}">
+    container.innerHTML = store.specialists.map((sp, i) => {
+      const spKey = getSpecialistKey(sp, i);
+      if (!store.specialistUiState[spKey]) {
+        store.specialistUiState[spKey] = { expanded: false, selectedDay: 1 };
+      }
+      const uiState = store.specialistUiState[spKey];
+      const hasCustom = !!(store.shiftsMap[spKey] && typeof store.shiftsMap[spKey] === 'object');
+      const summary = getSpecialistScheduleSummary(sp, spKey);
+      const selDay = uiState.selectedDay;
+      const customSched = hasCustom ? store.shiftsMap[spKey] : null;
+      const dayShifts = hasCustom && Array.isArray(customSched[selDay]) ? customSched[selDay] : [];
+      const daySlots = hasCustom ? generateSlotsFromShifts(dayShifts) : [];
+
+      return `
+      <div class="d-card" data-sp-card="${i}" data-sp-key="${esc(spKey)}">
         <div class="d-grid-2">
           <label class="d-field"><span>Nombre</span><input type="text" data-sp-field="name" value="${esc(sp.name)}"></label>
           <label class="d-field"><span>Rol / Especialidad</span><input type="text" data-sp-field="role" value="${esc(sp.role)}"></label>
         </div>
-        <div class="d-field">
-          <span>Días laborales (0=Dom … 6=Sáb)</span>
+
+        <div class="d-field" ${hasCustom ? 'style="opacity:0.65;"' : ''}>
+          <span>Días laborales ${hasCustom ? '(controlados por su horario personalizado abajo)' : '(0=Dom … 6=Sáb)'}</span>
           <div class="day-check-pills">
             ${[1,2,3,4,5,6,0].map(d => `
               <button type="button" class="day-check-pill ${sp.days.includes(d) ? 'active' : ''}" data-sp-day="${d}">
@@ -2744,18 +3138,106 @@ html[data-mode="dark"] .sync-pill {
             `).join('')}
           </div>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);">
-          <small style="font-family:var(--font-mono);color:var(--ash);">ID: ${esc(sp.id || 'Nuevo')}</small>
+
+        <!-- Panel de horario propio dentro del especialista -->
+        <div class="sp-schedule-panel">
+          <div class="sp-schedule-bar">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <strong style="font-family:var(--font-display);font-size:14.5px;color:var(--ink-display);">🕒 Horario de ${esc(sp.name || 'Especialista')}</strong>
+              <span class="sp-schedule-tag ${summary.isCustom ? '' : 'general'}">${esc(summary.text)}</span>
+            </div>
+            <button type="button" class="d-btn d-btn-outline d-btn-sm" data-sp-toggle-sched="${i}">
+              ${uiState.expanded ? '▲ Ocultar horario' : '🕒 Configurar horario'}
+            </button>
+          </div>
+
+          ${uiState.expanded ? `
+            <div class="sp-schedule-editor-body">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+                <div>
+                  <strong style="display:block;font-size:13.5px;color:var(--ink-display);">Usar horario personalizado para este especialista</strong>
+                  <span style="font-size:12.5px;color:var(--slate);">Si está desactivado, usará automáticamente el Horario General del Negocio en sus días activos.</span>
+                </div>
+                <label class="switch-label">
+                  <span>${hasCustom ? 'Personalizado' : 'General'}</span>
+                  <input type="checkbox" class="hidden" data-sp-custom-toggle="${i}" ${hasCustom ? 'checked' : ''}>
+                  <span class="toggle-switch"></span>
+                </label>
+              </div>
+
+              ${hasCustom ? `
+                <div class="day-tabs-row" style="margin-bottom:14px;">
+                  ${[1,2,3,4,5,6,0].map(d => {
+                    const isOff = !(customSched[d] || []).length;
+                    return `<button type="button" class="day-tab-btn ${selDay === d ? 'active' : ''} ${isOff ? 'is-off-day' : ''}" data-sp-sched-day="${d}">${DAY_SHORT_ES[d]}</button>`;
+                  }).join('')}
+                </div>
+
+                <div class="day-editor-head" style="margin-bottom:12px;">
+                  <div>
+                    <h4 class="day-editor-title" style="font-size:16px;">${DAY_NAMES_FULL[selDay]}</h4>
+                    <p class="day-editor-sub">${dayShifts.length ? `${daySlots.length} horario(s) de cita generados` : 'Día de descanso'}</p>
+                  </div>
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <button type="button" class="d-btn d-btn-outline d-btn-sm" data-sp-copy-weekdays="${i}">Copiar a Lun–Vie</button>
+                    <button type="button" class="d-btn d-btn-outline d-btn-sm" data-sp-toggle-day-closed="${i}">
+                      ${dayShifts.length ? 'Marcar descanso' : 'Abrir día'}
+                    </button>
+                  </div>
+                </div>
+
+                <div class="shifts-container" data-sp-shifts-box="${i}">
+                  ${buildShiftsEditorMarkup(dayShifts, 'data-sp-del-shift')}
+                </div>
+
+                <button type="button" class="btn-add-shift-dashed" data-sp-add-shift="${i}">＋ Agregar turno a ${DAY_NAMES_FULL[selDay]}</button>
+
+                <div class="preview-pills-summary" style="margin-top:14px;margin-bottom:0;">
+                  ${daySlots.length
+                    ? daySlots.map(t => `<span class="slot-mini-pill">${esc(t)}</span>`).join('')
+                    : `<span class="slot-mini-pill">Sin citas este día</span>`}
+                </div>
+              ` : `
+                <div class="tip-box">
+                  <span>ℹ️</span>
+                  <div>Activa <strong>Usar horario personalizado</strong> si <strong>${esc(sp.name || 'este especialista')}</strong> entra o sale en horarios distintos al horario general del negocio.</div>
+                </div>
+              `}
+            </div>
+          ` : ''}
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid var(--border);flex-wrap:wrap;gap:10px;">
+          <small style="font-family:var(--font-mono);color:var(--ash);">ID: ${esc(sp.id || 'Nuevo (pendiente de guardar)')}</small>
           <div style="display:flex;gap:8px;">
             <button type="button" class="d-btn d-btn-danger d-btn-sm" data-sp-delete="${i}">Eliminar</button>
             <button type="button" class="d-btn d-btn-primary d-btn-sm" data-sp-save="${i}">Guardar en Sheets</button>
           </div>
         </div>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
+  }
+
+  /* =========================================================
+     SERVICIOS (CON MONEDA DINÁMICA)
+     ========================================================= */
+  function syncCurrencyDropdown() {
+    const sel = $('#srvCurrencySelect');
+    if (!sel) return;
+    const cur = String(store.config.currency || 'MXN').toUpperCase();
+    const exists = Array.from(sel.options).some(opt => opt.value === cur);
+    if (!exists && cur) {
+      const opt = document.createElement('option');
+      opt.value = cur;
+      opt.textContent = cur;
+      sel.appendChild(opt);
+    }
+    sel.value = cur || 'MXN';
   }
 
   function renderServicesAdmin() {
+    syncCurrencyDropdown();
+    const currency = esc(store.config.currency || 'MXN');
     const container = $('#servicesAdminList');
     if (!store.services.length) {
       container.innerHTML = `<div class="d-card" style="color:var(--slate);">No hay servicios en la hoja "Servicios". Añade el primero arriba.</div>`;
@@ -2767,7 +3249,7 @@ html[data-mode="dark"] .sync-pill {
         <div class="d-grid-3">
           <label class="d-field"><span>Nombre del Servicio</span><input type="text" data-srv-field="name" value="${esc(s.name)}"></label>
           <label class="d-field"><span>Duración (min)</span><input type="number" data-srv-field="duration" value="${Number(s.duration) || 60}"></label>
-          <label class="d-field"><span>Precio ($)</span><input type="number" data-srv-field="price" value="${Number(s.price) || 0}"></label>
+          <label class="d-field"><span>Precio (${currency})</span><input type="number" data-srv-field="price" value="${Number(s.price) || 0}"></label>
         </div>
         <label class="d-field"><span>Descripción</span><input type="text" data-srv-field="desc" value="${esc(s.desc)}"></label>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
@@ -2799,7 +3281,7 @@ html[data-mode="dark"] .sync-pill {
 
     const payload = {
       businessName: $('#cfgBusinessName').value.trim(),
-      currency: $('#cfgCurrency').value.trim() || 'MXN',
+      currency: store.config.currency || 'MXN',
       phone: $('#cfgPhone').value.trim(),
       whatsapp: $('#cfgWhatsapp').value.trim(),
       email: $('#cfgEmail').value.trim(),
@@ -2831,7 +3313,7 @@ html[data-mode="dark"] .sync-pill {
 
   function renderAllPanels() {
     try {
-      const bName = store.config.businessName || 'Aevi Wellness';
+      const bName = store.config.businessName || 'Vagabundo Barbería';
       $('#dashBrandName').textContent = bName;
       if (store.config.logoUrl) {
         $('#dashBrandLogo').innerHTML = `<img src="${esc(store.config.logoUrl)}" alt="">`;
@@ -2848,7 +3330,6 @@ html[data-mode="dark"] .sync-pill {
 
     try {
       $('#cfgBusinessName').value = store.config.businessName || '';
-      $('#cfgCurrency').value = store.config.currency || 'MXN';
       $('#cfgPhone').value = store.config.phone || '';
       $('#cfgWhatsapp').value = store.config.whatsapp || '';
       $('#cfgEmail').value = store.config.email || '';
@@ -2869,7 +3350,7 @@ html[data-mode="dark"] .sync-pill {
   }
 
   /* =========================================================
-     EVENTOS DE NAVEGACIÓN Y ACCIONES
+     EVENTOS DE NAVEGACIÓN Y ACCIONES GENERALES
      ========================================================= */
   function activateDashboardPanel(target) {
     if (!target) return;
@@ -2907,11 +3388,6 @@ html[data-mode="dark"] .sync-pill {
     $('#adminBackdrop').classList.remove('show');
   });
 
-  $('#btnQuickThemeToggle').addEventListener('click', () => {
-    const cur = (document.body.getAttribute('data-mode') || document.documentElement.getAttribute('data-mode')) === 'dark' ? 'light' : 'dark';
-    applyColorMode(cur, true);
-  });
-
   $('#chkDarkModeToggle').addEventListener('change', (e) => {
     applyColorMode(e.target.checked ? 'dark' : 'light', true);
   });
@@ -2928,6 +3404,14 @@ html[data-mode="dark"] .sync-pill {
 
   $('#tabActiveBookings').addEventListener('click', () => { store.bookingsTab = 'active'; renderBookingsTable(); });
   $('#tabHistoryBookings').addEventListener('click', () => { store.bookingsTab = 'history'; renderBookingsTable(); });
+
+  $('#activePeriodPills').addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-period]');
+    if (!btn) return;
+    store.activePeriod = btn.dataset.period;
+    renderBookingsTable();
+  });
+
   $('#adminCitaSearch').addEventListener('input', renderBookingsTable);
   $('#adminCitaStatusFilter').addEventListener('change', renderBookingsTable);
 
@@ -2949,6 +3433,10 @@ html[data-mode="dark"] .sync-pill {
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+      if ($('#confirmActionModal').classList.contains('open')) {
+        closeConfirmModal(false);
+        return;
+      }
       $('#bookingDetailModal').classList.remove('open');
       $('#adminBookingModal').classList.remove('open');
     }
@@ -3010,12 +3498,25 @@ html[data-mode="dark"] .sync-pill {
   });
 
   /* =========================================================
-     ACCIONES DEL MODAL DE DETALLE Y TABLA DE CITAS
+     ACCIONES DE CITAS (CON CONFIRMACIÓN AL CANCELAR)
      ========================================================= */
   async function changeBookingState(bookingId, newStatus) {
+    const bk = store.bookings.find(b => b.id === bookingId);
+    if (newStatus === 'Cancelada') {
+      const ok = await openConfirmModal({
+        title: '¿Cancelar esta cita?',
+        message: bk
+          ? `Se cancelará la cita de ${bk.name || 'este cliente'} del ${bk.date} a las ${bk.time} y se moverá al historial de reservas.`
+          : 'Esta cita se cancelará y se moverá al historial de reservas.',
+        confirmText: 'Sí, cancelar cita',
+        cancelText: 'No, mantener cita'
+      });
+      if (!ok) return;
+    }
+
     try {
       if (newStatus === 'Completada') {
-        await gasPost('moveToHistory', { id: bookingId, bookingId });
+        await gasPost('moveToHistory', { id: bookingId, bookingId, status: 'Completada' });
         showToast('Cita completada y archivada en Historial ✓');
       } else if (newStatus === 'Cancelada') {
         await gasPost('cancelBooking', { id: bookingId, bookingId, reason: 'Cancelada desde panel admin' });
@@ -3085,13 +3586,8 @@ html[data-mode="dark"] .sync-pill {
   });
 
   /* =========================================================
-     MÓDULO HORARIOS
+     MÓDULO HORARIOS GENERALES
      ========================================================= */
-  $('#scheduleTeamSelect').addEventListener('change', (e) => {
-    store.selectedScheduleTeam = e.target.value;
-    renderScheduleModule();
-  });
-
   $('#scheduleDayTabs').addEventListener('click', (e) => {
     const btn = e.target.closest('[data-day]');
     if (!btn) return;
@@ -3099,18 +3595,28 @@ html[data-mode="dark"] .sync-pill {
     renderScheduleModule();
   });
 
-  $('#btnToggleDayClosed').addEventListener('click', () => {
-    const schedule = getActiveSchedule();
+  $('#btnToggleDayClosed').addEventListener('click', async () => {
+    const schedule = getGeneralSchedule();
     const d = store.selectedScheduleDay;
-    schedule[d] = (schedule[d] || []).length ? [] : [
-      { label: 'Turno Mañana', start: '09:00', end: '14:00' },
-      { label: 'Turno Tarde', start: '15:00', end: '19:00' }
-    ];
+    if ((schedule[d] || []).length) {
+      const ok = await openConfirmModal({
+        title: `¿Cerrar ${DAY_NAMES_FULL[d]}?`,
+        message: `Se quitarán todos los turnos generales configurados para ${DAY_NAMES_FULL[d]}.`,
+        confirmText: 'Sí, marcar cerrado'
+      });
+      if (!ok) return;
+      schedule[d] = [];
+    } else {
+      schedule[d] = [
+        { label: 'Turno Mañana', start: '09:00', end: '14:00' },
+        { label: 'Turno Tarde', start: '15:00', end: '19:00' }
+      ];
+    }
     renderScheduleModule();
   });
 
   $('#btnAddShift').addEventListener('click', () => {
-    const schedule = getActiveSchedule();
+    const schedule = getGeneralSchedule();
     const d = store.selectedScheduleDay;
     if (!schedule[d]) schedule[d] = [];
     const last = schedule[d][schedule[d].length - 1];
@@ -3128,7 +3634,7 @@ html[data-mode="dark"] .sync-pill {
     if (!row) return;
     const idx = Number(row.dataset.shiftIdx);
     const field = e.target.dataset.sfield;
-    const schedule = getActiveSchedule();
+    const schedule = getGeneralSchedule();
     const d = store.selectedScheduleDay;
     if (schedule[d] && schedule[d][idx] && field) {
       schedule[d][idx][field] = e.target.value;
@@ -3140,24 +3646,41 @@ html[data-mode="dark"] .sync-pill {
     if (e.target.type === 'time') renderScheduleModule();
   });
 
-  $('#dayShiftsContainer').addEventListener('click', (e) => {
+  $('#dayShiftsContainer').addEventListener('click', async (e) => {
     const delBtn = e.target.closest('[data-del-shift]');
     if (!delBtn) return;
     const idx = Number(delBtn.dataset.delShift);
-    const schedule = getActiveSchedule();
+    const schedule = getGeneralSchedule();
     const d = store.selectedScheduleDay;
+    const shiftName = (schedule[d] && schedule[d][idx] && schedule[d][idx].label) || 'este turno';
+
+    const ok = await openConfirmModal({
+      title: '¿Eliminar turno?',
+      message: `Se eliminará "${shiftName}" del horario general de ${DAY_NAMES_FULL[d]}.`,
+      confirmText: 'Sí, eliminar turno'
+    });
+    if (!ok) return;
+
     if (schedule[d]) {
       schedule[d].splice(idx, 1);
       renderScheduleModule();
     }
   });
 
-  $('#btnResetScheduleChanges').addEventListener('click', () => syncFromGoogleSheets(false));
+  $('#btnResetScheduleChanges').addEventListener('click', async () => {
+    const ok = await openConfirmModal({
+      title: '¿Restablecer horarios?',
+      message: 'Se descartarán los cambios sin guardar y se recargarán los horarios desde Google Sheets.',
+      confirmText: 'Sí, restablecer'
+    });
+    if (!ok) return;
+    syncFromGoogleSheets(false);
+  });
 
   $('#btnSaveScheduleChanges').addEventListener('click', async () => {
     const btn = $('#btnSaveScheduleChanges');
     const orig = btn.textContent;
-    const sched = getActiveSchedule();
+    const sched = getGeneralSchedule();
     const d = store.selectedScheduleDay;
 
     if ($('#chkApplyWorkdays').checked && d >= 1 && d <= 5) {
@@ -3170,26 +3693,12 @@ html[data-mode="dark"] .sync-pill {
     btn.textContent = 'Guardando…';
     try {
       const configPayload = { shifts_json: JSON.stringify(store.shiftsMap) };
-      const masterSched = store.shiftsMap.all || sched;
       for (let i = 0; i <= 6; i++) {
-        configPayload['schedule_' + i] = generateSlotsFromShifts(masterSched[i] || []).join(',');
+        configPayload['schedule_' + i] = generateSlotsFromShifts(sched[i] || []).join(',');
       }
-
-      if (store.selectedScheduleTeam !== 'all') {
-        const sp = store.specialists.find(s => s.id === store.selectedScheduleTeam);
-        if (sp) {
-          const activeDays = [0,1,2,3,4,5,6].filter(dayIdx => (sched[dayIdx] || []).length > 0);
-          sp.days = activeDays;
-          await gasPost('saveSpecialist', {
-            specialist: { id: sp.id, nombre: sp.name, rol: sp.role, dias: activeDays.join(',') },
-            specialistId: sp.id, name: sp.name, role: sp.role, days: activeDays.join(',')
-          });
-        }
-      }
-
       await gasPost('updateConfig', { config: configPayload });
       renderScheduleModule();
-      showToast('Horarios guardados en Sheets ✓');
+      showToast('Horario general guardado en Sheets ✓');
     } catch (err) {
       showToast('Error al guardar: ' + err.message);
     } finally {
@@ -3201,14 +3710,14 @@ html[data-mode="dark"] .sync-pill {
   $('#btnNewSchedulePreset').addEventListener('click', () => {
     store.shiftsMap.all = JSON.parse(JSON.stringify(defaultShiftsByDay));
     renderScheduleModule();
-    showToast('Plantilla aplicada. Pulsa "Guardar cambios" para subir a Sheets.');
+    showToast('Plantilla aplicada. Pulsa "Guardar Horario General" para subir a Sheets.');
   });
 
   $('#btnImportExportSchedule').addEventListener('click', () => {
     const blob = new Blob([JSON.stringify(store.shiftsMap, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'horarios-aevi.json';
+    a.download = 'horarios-barberia.json';
     a.click();
     URL.revokeObjectURL(a.href);
     showToast('Horario exportado ✓');
@@ -3240,7 +3749,19 @@ html[data-mode="dark"] .sync-pill {
   $('#exceptionsListContainer').addEventListener('click', async (e) => {
     const delBtn = e.target.closest('[data-exc-del]');
     if (!delBtn) return;
-    store.exceptions.splice(Number(delBtn.dataset.excDel), 1);
+    const idx = Number(delBtn.dataset.excDel);
+    const ex = store.exceptions[idx];
+
+    const ok = await openConfirmModal({
+      title: '¿Quitar día festivo / excepción?',
+      message: ex
+        ? `Se eliminará el bloqueo del ${ex.date} (${ex.reason || 'Cerrado'}) y esa fecha volverá a aceptar reservas.`
+        : 'Se eliminará esta fecha bloqueada.',
+      confirmText: 'Sí, quitar'
+    });
+    if (!ok) return;
+
+    store.exceptions.splice(idx, 1);
     renderExceptionsAdmin();
     renderSchedulePreviewOnly();
     try {
@@ -3252,10 +3773,16 @@ html[data-mode="dark"] .sync-pill {
   });
 
   /* =========================================================
-     ESPECIALISTAS
+     ESPECIALISTAS (CRUD + HORARIO PERSONALIZADO POR ESPECIALISTA)
      ========================================================= */
+  function syncSpecialistDaysFromCustomSchedule(sp, spKey) {
+    const custom = store.shiftsMap[spKey];
+    if (!custom) return;
+    sp.days = [0,1,2,3,4,5,6].filter(dayIdx => Array.isArray(custom[dayIdx]) && custom[dayIdx].length > 0);
+  }
+
   $('#btnAddSpecialist').addEventListener('click', () => {
-    store.specialists.unshift({ id: '', name: 'Nuevo Especialista', role: 'Especialista', days: [1,2,3,4,5] });
+    store.specialists.unshift({ id: '', name: 'Nuevo Especialista', role: 'Barbero', days: [1,2,3,4,5] });
     renderSpecialistsAdmin();
   });
 
@@ -3263,8 +3790,56 @@ html[data-mode="dark"] .sync-pill {
     const card = e.target.closest('[data-sp-card]');
     if (!card) return;
     const idx = Number(card.dataset.spCard);
+    const sp = store.specialists[idx];
+    if (!sp) return;
+
     const field = e.target.dataset.spField;
-    if (field && store.specialists[idx]) store.specialists[idx][field] = e.target.value;
+    if (field) {
+      sp[field] = e.target.value;
+      return;
+    }
+
+    const shiftRow = e.target.closest('[data-shift-idx]');
+    const sfield = e.target.dataset.sfield;
+    if (shiftRow && sfield) {
+      const spKey = card.dataset.spKey;
+      const uiState = store.specialistUiState[spKey] || { selectedDay: 1 };
+      const sched = store.shiftsMap[spKey];
+      const sIdx = Number(shiftRow.dataset.shiftIdx);
+      if (sched && sched[uiState.selectedDay] && sched[uiState.selectedDay][sIdx]) {
+        sched[uiState.selectedDay][sIdx][sfield] = e.target.value;
+      }
+    }
+  });
+
+  $('#specialistsAdminList').addEventListener('change', (e) => {
+    const card = e.target.closest('[data-sp-card]');
+    if (!card) return;
+    const idx = Number(card.dataset.spCard);
+    const sp = store.specialists[idx];
+    const spKey = card.dataset.spKey;
+    if (!sp) return;
+
+    const customToggle = e.target.closest('[data-sp-custom-toggle]');
+    if (customToggle) {
+      if (customToggle.checked) {
+        // Clona el horario general respetando los días activos actuales del especialista
+        const base = JSON.parse(JSON.stringify(getGeneralSchedule()));
+        for (let d = 0; d <= 6; d++) {
+          if (!sp.days.includes(d)) base[d] = [];
+        }
+        store.shiftsMap[spKey] = base;
+        syncSpecialistDaysFromCustomSchedule(sp, spKey);
+      } else {
+        delete store.shiftsMap[spKey];
+      }
+      renderSpecialistsAdmin();
+      return;
+    }
+
+    if (e.target.type === 'time' && e.target.closest('[data-sp-shifts-box]')) {
+      renderSpecialistsAdmin();
+    }
   });
 
   $('#specialistsAdminList').addEventListener('click', async (e) => {
@@ -3272,19 +3847,131 @@ html[data-mode="dark"] .sync-pill {
     if (!card) return;
     const idx = Number(card.dataset.spCard);
     const sp = store.specialists[idx];
+    const spKey = card.dataset.spKey;
     if (!sp) return;
 
-    const dayBtn  = e.target.closest('[data-sp-day]');
-    const delBtn  = e.target.closest('[data-sp-delete]');
+    const uiState = store.specialistUiState[spKey] || (store.specialistUiState[spKey] = { expanded: false, selectedDay: 1 });
+
+    const dayBtn = e.target.closest('[data-sp-day]');
+    const toggleSchedBtn = e.target.closest('[data-sp-toggle-sched]');
+    const schedDayBtn = e.target.closest('[data-sp-sched-day]');
+    const addShiftBtn = e.target.closest('[data-sp-add-shift]');
+    const delShiftBtn = e.target.closest('[data-sp-del-shift]');
+    const toggleDayClosedBtn = e.target.closest('[data-sp-toggle-day-closed]');
+    const copyWeekdaysBtn = e.target.closest('[data-sp-copy-weekdays]');
+    const delBtn = e.target.closest('[data-sp-delete]');
     const saveBtn = e.target.closest('[data-sp-save]');
 
     if (dayBtn) {
       e.preventDefault();
       const day = Number(dayBtn.dataset.spDay);
-      sp.days = sp.days.includes(day) ? sp.days.filter(d => d !== day) : [...sp.days, day].sort((a, b) => a - b);
-      dayBtn.classList.toggle('active');
-    } else if (delBtn) {
+      if (store.shiftsMap[spKey]) {
+        if ((store.shiftsMap[spKey][day] || []).length) {
+          store.shiftsMap[spKey][day] = [];
+        } else {
+          store.shiftsMap[spKey][day] = JSON.parse(JSON.stringify((getGeneralSchedule()[day] || []).length ? getGeneralSchedule()[day] : [{ label: 'Turno Mañana', start: '09:00', end: '14:00' }]));
+        }
+        syncSpecialistDaysFromCustomSchedule(sp, spKey);
+        renderSpecialistsAdmin();
+      } else {
+        sp.days = sp.days.includes(day) ? sp.days.filter(d => d !== day) : [...sp.days, day].sort((a, b) => a - b);
+        renderSpecialistsAdmin();
+      }
+      return;
+    }
+
+    if (toggleSchedBtn) {
+      uiState.expanded = !uiState.expanded;
+      renderSpecialistsAdmin();
+      return;
+    }
+
+    if (schedDayBtn) {
+      uiState.selectedDay = Number(schedDayBtn.dataset.spSchedDay);
+      renderSpecialistsAdmin();
+      return;
+    }
+
+    if (addShiftBtn) {
+      const sched = store.shiftsMap[spKey];
+      const d = uiState.selectedDay;
+      if (!sched[d]) sched[d] = [];
+      const last = sched[d][sched[d].length - 1];
+      const startMin = last ? Math.min(1380, timeToMinutes(last.end) + 60) : timeToMinutes('09:00');
+      sched[d].push({
+        label: sched[d].length === 0 ? 'Turno Mañana' : (sched[d].length === 1 ? 'Turno Tarde' : 'Turno ' + (sched[d].length + 1)),
+        start: minutesToTime(startMin),
+        end: minutesToTime(Math.min(1440, startMin + 240))
+      });
+      syncSpecialistDaysFromCustomSchedule(sp, spKey);
+      renderSpecialistsAdmin();
+      return;
+    }
+
+    if (delShiftBtn) {
+      const sIdx = Number(delShiftBtn.dataset.spDelShift);
+      const sched = store.shiftsMap[spKey];
+      const d = uiState.selectedDay;
+      const shiftLabel = (sched && sched[d] && sched[d][sIdx] && sched[d][sIdx].label) || 'este turno';
+
+      const ok = await openConfirmModal({
+        title: '¿Eliminar turno del especialista?',
+        message: `Se eliminará "${shiftLabel}" de ${sp.name || 'este especialista'} el día ${DAY_NAMES_FULL[d]}.`,
+        confirmText: 'Sí, eliminar turno'
+      });
+      if (!ok) return;
+
+      if (sched && sched[d]) {
+        sched[d].splice(sIdx, 1);
+        syncSpecialistDaysFromCustomSchedule(sp, spKey);
+        renderSpecialistsAdmin();
+      }
+      return;
+    }
+
+    if (toggleDayClosedBtn) {
+      const sched = store.shiftsMap[spKey];
+      const d = uiState.selectedDay;
+      if ((sched[d] || []).length) {
+        const ok = await openConfirmModal({
+          title: `¿Marcar descanso el ${DAY_NAMES_FULL[d]}?`,
+          message: `Se quitarán los turnos de ${sp.name || 'este especialista'} para el día ${DAY_NAMES_FULL[d]}.`,
+          confirmText: 'Sí, marcar descanso'
+        });
+        if (!ok) return;
+        sched[d] = [];
+      } else {
+        sched[d] = [
+          { label: 'Turno Mañana', start: '09:00', end: '14:00' },
+          { label: 'Turno Tarde', start: '15:00', end: '19:00' }
+        ];
+      }
+      syncSpecialistDaysFromCustomSchedule(sp, spKey);
+      renderSpecialistsAdmin();
+      return;
+    }
+
+    if (copyWeekdaysBtn) {
+      const sched = store.shiftsMap[spKey];
+      const d = uiState.selectedDay;
+      const source = JSON.parse(JSON.stringify(sched[d] || []));
+      [1,2,3,4,5].forEach(wd => { sched[wd] = JSON.parse(JSON.stringify(source)); });
+      syncSpecialistDaysFromCustomSchedule(sp, spKey);
+      renderSpecialistsAdmin();
+      showToast(`Horario de ${DAY_NAMES_FULL[d]} copiado a Lun–Vie. Pulsa "Guardar en Sheets".`);
+      return;
+    }
+
+    if (delBtn) {
+      const ok = await openConfirmModal({
+        title: '¿Eliminar especialista?',
+        message: `Se eliminará permanentemente a "${sp.name || 'Nuevo Especialista'}" y su horario personalizado.`,
+        confirmText: 'Sí, eliminar'
+      });
+      if (!ok) return;
+
       if (!sp.id) {
+        delete store.shiftsMap[spKey];
         store.specialists.splice(idx, 1);
         renderSpecialistsAdmin();
         return;
@@ -3292,6 +3979,10 @@ html[data-mode="dark"] .sync-pill {
       delBtn.disabled = true;
       try {
         await gasPost('deleteSpecialist', { id: sp.id, specialistId: sp.id });
+        if (store.shiftsMap[sp.id]) {
+          delete store.shiftsMap[sp.id];
+          await gasPost('updateConfig', { config: { shifts_json: JSON.stringify(store.shiftsMap) } }).catch(() => {});
+        }
         store.specialists.splice(idx, 1);
         renderAllPanels();
         showToast('Especialista eliminado ✓');
@@ -3299,9 +3990,20 @@ html[data-mode="dark"] .sync-pill {
         showToast('Error: ' + err.message);
         delBtn.disabled = false;
       }
-    } else if (saveBtn) {
+      return;
+    }
+
+    if (saveBtn) {
       sp.name = card.querySelector('[data-sp-field="name"]').value.trim();
       sp.role = card.querySelector('[data-sp-field="role"]').value.trim();
+      if (!sp.name) {
+        showToast('El nombre del especialista es obligatorio');
+        return;
+      }
+      if (store.shiftsMap[spKey]) {
+        syncSpecialistDaysFromCustomSchedule(sp, spKey);
+      }
+
       saveBtn.disabled = true;
       saveBtn.textContent = 'Guardando…';
       try {
@@ -3309,8 +4011,15 @@ html[data-mode="dark"] .sync-pill {
           specialist: { id: sp.id, nombre: sp.name, rol: sp.role, dias: sp.days.join(',') },
           specialistId: sp.id, name: sp.name, role: sp.role, days: sp.days.join(',')
         });
-        if (res && res.id) sp.id = res.id;
-        showToast('Especialista guardado ✓');
+        const newId = (res && res.id) ? String(res.id) : sp.id;
+        if (newId && spKey !== newId && store.shiftsMap[spKey]) {
+          store.shiftsMap[newId] = store.shiftsMap[spKey];
+          delete store.shiftsMap[spKey];
+        }
+        if (newId) sp.id = newId;
+
+        await gasPost('updateConfig', { config: { shifts_json: JSON.stringify(store.shiftsMap) } });
+        showToast('Especialista y horario guardados en Sheets ✓');
         await syncFromGoogleSheets(true);
       } catch (err) {
         showToast('Error: ' + err.message);
@@ -3322,10 +4031,23 @@ html[data-mode="dark"] .sync-pill {
   });
 
   /* =========================================================
-     SERVICIOS
+     SERVICIOS Y SELECTOR DE MONEDA
      ========================================================= */
+  $('#srvCurrencySelect').addEventListener('change', async (e) => {
+    const newCurrency = e.target.value || 'MXN';
+    store.config.currency = newCurrency;
+    renderServicesAdmin();
+    renderResumenAndBookings();
+    try {
+      await gasPost('updateConfig', { config: { currency: newCurrency } });
+      showToast(`Moneda actualizada a ${newCurrency} ✓`);
+    } catch (err) {
+      showToast('Error al guardar moneda: ' + err.message);
+    }
+  });
+
   $('#btnAddService').addEventListener('click', () => {
-    store.services.unshift({ id: '', name: 'Nuevo Servicio', desc: '', duration: 60, price: 900 });
+    store.services.unshift({ id: '', name: 'Nuevo Servicio', desc: '', duration: 60, price: 350 });
     renderServicesAdmin();
   });
 
@@ -3351,6 +4073,13 @@ html[data-mode="dark"] .sync-pill {
     const saveBtn = e.target.closest('[data-srv-save]');
 
     if (delBtn) {
+      const ok = await openConfirmModal({
+        title: '¿Eliminar servicio?',
+        message: `Se eliminará "${s.name || 'este servicio'}" del catálogo de servicios.`,
+        confirmText: 'Sí, eliminar servicio'
+      });
+      if (!ok) return;
+
       if (!s.id) {
         store.services.splice(idx, 1);
         renderServicesAdmin();
@@ -3392,7 +4121,7 @@ html[data-mode="dark"] .sync-pill {
   });
 
   /* =========================================================
-     NEGOCIO / MAPA / PLANTILLA WHATSAPP
+     NEGOCIO / MAPA / PLANTILLA WHATSAPP / CONSOLA EN AJUSTES
      ========================================================= */
   $('#btnSaveBusinessConfig').addEventListener('click', (e) => saveBusinessAndSocialConfig(e.currentTarget));
   $('#btnSaveBusinessConfigTop').addEventListener('click', (e) => saveBusinessAndSocialConfig(e.currentTarget));
@@ -3416,31 +4145,35 @@ html[data-mode="dark"] .sync-pill {
     }
   });
 
-  /* =========================================================
-     INICIALIZACIÓN
-     ========================================================= */
-  loadUiPrefs();
-  activateDashboardPanel('citas');
-  renderAllPanels();
-
-  const btnOpenDebug = document.getElementById('btnOpenDebug');
+  const btnOpenDebug = $('#btnOpenDebug');
   if (btnOpenDebug) {
     btnOpenDebug.addEventListener('click', () => {
       ensureDebugPanel();
       showDebugPanel();
       if (!document.getElementById('debugLog').innerHTML) {
-        logDebug('ok', 'Consola abierta manualmente. Estado actual: services=' + store.services.length + ', specialists=' + store.specialists.length + ', bookings=' + store.bookings.length);
+        logDebug('ok', `Consola abierta. Servicios=${store.services.length}, Especialistas=${store.specialists.length}, Activas=${store.bookings.length}`);
       }
     });
   }
-  logDebug('ok', 'Dashboard inicializado. GAS_URL=' + GAS_URL.substring(0, 80) + '…');
-  logDebug('ok', 'Para ver errores detallados, toca el botón 🐛 abajo a la derecha.');
+
+  /* =========================================================
+     INICIALIZACIÓN Y MONITOREO PERIÓDICO (6 HORAS)
+     ========================================================= */
+  loadUiPrefs();
+  activateDashboardPanel('citas');
+  renderAllPanels();
+
+  logDebug('ok', 'Dashboard inicializado correctamente.');
 
   syncFromGoogleSheets(true).catch(err => {
-    console.error('[Aevi Dashboard] Error de sincronización inicial:', err);
     showToast('No se pudo conectar con Google Sheets');
     logDebug('err', 'Error fatal en init: ' + (err.stack || err.message));
   });
+
+  // Verificación periódica cada 5 minutos para finalizar automáticamente citas con +6h pasadas
+  setInterval(() => {
+    checkAndAutoCompleteExpiredBookings();
+  }, 5 * 60 * 1000);
 })();
 </script>
 </body>
