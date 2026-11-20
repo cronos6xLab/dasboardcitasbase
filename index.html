@@ -729,6 +729,7 @@ html[data-mode="dark"] .compact-currency-select option {
 }
 .d-btn:active { transform: scale(0.97); }
 .d-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.d-btn.is-syncing svg { animation: canvasConicSpin 0.9s linear infinite; }
 
 .d-btn-primary {
   background: var(--cta-bg);
@@ -1976,6 +1977,10 @@ html[data-mode="dark"] .sync-pill {
                 Tabla
               </button>
             </div>
+            <button type="button" class="d-btn d-btn-outline" id="btnRefreshBookings" title="Sincronizar y actualizar citas ahora">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+              <span>Actualizar</span>
+            </button>
             <button type="button" class="d-btn d-btn-primary" id="btnOpenNewBookingModal">＋ Nueva Cita Manual</button>
           </div>
         </div>
@@ -2340,6 +2345,8 @@ html[data-mode="dark"] .sync-pill {
             <span>ESTADO: <strong id="settingsSyncText" style="color:var(--ink);">Conectando…</strong></span>
             <span>·</span>
             <span>ÚLTIMA SINCRONIZACIÓN: <strong id="lastSyncTimeLabel" style="color:var(--ink);">—</strong></span>
+            <span>·</span>
+            <span>AUTO-SYNC: <strong style="color:var(--ink);">Cada 15 min</strong></span>
           </div>
         </div>
 
@@ -2496,6 +2503,8 @@ html[data-mode="dark"] .sync-pill {
   const AUTO_COMPLETE_HOURS = 6;
   const AUTO_COMPLETE_MS = AUTO_COMPLETE_HOURS * 60 * 60 * 1000;
   const AUTO_COMPLETE_LABEL = 'Finalizado por tiempo';
+  const AUTO_SYNC_INTERVAL_MS = 15 * 60 * 1000;      // Sincronización automática cada 15 minutos
+  const EXPIRED_CHECK_INTERVAL_MS = 30 * 60 * 1000;  // Verificación de citas expiradas (+6h) cada 30 minutos
 
   const DAY_NAMES_FULL = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
   const DAY_SHORT_ES = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
@@ -3038,6 +3047,11 @@ html[data-mode="dark"] .sync-pill {
     }
     isSyncingNow = true;
     setSyncBadge('loading', '● Sincronizando…');
+    const refreshBtn = $('#btnRefreshBookings');
+    if (refreshBtn) {
+      refreshBtn.disabled = true;
+      refreshBtn.classList.add('is-syncing');
+    }
     logDebug('ok', 'Iniciando sincronización…');
 
     try {
@@ -3122,6 +3136,10 @@ html[data-mode="dark"] .sync-pill {
       logDebug('err', 'Error en syncFromGoogleSheets: ' + (err.stack || err.message));
     } finally {
       isSyncingNow = false;
+      if (refreshBtn) {
+        refreshBtn.disabled = false;
+        refreshBtn.classList.remove('is-syncing');
+      }
     }
   }
 
@@ -3944,6 +3962,7 @@ html[data-mode="dark"] .sync-pill {
 
   $('#syncStatusBadge').addEventListener('click', () => syncFromGoogleSheets(false));
   $('#btnSyncCloud').addEventListener('click', () => syncFromGoogleSheets(false));
+  $('#btnRefreshBookings').addEventListener('click', () => syncFromGoogleSheets(false));
 
   $('#tabActiveBookings').addEventListener('click', () => { store.bookingsTab = 'active'; renderBookingsTable(); });
   $('#tabHistoryBookings').addEventListener('click', () => { store.bookingsTab = 'history'; renderBookingsTable(); });
@@ -4717,10 +4736,16 @@ html[data-mode="dark"] .sync-pill {
     logDebug('err', 'Error fatal en init: ' + (err.stack || err.message));
   });
 
-  // Verificación periódica cada 5 minutos para finalizar automáticamente citas con +6h pasadas
+  // Sincronización automática periódica cada 15 minutos con Google Sheets
+  setInterval(() => {
+    logDebug('ok', 'Ejecutando sincronización automática programada (cada 15 min)…');
+    syncFromGoogleSheets(true);
+  }, AUTO_SYNC_INTERVAL_MS);
+
+  // Verificación periódica cada 30 minutos para finalizar automáticamente citas con +6h pasadas
   setInterval(() => {
     checkAndAutoCompleteExpiredBookings();
-  }, 5 * 60 * 1000);
+  }, EXPIRED_CHECK_INTERVAL_MS);
 })();
 </script>
 </body>
