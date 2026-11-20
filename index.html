@@ -231,6 +231,7 @@ html, body {
   line-height: 1.5;
   letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
   transition: background-color 0.28s var(--ease-settle), color 0.25s var(--ease-settle);
 }
@@ -1855,6 +1856,38 @@ html[data-mode="dark"] .sync-pill {
   .detail-grid, .wa-preset-grid { grid-template-columns: 1fr; }
   .canvas-cards-grid { grid-template-columns: 1fr; }
   .toast { left: 16px; right: 16px; bottom: 20px; text-align: center; }
+}
+
+/* ==========================================================================
+   PREVENCIÓN DE ZOOM AUTOMÁTICO EN iOS AL ENFOCAR CAMPOS DE TEXTO
+   Safari en iOS hace zoom si el input/select/textarea tiene font-size < 16px
+   ========================================================================== */
+@supports (-webkit-touch-callout: none) {
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea,
+  #adminCitaSearch,
+  #adminCitaStatusFilter,
+  .compact-currency-select,
+  .shift-label-input,
+  .time-pill-box input[type="time"] {
+    font-size: 16px !important;
+    touch-action: manipulation;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea,
+  #adminCitaSearch,
+  #adminCitaStatusFilter,
+  .compact-currency-select,
+  .shift-label-input,
+  .time-pill-box input[type="time"] {
+    font-size: 16px !important;
+    touch-action: manipulation;
+  }
 }
 </style>
 </head>
